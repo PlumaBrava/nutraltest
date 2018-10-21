@@ -1,0 +1,15 @@
+pm -install --save @ng-bootstrap/ng-bootstap
+ng generate module app-routing --flat --module=app
+npm install -g- firebase-tools
+
+en firebase.json reemplazar
+
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+por     "npm --prefix \"%RESOURCE_DIR%\" run lint"
+
+git ignore (eliminamos las funciones para no tener tantos archivos.)
+    # funtions
+    /functions/node_modules/
+
+npm install mssql@next --save (en funciones.)
+https://www.npmjs.com/package/mssql#connections-1
