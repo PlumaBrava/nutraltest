@@ -11,9 +11,12 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.4",
     "firebase-admin": "~6.0.0",
     "firebase-functions": "^2.0.3",
-    "mssql": "^4.2.1"
+    "mssql": "^4.2.1",
+    "save": "^2.3.2"
   },
   "devDependencies": {
     "tslint": "~5.8.0",

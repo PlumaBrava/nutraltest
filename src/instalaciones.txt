@@ -13,3 +13,6 @@ git ignore (eliminamos las funciones para no tener tantos archivos.)
 
 npm install mssql@next --save (en funciones.)
 https://www.npmjs.com/package/mssql#connections-1
+
+npm install cors --save (en funciones.)
+npm install axios --save (en funciones.)
