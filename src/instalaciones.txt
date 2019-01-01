@@ -1,4 +1,4 @@
-pm -install --save @ng-bootstrap/ng-bootstap
+npm install --save @ng-bootstrap/ng-bootstrap
 ng generate module app-routing --flat --module=app
 npm install -g- firebase-tools
 
@@ -11,8 +11,17 @@ git ignore (eliminamos las funciones para no tener tantos archivos.)
     # funtions
     /functions/node_modules/
 
+
+    EN EL DIRECTORIO DE FUNCIONES!!!
+
 npm install mssql@next --save (en funciones.)
 https://www.npmjs.com/package/mssql#connections-1
 
 npm install cors --save (en funciones.)
 npm install axios --save (en funciones.)
+
+
+npm install firebase @angular/fire --save
+
+
+https://www.layoutit.com/build  diseños bootstrap

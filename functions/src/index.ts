@@ -23,11 +23,12 @@ const config = {       // Datos de la base
 const axios = require('axios');
 const cors = require('cors')({origin: true});
 
-var usuario = 'nutralmix';
-var password = '159';
-var id = 3967;
-var desde = '2018-08-01 01:00:00';
-var hasta = '2018-10-18 00:00:00';
+// datos de par aacceder a la api de Infotrak
+const usuario = 'nutralmix';
+const password = '159';
+const id = 3967;
+const desde = '2018-08-01 01:00:00';
+const hasta = '2018-10-18 00:00:00';
 
 
 // https://us-central1-nutraltest.cloudfunctions.net/sql_getDetallePedido?Id_Pedido=6611
@@ -48,12 +49,16 @@ export const sql_get2 = functions.https.onRequest((request, response) => {
 
        pool1.request().execute('APP_Parametros')
        .then(result => {
-            console.dir(result)
-            response.json({'result':result});  // Always emitted as the last one
+            console.dir('result',result)
+
+            response.json(result.recordset);  // Always emitted as the last one
             sql.close();
         })
        .catch(err => {
-           response.json({'err':err});  // Always emitted as the last one
+           console.log('err',err);
+         // 417 Expectation Failed
+           response.status(417).send(err);
+           // response.json({'err':err});  // Always emitted as the last one
            sql.close();
         });
     });
@@ -75,7 +80,7 @@ exports.sql_getDatosEmpresa = functions.https.onRequest((request, response) => {
     response.setHeader('Access-Control-Allow-Credentials', 'true'); // If needed
 
 
-    let Clientes=request.query.Clientes;
+    const Clientes=request.query.Clientes;
 
 
     sql.connect(config).then(pool1 => {
@@ -90,12 +95,14 @@ exports.sql_getDatosEmpresa = functions.https.onRequest((request, response) => {
        .execute('APP_GetDatosEmpresa')
        .then(result => {
             // console.dir(result)
-            response
+            // response.send(result);  // Always emitted as the last one
             // .type('application / json')
-            .send(result);  // Always emitted as the last one
+             console.log('result json',result);
+            response.status(200).type('application/json').send(result.recordset);
             sql.close();
         })
        .catch(err => {
+             console.log('err',err);
            response.json(err);  // Always emitted as the last one
            sql.close();
         });
@@ -117,8 +124,8 @@ export const sql_getPedidos = functions.https.onRequest((request, response) => {
     response.setHeader('Access-Control-Allow-Credentials', 'true'); // If needed
 
 
-    let COD_CLIENT=request.query.Codigo_Cliente;
-    let cantDias=request.query.cantidadDias;
+    const COD_CLIENT=request.query.Codigo_Cliente;
+    const cantDias=request.query.cantidadDias;
         console.log("COD_CLIENT",COD_CLIENT);
         console.log("cantDias",cantDias);
 
@@ -134,17 +141,19 @@ export const sql_getPedidos = functions.https.onRequest((request, response) => {
        .input('cantDias', sql.Int, +cantDias) // el + lo transoforma en numero
        .execute('APP_GetPedidos')
        .then(result => {
-            // console.dir(result)
-            response.json(result);  // Always emitted as the last one
+            console.dir("result",result)
+            response.json(result.recordset);  // Always emitted as the last one
             sql.close();
         })
        .catch(err => {
+         console.dir("err", err)
            response.json(err);  // Always emitted as the last one
            sql.close();
         });
     });
 
     sql.on('error', err2 => {
+       console.dir("err2", err2)
      response.json({'errsql':err2});  // Always emitted as the last one
 
     })
@@ -159,7 +168,7 @@ export const sql_getDetallePedido = functions.https.onRequest((request, response
     // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
     response.setHeader('Access-Control-Allow-Credentials', 'true'); // If needed
 
-    let idPedido=request.query.Id_Pedido;
+    const idPedido=request.query.Id_Pedido;
 
      console.log("idPedido",idPedido);
     sql.connect(config).then(pool1 => {
@@ -174,7 +183,7 @@ export const sql_getDetallePedido = functions.https.onRequest((request, response
        .execute('APP_GetDetallePedido')
        .then(result => {
             console.dir(result)
-            response.json(result);  // Always emitted as the last one
+            response.json(result.recordset);  // Always emitted as the last one
             sql.close();
         })
        .catch(err => {
@@ -205,7 +214,7 @@ axios.post('https://ver.infotrak.com.ar:8144/api/vehiculos', {
 // axios.all([buscaVehiculos()])
     .then((vehiculos)=> {
       console.log(vehiculos.data);
-        res.status(200).send({'vehiculos':vehiculos.data});
+        res.status(200).send(vehiculos.data);
                  return ("ok");
 
             }
@@ -241,7 +250,7 @@ axios.post('https://ver.infotrak.com.ar:8144/api/historicos', {
 // axios.all([buscaVehiculos()])
     .then((vehiculos)=> {
       console.log(vehiculos.data);
-        res.status(200).send({'vehiculosHistorico':vehiculos.data});
+        res.status(200).send(vehiculos.data);
                  return ("ok");
             // console.log('\x1b[35mVehiculos encontrados: ',vehiculos.data.length,'\x1b[30m');
             // if (vehiculos.data.length>5) {

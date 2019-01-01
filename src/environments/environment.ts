@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+    firebase : {
+    apiKey: "AIzaSyDRhEgNleV2oXekeIxHd9fCfAwtlefAcEk",
+    authDomain: "nutraltest.firebaseapp.com",
+    databaseURL: "https://nutraltest.firebaseio.com",
+    projectId: "nutraltest",
+    storageBucket: "nutraltest.appspot.com",
+    messagingSenderId: "574418147348"
+  },
+   nutralMix:{
+     SQL_SERVER:'https://us-central1-nutraltest.cloudfunctions.net/'  //Desarrollo
+   }
 };
 
 /*
