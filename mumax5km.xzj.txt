@@ -1,0 +1,120 @@
+﻿Se agrega funcionalidad varia
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch CloudFireStore
+# Changes to be committed:
+#	modified:   .firebase/hosting.ZGlzdA.cache
+#	modified:   angular.json
+#	modified:   firebase.json
+#	modified:   firestore.indexes.json
+#	modified:   functions/.gitignore
+#	modified:   functions/package-lock.json
+#	modified:   functions/package.json
+#	modified:   functions/src/index.ts
+#	modified:   functions/tsconfig.json
+#	modified:   functions/tslint.json
+#	new file:   mensaje.json
+#	modified:   package-lock.json
+#	modified:   package.json
+#	new file:   src/app/admin/users/empresa-modal/empresa-modal.component.css
+#	new file:   src/app/admin/users/empresa-modal/empresa-modal.component.html
+#	new file:   src/app/admin/users/empresa-modal/empresa-modal.component.spec.ts
+#	new file:   src/app/admin/users/empresa-modal/empresa-modal.component.ts
+#	modified:   src/app/admin/users/nuevo-usuario/nuevo-usuario.component.html
+#	modified:   src/app/admin/users/nuevo-usuario/nuevo-usuario.component.ts
+#	new file:   src/app/admin/users/setings/setings.component.css
+#	new file:   src/app/admin/users/setings/setings.component.html
+#	new file:   src/app/admin/users/setings/setings.component.spec.ts
+#	new file:   src/app/admin/users/setings/setings.component.ts
+#	modified:   src/app/admin/users/user.ts
+#	modified:   src/app/admin/users/usuario-list/usuario-list.component.css
+#	modified:   src/app/admin/users/usuario-list/usuario-list.component.html
+#	modified:   src/app/admin/users/usuario-list/usuario-list.component.ts
+#	new file:   src/app/admin/users/usuario-noautorizado/usuario-noautorizado.component.css
+#	new file:   src/app/admin/users/usuario-noautorizado/usuario-noautorizado.component.html
+#	new file:   src/app/admin/users/usuario-noautorizado/usuario-noautorizado.component.spec.ts
+#	new file:   src/app/admin/users/usuario-noautorizado/usuario-noautorizado.component.ts
+#	new file:   src/app/alertasReposicion/alertas-reposicion-crear/alertas-reposicion-crear.component.css
+#	new file:   src/app/alertasReposicion/alertas-reposicion-crear/alertas-reposicion-crear.component.html
+#	new file:   src/app/alertasReposicion/alertas-reposicion-crear/alertas-reposicion-crear.component.spec.ts
+#	new file:   src/app/alertasReposicion/alertas-reposicion-crear/alertas-reposicion-crear.component.ts
+#	new file:   src/app/alertasReposicion/alertas-reposicion-listado/alertas-reposicion-listado.component.css
+#	new file:   src/app/alertasReposicion/alertas-reposicion-listado/alertas-reposicion-listado.component.html
+#	new file:   src/app/alertasReposicion/alertas-reposicion-listado/alertas-reposicion-listado.component.spec.ts
+#	new file:   src/app/alertasReposicion/alertas-reposicion-listado/alertas-reposicion-listado.component.ts
+#	modified:   src/app/app-routing.module.ts
+#	modified:   src/app/app.component.ts
+#	modified:   src/app/app.module.ts
+#	new file:   src/app/avisos/aviso.ts
+#	new file:   src/app/avisos/avisos-list/avisos-list.component.css
+#	new file:   src/app/avisos/avisos-list/avisos-list.component.html
+#	new file:   src/app/avisos/avisos-list/avisos-list.component.spec.ts
+#	new file:   src/app/avisos/avisos-list/avisos-list.component.ts
+#	new file:   src/app/avisos/avisos-nuevo/avisos-nuevo.component.css
+#	new file:   src/app/avisos/avisos-nuevo/avisos-nuevo.component.html
+#	new file:   src/app/avisos/avisos-nuevo/avisos-nuevo.component.spec.ts
+#	new file:   src/app/avisos/avisos-nuevo/avisos-nuevo.component.ts
+#	modified:   src/app/clientes/clientes-list/clientes-list.component.css
+#	modified:   src/app/clientes/clientes-list/clientes-list.component.html
+#	modified:   src/app/clientes/clientes-list/clientes-list.component.ts
+#	modified:   src/app/footer/footer.component.html
+#	modified:   src/app/header/header.component.html
+#	modified:   src/app/header/header.component.ts
+#	modified:   src/app/log/log-mail/log-mail.component.html
+#	modified:   src/app/log/registrarse/registrarse.component.css
+#	modified:   src/app/log/registrarse/registrarse.component.html
+#	new file:   src/app/mapa/mapa.component.css
+#	new file:   src/app/mapa/mapa.component.html
+#	new file:   src/app/mapa/mapa.component.spec.ts
+#	new file:   src/app/mapa/mapa.component.ts
+#	new file:   src/app/pedidos/pedido-creado-detalle/pedido-creado-detalle.component.css
+#	new file:   src/app/pedidos/pedido-creado-detalle/pedido-creado-detalle.component.html
+#	new file:   src/app/pedidos/pedido-creado-detalle/pedido-creado-detalle.component.spec.ts
+#	new file:   src/app/pedidos/pedido-creado-detalle/pedido-creado-detalle.component.ts
+#	new file:   src/app/pedidos/pedido-detalle/pedido-detalle.component.css
+#	new file:   src/app/pedidos/pedido-detalle/pedido-detalle.component.html
+#	new file:   src/app/pedidos/pedido-detalle/pedido-detalle.component.spec.ts
+#	new file:   src/app/pedidos/pedido-detalle/pedido-detalle.component.ts
+#	new file:   src/app/pedidos/pedidos-creados-listado/pedidos-creados-listado.component.css
+#	new file:   src/app/pedidos/pedidos-creados-listado/pedidos-creados-listado.component.html
+#	new file:   src/app/pedidos/pedidos-creados-listado/pedidos-creados-listado.component.spec.ts
+#	new file:   src/app/pedidos/pedidos-creados-listado/pedidos-creados-listado.component.ts
+#	new file:   src/app/pedidos/pedidos-listado/pedidos.component.css
+#	new file:   src/app/pedidos/pedidos-listado/pedidos.component.html
+#	new file:   src/app/pedidos/pedidos-listado/pedidos.component.spec.ts
+#	new file:   src/app/pedidos/pedidos-listado/pedidos.component.ts
+#	new file:   src/app/remitos/remitos-listado/remitos-listado.component.css
+#	new file:   src/app/remitos/remitos-listado/remitos-listado.component.html
+#	new file:   src/app/remitos/remitos-listado/remitos-listado.component.spec.ts
+#	new file:   src/app/remitos/remitos-listado/remitos-listado.component.ts
+#	new file:   src/app/services/autorizaciones/autorizaciones.service.spec.ts
+#	new file:   src/app/services/autorizaciones/autorizaciones.service.ts
+#	new file:   src/app/services/cloud_messagin/cloud-messaging.service.spec.ts
+#	new file:   src/app/services/cloud_messagin/cloud-messaging.service.ts
+#	modified:   src/app/services/firebase/auth.service.ts
+#	modified:   src/app/services/firebase/firedatabase.service.ts
+#	modified:   src/app/services/mensajes/mensajes.service.ts
+#	new file:   src/app/services/modal-mensaje/modal-mensaje.component.css
+#	new file:   src/app/services/modal-mensaje/modal-mensaje.component.html
+#	new file:   src/app/services/modal-mensaje/modal-mensaje.component.spec.ts
+#	new file:   src/app/services/modal-mensaje/modal-mensaje.component.ts
+#	modified:   src/app/services/sql/sqlservice.service.ts
+#	new file:   src/app/util/spinner/spinner.component.css
+#	new file:   src/app/util/spinner/spinner.component.html
+#	new file:   src/app/util/spinner/spinner.component.spec.ts
+#	new file:   src/app/util/spinner/spinner.component.ts
+#	new file:   src/assets/images/Truck-icon.ico
+#	new file:   src/assets/images/Truck-icon.png
+#	new file:   src/assets/images/Truck-icon.svg
+#	new file:   src/assets/images/camion.png
+#	new file:   src/assets/images/camion2.jpg
+#	new file:   src/assets/images/camion48-48.png
+#	new file:   src/assets/images/camion48-48b.gif
+#	new file:   src/assets/images/camion48-48c.gif
+#	new file:   src/firebase-messaging-sw.js
+#	modified:   src/index.html
+#	new file:   src/manifest.json
+#	modified:   tsconfig.json
+#
+

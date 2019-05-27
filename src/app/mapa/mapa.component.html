@@ -1,0 +1,76 @@
+ <div class="modal-header" id="custom-modal-1">
+    <h4 class="modal-title" id="modal-title">Mapa</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+<div *ngIf="mensajeError" >{{mensajeError}}</div>
+<!-- <img class="rot30"  src="../../assets/images/camion.png" alt=""> -->
+<!-- <img  class="rot30"  src="../../assets/images/Truck-icon.ico" alt=""> -->
+
+<!-- <img src="../../assets/images/nutralmix.jpg" alt=""> -->
+
+<agm-map
+ [latitude]="lat"
+ [longitude]="lng"
+ [zoom]="zoom"
+ [disableDefaultUI]="false"
+ [zoomControl]="false">
+  <agm-marker [latitude]="lat" [longitude]="lng" [label]="label"
+
+[iconUrl] ="icono"
+
+class="rot30"
+   >
+
+    <agm-info-window [disableAutoPan]="false" [isOpen]="true"
+
+      >
+      <strong>{{nombreTransporte}}</strong>
+    </agm-info-window>
+</agm-marker>
+
+<!--  <agm-circle [latitude]="lat" [longitude]="lng"
+      [radius]="50"
+      [fillColor]="'red'"
+      [circleDraggable]="true"
+      [editable]="true">
+  </agm-circle> -->
+</agm-map>
+
+
+<!-- <agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false"
+
+  > -->
+<!-- (mapClick)="mapClicked($event)" -->
+<!--   <agm-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="markerDragEnd(m, $event)"> -->
+
+
+<!-- <agm-marker [latitude]="lat"
+      [longitude]="lng">
+          <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+  </agm-marker> -->
+
+<!--   <agm-circle [latitude]="lat + 0.3" [longitude]="lng"
+      [radius]="5000"
+      [fillColor]="'red'"
+      [circleDraggable]="true"
+      [editable]="true">
+  </agm-circle>
+ -->
+<!-- </agm-map> -->

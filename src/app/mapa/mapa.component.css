@@ -1,0 +1,9 @@
+agm-map {
+  height: 300px;
+  width: 300px;
+
+};
+
+.rot30 {
+     transform: rotate(90deg);
+}

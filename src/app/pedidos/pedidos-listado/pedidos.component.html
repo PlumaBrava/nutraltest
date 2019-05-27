@@ -1,0 +1,92 @@
+
+
+<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>
+<div *ngIf="mensajeError" >{{mensajeError}}</div>
+<p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+<p   *ngIf="pedidos"> cantidad de Pedidos: {{pedidos.length  }}  </p>
+
+
+
+<div class="accordion" id="accordionExample">
+  <div class="card"  *ngFor="let pedido of pedidos">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+         PEDIDO:  {{pedido.NRO_PEDIDO}} FECHA:  {{pedido.FECHA_PEDI}} ESTADO: {{pedido.Desc_Estado}}
+        </h2>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+         <table class="table table-sm table-striped table-wrapper-scroll-y ">
+                        <thead>
+                            <tr >
+                                <th>
+                                    PRODUCTO
+                                </th>
+                                <th>
+                                   CANTIDAD PEDIDO
+                                </th>
+                                <th>
+                                   CANTIDAD REMITO
+                                </th>
+                                <th>
+                                    UNIDADES
+                                </th>
+                                <th>
+                                   REMITO
+                                </th>
+                                <th>
+                                   FECHA REMITO
+                                </th>
+
+                                <th>
+                                    TRANSPORTISTA
+                                </th>
+                                <th>
+                                    UBICACION
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                     <tr
+
+                                 *ngFor="let detalle of pedido.detalle"
+
+                                 >  <td (click)="setPedidoSelected(pedido)" >
+                                    {{detalle.DESCRIPCIO}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido)" >
+                                    {{detalle.CANT_PEDID}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido)" >
+                                    {{detalle.CANT_REMITO}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido)" >
+                                    {{detalle.ID_MEDIDA_STOCK}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido)" >
+                                    {{detalle.N_REMITO}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido)" >
+                                    {{detalle.FECHA_REMITO}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido)" >
+                                    {{detalle.NOMBRE_TRA}}
+                                </td >
+                                  <td   (click)="mostrarMapa(detalle.ID_INFOTRAK)">
+                                  <img src="../assets/images/Truck-icon.png" alt="" class="camion_listado" *ngIf="detalle.ID_INFOTRAK">
+
+                                </td>
+                                 </tr>
+
+                        </tbody>
+                      </table>
+
+      </div>
+    </div>
+  </div>
+  </div>
+

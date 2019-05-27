@@ -1,4 +1,4 @@
-<div class="col-md-8 col-12 card bg-light " >
+<div class="col-md-12 col-12 card bg-light " >
 
 
                     <form  [formGroup]="crearLabelForm">
@@ -15,6 +15,9 @@
 
                         <div *ngIf=" (crearLabelForm.controls.email.invalid && (crearLabelForm.controls.email.dirty|| crearLabelForm.controls.email.touched  ) )" class="alert alert-danger">
                             El email es no es válido.
+                        </div>
+                         <div *ngIf="existeEmailenlaBase" class="alert alert-danger">
+                            Ya existe un usuario con ese Email!!!
                         </div>
 
 
@@ -50,6 +53,7 @@
 								<div class="row">
                                 	<input  type="text" class="form-control col-md-6 mx-sm-3 mb-2" id="empresa"  formControlName="empresa" />
                                 	<button class="btn btn-primary mb-2" (click)="agregarEmpresa()"> Agrear  </button>
+<button class="btn btn-primary mb-2" (click)="buscarEmpresa()"> Buscar  </button>
 
 
                         	</div>

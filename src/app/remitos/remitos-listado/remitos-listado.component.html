@@ -1,0 +1,80 @@
+<p>
+  remitos-listado works!
+</p>
+
+<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>
+<div *ngIf="mensajeError" >{{mensajeError}}</div>
+<p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+<p   *ngIf="pedidos"> cantidad de remitos: {{remitos.length  }}  </p>
+
+
+
+<div class="accordion" id="accordionExample">
+  <div class="card"  *ngFor="let remito of remitos">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+         REMITO:  {{remito.N_REMITO}} FECHA:  {{remito.FECHA_REMITO}} Estado: {{remito.ESTADO}}
+         <img src="../assets/images/Truck-icon.png" alt="" class="camion_listado" *ngIf="remito.ID_INFOTRAK"  (click)="getUbicacionTransporte(remito.ID_INFOTRAK)">
+
+
+        </h2>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+         <table class="table table-sm table-striped table-wrapper-scroll-y ">
+                        <thead>
+                            <tr >
+                                <th>
+                                    PRODUCTO
+                                </th>
+                                <th>
+                                   CANTIDAD PEDIDO
+                                </th>
+                                <th>
+                                   CANTIDAD REMITO
+                                </th>
+                                <th>
+                                    UNIDADES
+                                </th>
+                                <th>
+                                    PEDIDO
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                     <tr
+
+                                 *ngFor="let detalle of remito.detalle"
+
+                                 >  <td (click)="setPedidoSelected(pedido)" >
+                                    {{detalle.DESCRIPCIO}}
+                                </td >
+                                <td  >
+                                    {{detalle.CANT_PEDID}}
+                                </td >
+                                <td  >
+                                    {{detalle.CANTIDAD_REMITO}}
+                                </td >
+                                <td  >
+                                    {{detalle.ID_MEDIDA_STOCK}}
+                                </td >
+                                 <td  >
+                                    {{detalle.NRO_PEDIDO}}
+                                </td >
+
+
+
+                                 </tr>
+
+                        </tbody>
+                      </table>
+
+      </div>
+    </div>
+  </div>
+  </div>
+

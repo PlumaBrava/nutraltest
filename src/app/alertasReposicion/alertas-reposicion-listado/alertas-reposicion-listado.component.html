@@ -1,0 +1,88 @@
+<p>
+  alertas-reposicion-listado works!
+</p>
+<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>
+<div *ngIf="mensajeError" >{{mensajeError}}</div>
+<p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+<p   *ngIf="pedidos"> cantidad de Pedidos: {{pedidos.length  }}  </p>
+
+
+
+<div class="accordion" id="accordionExample">
+  <div class="card"  *ngFor="let alerta of listaAlertas ; let i = index">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+         Alerta:  {{alerta.nombreAlerta}}
+          FECHA:{{ alerta.timeStamp.toDate() | date:'dd-MM-yyyy' }}
+          ESTADO: {{alerta.estado}}
+          <button class="btn btn-primary mb-2" (click)="editarAlerta(alerta,i)"> Editar  </button>
+
+        </h2>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+         <table class="table table-sm table-striped table-wrapper-scroll-y ">
+                        <thead>
+                            <tr >
+                                <th>
+                                    PRODUCTO
+                                </th>
+                                <th>
+                                   capacidadDeAlmacenamiento
+                                </th>
+                                <th>
+                                   stockInicial
+                                </th>
+
+                                <th>
+                                   cantidadDeAnimales
+                                </th>
+                                <th>
+                                   consumoDiario
+                                </th>
+                                <th>
+                                   diasDeMargen
+                                </th>
+                                <th>
+                                    UNIDADES
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                   <td (click)="setPedidoSelected(pedido,i)" >
+                                    {{alerta.articulo.DESCRIPCIO}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido,i)" >
+                                    {{alerta.capacidadDeAlmacenamiento}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido,i)" >
+                                    {{alerta.stockInicial}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido,i)" >
+                                    {{alerta.cantidadDeAnimales}}
+                                </td >
+
+                                <td (click)="setPedidoSelected(pedido,i)" >
+                                    {{alerta.consumoDiario}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido,i)" >
+                                    {{alerta.diasDeMargen}}
+                                </td >
+                                <td (click)="setPedidoSelected(pedido,i)" >
+                                    {{alerta.articulo.ID_MEDIDA_STOCK}}
+                                </td >
+
+                            </tr>
+
+                        </tbody>
+                      </table>
+
+      </div>
+    </div>
+  </div>
+  </div>

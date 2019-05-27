@@ -1,0 +1,71 @@
+ <div class="modal-header" id="custom-modal-1">
+    <h4 class="modal-title" id="modal-title">Seleccione una empresa</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+<form>
+        <div class="card-group card-group-3 ">
+
+                        <label for="empresa">Empresa</label>
+                             <div class="form-group  row ">
+                             <input type="text" class="form-control col-md-10" id="empresa"  [(ngModel)]="empresa" [ngModelOptions]="{standalone: true}" />
+
+                            <button class="btn btn-primary mb-2" (click)="buscarEmpresa(empresa)"> Buscar Empresa </button>
+                    </div>
+                    </div>
+
+    </form>
+
+ <table class="table table-sm table-striped" *ngIf="listaEmpresas">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Codigo Cliente
+                                </th>
+                                <th>
+                                    Razón Social
+                                </th>
+                                <th>
+                                    Cuit
+                                </th>
+                                <th>
+                                    Localidad
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            <tr class="table-danger" *ngFor="let emp of listaEmpresas; let i = index" [attr.data-index]="i">
+                                <td>
+                                     {{emp.COD_CLIENT}}
+                                </td>
+                                <td>
+                                    {{emp.RAZON_SOCI}}
+                                </td>
+                                <td>
+                                    {{emp.CUIT}}
+                                </td>
+                                <td  (click)="verEmpresa(emp)">
+                                     {{emp.LOCALIDAD}}
+                                </td>
+                                 <td  (click)="modal.close({cause:'empresaSeleccionada', empresa: emp })"
+                                 >
+
+                                     Seleccionar
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <!-- <button type="button" class="btn btn-danger" (click)="modal.close({cause:'Ok click jj', date:model})">Ok</button> -->
+    <button type="button" class="btn btn-danger" (click)="modal.close({cause:'Ok click jj', date: model })">Ok</button>
+  </div>

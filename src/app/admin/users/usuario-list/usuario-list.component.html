@@ -1,10 +1,33 @@
+    <div class="container" >
+
+
+        <div class="card card-3 ">
+
+
+      <div    class="card-body ">
+         <!-- <h1 class="title">Registración</h1> -->
+
       <h1 class="text-center">Usuarios</h1>
-    <div class="container mt-2">
+      <!-- <h3 class="text-center" *ngIf="listaUsuarios">cantidad: {{listaUsuarios.length}}</h3> -->
+
+    <!-- <div class="container mt-2"> -->
+
+         <!-- <div class="form-group "> -->
+
     <div class="row">
                 <div class="col-md-6">
-                    <table class="table table-sm table-striped">
+                    <div class="card-group card-group-6 ">
+
+                        <label for="email">Email</label>
+                             <div class="form-group  row mail-row">
+                             <input type="email" class="form-control col-md-10" id="emailFiltro"  [(ngModel)]="filtroMail" placeholder="Filtro por email" />
+                            <button class="btn btn-primary mb-2" (click)="ejecutarFiltroMail()"> Filtrar </button>
+                    </div>
+
+
+                    <table class="table table-sm table-striped table-wrapper-scroll-y ">
                         <thead>
-                            <tr>
+                            <tr >
                                 <th>
                                     #
                                 </th>
@@ -20,65 +43,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    01/04/2012
-                                </td>
-                                <td>
-                                    Default
-                                </td>
-                            </tr>
-                            <tr class="table-active">
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    01/04/2012
-                                </td>
-                                <td>
-                                    Approved
-                                </td>
-                            </tr>
-                            <tr class="table-success">
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    02/04/2012
-                                </td>
-                                <td>
-                                    Declined
-                                </td>
-                            </tr>
-                            <tr class="table-warning">
-                                <td>
-                                    3
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    03/04/2012
-                                </td>
-                                <td>
-                                    Pending
-                                </td>
-                            </tr>
 
+                            <tr
 
-                            <tr class="table-danger" *ngFor="let usuario of listaUsuarios | async" (click)="setUserSelected(usuario)">
+                                 *ngFor="let usuario of listaUsuarios " (click)="setUserSelected(usuario)"
+[ngClass]="{'table-danger': usuario.estado == 'suspendido' ,'table-success': usuario.estado == 'activo','table-warning': usuario.estado == 'pendiente'}"
+                                 >
                                 <td>
                                     4
                                 </td >
@@ -92,11 +62,22 @@
                                     {{usuario.estado}}
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+
+
                 <div class="col-md-6">
+                         <div class="card-group card-group-3">
                         <app-nuevo-usuario  [userSelected]="userSelected"></app-nuevo-usuario>
                 </div>
+                </div>
             </div>
             </div>
+            </div>
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+
