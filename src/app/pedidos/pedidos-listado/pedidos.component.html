@@ -28,10 +28,10 @@
                                 <th>
                                    CANTIDAD PEDIDO
                                 </th>
-                                <th>
+<!--                                 <th>
                                    CANTIDAD REMITO
-                                </th>
-                                <th>
+                                </th> -->
+                               <!--  <th>
                                     UNIDADES
                                 </th>
                                 <th>
@@ -40,13 +40,13 @@
                                 <th>
                                    FECHA REMITO
                                 </th>
-
+ -->
                                 <th>
                                     TRANSPORTISTA
                                 </th>
-                                <th>
+                               <!--  <th>
                                     UBICACION
-                                </th>
+                                </th> -->
 
                             </tr>
                         </thead>
@@ -59,9 +59,9 @@
                                     {{detalle.DESCRIPCIO}}
                                 </td >
                                 <td (click)="setPedidoSelected(pedido)" >
-                                    {{detalle.CANT_PEDID}}
+                                    {{detalle.CANT_PEDID}}  {{detalle.ID_MEDIDA_STOCK}}
                                 </td >
-                                <td (click)="setPedidoSelected(pedido)" >
+                             <!-- td (click)="setPedidoSelected(pedido)" >
                                     {{detalle.CANT_REMITO}}
                                 </td >
                                 <td (click)="setPedidoSelected(pedido)" >
@@ -75,7 +75,7 @@
                                 </td >
                                 <td (click)="setPedidoSelected(pedido)" >
                                     {{detalle.NOMBRE_TRA}}
-                                </td >
+                                </td > -->
                                   <td   (click)="mostrarMapa(detalle.ID_INFOTRAK)">
                                   <img src="../assets/images/Truck-icon.png" alt="" class="camion_listado" *ngIf="detalle.ID_INFOTRAK">
 
