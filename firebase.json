@@ -20,6 +20,10 @@
       "**/.*",
       "**/node_modules/**"
     ]
+    ,"rewrites": [ {
+          "source": "**",
+          "destination": "/index.html"
+          } ]
   },
   "storage": {
     "rules": "storage.rules"

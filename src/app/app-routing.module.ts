@@ -25,8 +25,7 @@ import { AvisosNuevoComponent } from '../app/avisos/avisos-nuevo/avisos-nuevo.co
 // Rutas
 
 const routes: Routes = [
-   { path: '', redirectTo: '/', pathMatch: 'full' } //esto se usa para que funcione cuando no exista la ruta solicitada
-  ,
+
   { path: 'clientesList', component: ClientesListComponent }
   ,{ path: 'clienteCrear/:id', component: ClientesCrearComponent }
   ,{ path: 'logGoogle', component: LogGoogleComponent }
@@ -45,16 +44,16 @@ const routes: Routes = [
 
 
   ,{ path: 'ususario_no_autorizado', component: UsuarioNoautorizadoComponent }
+  ,{ path: '', redirectTo: '/clientesList', pathMatch: 'full' } //esto se usa para que funcione cuando no exista la ruta solicitada
+
+  // , { path: '**', component: UsuarioNoautorizadoComponent }
 
   // ,{ path: 'firebase-messaging-sw.js', component: RegistrarseComponent }
 
 ];
 
 
-// @NgModule({
-//   imports: [ RouterModule.forRoot(routes) ],
-//   exports: [ RouterModule ]
-// })
+
 
 @NgModule({
  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],

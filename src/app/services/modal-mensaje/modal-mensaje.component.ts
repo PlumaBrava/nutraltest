@@ -7,6 +7,10 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalMensajeComponent implements OnInit {
  @Input() name;
+ @Input() titulo;
+ @Input() mensaje;
+ @Input() dato;
+
      model;
 constructor(public modal: NgbActiveModal) {
 
@@ -14,6 +18,10 @@ constructor(public modal: NgbActiveModal) {
 }
   ngOnInit() {
       console.log(this.name);
+      console.log(this.titulo);
+      console.log(this.mensaje);
+      console.log(this.dato);
+
   }
 
 }

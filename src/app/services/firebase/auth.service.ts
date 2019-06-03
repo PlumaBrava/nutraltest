@@ -127,7 +127,9 @@ export class AuthService {
         this.updateUserData(user);
          this.router.navigate(['/'])
       })
-      .catch(error => console.log(error));
+      .catch(error =>{ console.log(error);
+        return(error) ;
+      });
 
       // code: "auth/email-already-in-use"
 // message: "The email address is already in use by another account."
@@ -136,17 +138,22 @@ export class AuthService {
 
   }
 
-  emailLogin(email:string, password:string) {
-     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+  emailLogin(email:string, password:string): Observable<any> {
+     return new Observable((observer) => {
+
+      this.afAuth.auth.signInWithEmailAndPassword(email, password)
        .then((user) => {
          console.log(user);
          // this.authState = user.user
          this.updateUserData(user.user)
           // this.router.navigate(['/usuariosList']);
           this.router.navigate(['/']);
-
+           observer.next(user);
+          observer.complete();// Para cerrar la susripcion.
        })
-       .catch(error => console.log(error)
+       .catch(error =>{ console.log(error);
+           observer.error(error);
+          observer.complete();// Para cerrar la susripcion.
 // code: "auth/wrong-password"
 // message: "The password is invalid or the user does not have a password."
 
@@ -159,7 +166,8 @@ export class AuthService {
 // code: "auth/too-many-requests"
 // message: "Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later"
 
-         );
+        } );
+  })    ;
   }
 
   // Sends email allowing user to reset password
