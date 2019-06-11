@@ -1,4 +1,24 @@
+    <div class="modal-header" id="custom-modal-2">
+    <h4 class="modal-title" id="modal-title-2">asdasd</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <p><strong *ngIf="mensaje"> asdasd <span class="text-primary" *ngIf="name">"asdasdasda"</span></strong></p>
+    <p>
+    <span class="text-danger" *ngIf="dato">"asdasda"</span>
+    </p>
+    </div>
 
+    <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <!-- <button type="button" class="btn btn-danger" (click)="modal.close({cause:'Ok click jj', date:model})">Ok</button> -->
+    <button type="button" class="btn btn-danger" (click)="modal.close({cause:'Ok click jj', date: model })">Ok</button>
+    </div>
+
+
+<!--
 <div class="card" *ngIf="componenteHabilitado">
   <div class="card col-md-4"> <img class="card-img-top" src="../assets/images/nutralmix.png" alt="Card image cap">
     <div class="card-body">
@@ -31,6 +51,7 @@
   </button>
   <button (click)="listen()">
     Get notified!
-  </button> -->
+  </button>
   </div>
 </div>
+-->
