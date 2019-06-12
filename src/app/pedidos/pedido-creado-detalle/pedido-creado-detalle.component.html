@@ -1,75 +1,74 @@
+<div class="component pedidos">
 
+    <app-header></app-header>
 
     <div class="row">
-                <div class="col-md-6">
+        <div class="col-md-6">
 
-<h3 class="text-center"  *ngIf="!pedidoParaEditar">Pedido:  Nuevo</h3>
-<h3 class="text-center" *ngIf="pedidoParaEditar">Pedido: {{pedidoParaEditar.NRO_PEDIDO}}</h3>
+            <h3 class="text-center"  *ngIf="!pedidoParaEditar">Pedido:  Nuevo</h3>
+            <h3 class="text-center" *ngIf="pedidoParaEditar">Pedido: {{pedidoParaEditar.NRO_PEDIDO}}</h3>
 
-<button class="btn btn-primary mb-2" (click)="grabarPedido()"> Grabar  </button>
-                     <table class="table table-sm table-striped table-wrapper-scroll-y ">
-                        <thead>
-                            <tr >
-                                <th>
-                                    ARTICULO
-                                </th>
-                                <th>
-                                   CANTIDAD
-                                </th>
-                                <th>
-                                    UNIDADES
-                                </th>
-                             </tr>
-                        </thead>
-                        <tbody>
+            <button class="btn btn-primary mb-2" (click)="grabarPedido()"> Grabar  </button>
+            <table class="table table-sm table-striped table-wrapper-scroll-y ">
+                <thead>
+                    <tr>
+                        <th>
+                            ARTICULO
+                        </th>
+                        <th>
+                            CANTIDAD
+                        </th>
+                        <th>
+                            UNIDADES
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                             <tr  *ngIf="itemPedido">
-                                <td>
+                    <tr  *ngIf="itemPedido">
+                        <td>
 
-                                    <select   class="form-control selectpicker col-md-6"  id="estado"  [(ngModel)]='itemPedido.articulo' (change)="setArticuloSeleccionado(itemPedido)"  >
-                               <option  *ngFor="let producto of listaDeProductos" [value]="producto| json" [selected]="articuloSeleccionado" >{{producto.DESCRIPCIO}}</option>
+                            <select   class="form-control selectpicker col-md-6"  id="estado"  [(ngModel)]='itemPedido.articulo' (change)="setArticuloSeleccionado(itemPedido)"  >
+                                <option  *ngFor="let producto of listaDeProductos" [value]="producto| json" [selected]="articuloSeleccionado" >{{producto.DESCRIPCIO}}</option>
                             </select >
-                                </td >
-                                <td>
-                                   <input type="number" class="form-control" id="cantidad" required    [(ngModel)]="cantidad">
-                                 </td>
-                                <td>
-                                    {{unidadDeMedida}}
-                                </td>
-                                <td (click)="agregarItem()" >
-                                    Agregar
-                                </td>
+                        </td >
+                        <td>
+                            <input type="number" class="form-control" id="cantidad" required    [(ngModel)]="cantidad">
+                        </td>
+                        <td>
+                            {{unidadDeMedida}}
+                        </td>
+                        <td (click)="agregarItem()" >
+                            Agregar
+                        </td>
+                    </tr>
+                    <tr>
+                        <div *ngIf="mensajeError" >{{mensajeError}}</div>
+                    </tr>
+                    <tr *ngFor="let item of items; index as i " >
+                        <td>
+                            {{item.articulo.DESCRIPCIO}}
+                        </td >
+                        <td>
+                            {{item.cantidad}}
+                        </td>
+                        <td>
+                            {{item.unidad}}
+                        </td>
+                        <td (click)="modificarItem(i)" >
+                            modificar
+                        </td>
+                        <td (click)="borrarItem(i)" >
+                            borrar
+                        </td>
+                    </tr>
 
-                            </tr>
-                            <tr>
-                              <div *ngIf="mensajeError" >{{mensajeError}}</div>
-                            </tr>
-                            <tr
+                </tbody>
+            </table>
 
-                                 *ngFor="let item of items; index as i "
+        </div>
+    </div>
 
-                                 >
-                                <td>
-                                    {{item.articulo.DESCRIPCIO}}
-                                </td >
-                                <td>
-                                    {{item.cantidad}}
-                                </td>
-                                <td>
-                                    {{item.unidad}}
-                                </td>
-                                <td (click)="modificarItem(i)" >
-                                    modificar
-                                </td>
-                                <td (click)="borrarItem(i)" >
-                                    borrar
-                                </td>
-
-
-                            </tbody>
-                        </table>
+    <app-footer></app-footer>
 
 </div>
-</div>
-
-

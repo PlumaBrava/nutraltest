@@ -25,6 +25,7 @@ import { AvisosNuevoComponent } from '../app/avisos/avisos-nuevo/avisos-nuevo.co
 
 //Plantillas
 import { LoginComponent } from '../app/plantillas/login/login.component';
+import { EstilosComponent } from '../app/plantillas/estilos/estilos.component';
 
 // Rutas
 
@@ -47,6 +48,7 @@ const routes: Routes = [
   ,{ path: 'alertaReposicionListado', component: AlertasReposicionListadoComponent }
   //Plantillas
   ,{ path: 'login', component: LoginComponent }
+  ,{ path: 'estilos', component: EstilosComponent }
 
   ,{ path: 'ususario_no_autorizado', component: UsuarioNoautorizadoComponent }
   ,{ path: '', redirectTo: '/clientesList', pathMatch: 'full' } //esto se usa para que funcione cuando no exista la ruta solicitada

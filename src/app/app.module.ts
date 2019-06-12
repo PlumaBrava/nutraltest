@@ -73,6 +73,7 @@ import { AlertasReposicionListadoComponent } from './alertasReposicion/alertas-r
 
 //Plantillas
 import { LoginComponent } from './plantillas/login/login.component';
+import { EstilosComponent } from './plantillas/estilos/estilos.component';
 
 
 
@@ -108,7 +109,8 @@ import { LoginComponent } from './plantillas/login/login.component';
     AlertasReposicionCrearComponent,
     AlertasReposicionListadoComponent,
     //Plantillas
-    LoginComponent
+    LoginComponent,
+    EstilosComponent
 
   ],
   imports: [

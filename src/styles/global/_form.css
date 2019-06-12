@@ -3,3 +3,40 @@
 .form-group{
 
 }
+.form-group .form-control{
+    border-color:#d8e1e5;
+    height: 55px;
+    margin-right:15px;
+    margin-bottom:12px;
+    color:#b5bdc1;
+    font-size:14px;
+    font-family:'Lato', Arial;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    background: #FFF;
+}
+.form-group label{
+    font-size: 14px;
+    line-height: 20px;
+    font-family: 'Lato', Arial;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: #090a0a;
+    margin-bottom:5px;
+}
+
+.form-row>.col, .form-row>[class*=col-] {
+    padding-right: 7px;
+    padding-left: 7px;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b5bdc1;
+  opacity: 1; /* Firefox */
+}
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #b5bdc1;
+}
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+  color: #b5bdc1;
+}

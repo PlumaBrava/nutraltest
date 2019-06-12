@@ -1,89 +1,92 @@
 
- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="http://www.nutralmix.com.ar"><img class="img-thumbnail rounded-circle img-responsive" src="../assets/images/nutralmix.png" /></a>
+<nav class="navbar navbar-expand-md fixed-top">
 
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+    <a class="navbar-brand" href="http://www.nutralmix.com.ar">Nutral Mix &reg;</a>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+
         <ul class="navbar-nav mr-auto">
 
-<!-- *ngIf="authService.esUsuarioAutorizado()" -->
-           <li class="nav-item" *ngIf='authService.esAdministrador ' >
-             <a class="nav-link" routerLink="/usuariosList">Usuarios</a>
-          </li>
-           <li class="nav-item" *ngIf='authService.esAdministrador ' >
-             <a class="nav-link" routerLink="/avisosList">Avisos</a>
-          </li>
-          <li class="nav-item" *ngIf='authService.esCliente '>
-             <a class="nav-link" routerLink="/clientesList">Clientes</a>
-          </li>
+            <!-- *ngIf="authService.esUsuarioAutorizado()" -->
+            <li class="nav-item active" *ngIf='authService.esAdministrador'>
+                <a class="nav-link" routerLink="/usuariosList">Usuarios</a>
+            </li>
+            <li class="nav-item" *ngIf='authService.esAdministrador'>
+                <a class="nav-link" routerLink="/avisosList">Avisos</a>
+            </li>
+            <li class="nav-item active" *ngIf='authService.esCliente'>
+                <a class="nav-link" routerLink="/clientesList">Clientes</a>
+            </li>
 
-
-          <li class="nav-item dropdown"  *ngIf='authService.esCliente '>
-             <a class="nav-link dropdown-toggle" href="" id="PedidosDropdown" data-toggle="dropdown">Pedidos</a>
-                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="PedidosDropdown">
+            <li class="nav-item dropdown"  *ngIf='authService.esCliente '>
+                <a class="nav-link dropdown-toggle" href="" id="PedidosDropdown" data-toggle="dropdown">Pedidos</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="PedidosDropdown">
                     <a class="dropdown-item"  routerLink="/pedidos">Pedidos Tango</a>
                     <a class="dropdown-item"  routerLink="/pedidosCrearListados"> Mis Pedidos WEB </a>
                     <a class="dropdown-item" routerLink="/pedidoCrearDetalles">Crear Pedido WEB</a>
-
-                 </div>
+                </div>
             </li>
 
+            <!-- <li class="nav-item" *ngIf='authService.esCliente '>
+                <a class="nav-link" routerLink="/pedidosCrearListados"> PedidosC listado</a>
+            </li> -->
+            <li class="nav-item" *ngIf='authService.esCliente '>
+                <a class="nav-link" routerLink="/remitos"> Remitos</a>
+            </li>
 
-
-         <!--  <li class="nav-item" *ngIf='authService.esCliente '>
-             <a class="nav-link" routerLink="/pedidosCrearListados"> PedidosC listado</a>
-          </li> -->
-          <li class="nav-item" *ngIf='authService.esCliente '>
-             <a class="nav-link" routerLink="/remitos"> Remitos</a>
-          </li>
-
-          <li class="nav-item dropdown"  *ngIf='authService.esCliente '>
-             <a class="nav-link dropdown-toggle" href="" id="AlertasDropdown" data-toggle="dropdown">Alertas Reposición </a>
-             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="AlertasDropdown">
+            <li class="nav-item dropdown"  *ngIf='authService.esCliente '>
+                <a class="nav-link dropdown-toggle" href="" id="AlertasDropdown" data-toggle="dropdown">Alertas Reposición </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="AlertasDropdown">
                     <a class="dropdown-item"  routerLink="/alertaReposicionListado"> Mis Alertas </a>
                     <a class="dropdown-item" routerLink="/alertaReposicionCrear">Crear Alertas</a>
-             </div>
-          </li>
+                </div>
+            </li>
 
-
-          <li class="nav-item" *ngIf='authService.esDistribuidor '>
-             <a class="nav-link" routerLink="/distribuidor">Distribuidor</a>
-          </li>
-          <li class="nav-item" *ngIf='authService.esTransportista '>
-             <a class="nav-link" routerLink="/transportista">Transportista</a>
-          </li>
-
-          <li class="nav-item">
-             <a class="nav-link" routerLink="/"></a>
-          </li>
+            <li class="nav-item" *ngIf='authService.esDistribuidor '>
+                <a class="nav-link" routerLink="/distribuidor">Distribuidor</a>
+            </li>
+            <li class="nav-item" *ngIf='authService.esTransportista '>
+                <a class="nav-link" routerLink="/transportista">Transportista</a>
+            </li>
         </ul>
 
 
-        <ul class="navbar-nav ml-md-auto">
-            <li class="nav-item active">
-                 <a class="nav-link" routerLink="/registrarse"> {{authService.currentUserDisplayName}}   </a>
+        <ul class="navbar-nav float-right">
+            <!--<li class="nav-item active">
+                <a class="nav-link" routerLink="/registrarse">{{authService.currentUserDisplayName}}</a>
+            </li>-->
 
-           </li>
-           <li class="nav-item active"  *ngIf='empresa ' >
-                <a class="nav-link" routerLink="/settings">{{empresa}} </a>
+            <li class="nav-item active" *ngIf='!authService.authenticated'>
+                <a class="nav-link" routerLink="/LogMail">Ingresar</a>
             </li>
-           <li class="nav-item active" *ngIf='authService.authenticated'>
+
+            <!--<li class="nav-item active" *ngIf='authService.authenticated'>
                 <a class="nav-link" routerLink="/settings">Configuración </a>
-            </li>
-            <li class="nav-item active" *ngIf='!authService.authenticated  '  >
+            </li>-->
+            <!--<li class="nav-item active" *ngIf='!authService.authenticated'>
                 <a class="nav-link" routerLink="/registrarse">Registrase </a>
-            </li>
-            <li class="nav-item dropdown">
-             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Ingresar</a>
-                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" *ngIf='!authService.authenticated' (click)="loginGoogle()">Google</a>
-                    <a class="dropdown-item" *ngIf='!authService.authenticated' routerLink="/LogMail">Mail</a>
-                    <a class="dropdown-item" *ngIf='!authService.authenticated' href="#">Otro Ingreso</a>
-                    <!-- <div class="dropdown-divider"> -->
-                         <a class="dropdown-item" *ngIf='authService.authenticated'  (click)="logoutGoogle()">salir</a>
-                    <!-- </div> -->
-                 </div>
+            </li>-->
+            <li class="nav-item" *ngIf='authService.authenticated'>
+
+                <div class="nav-link dropdown">
+
+                    <a class="dropdown-toggle" href="javascript:;" id="navbarDropdownMenuLink" data-toggle="dropdown">Mi Perfil</a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" *ngIf='empresa' routerLink="/settings">Configuración</a>
+                        <!--
+                        <a class="dropdown-item" *ngIf='!authService.authenticated' (click)="loginGoogle()">Google</a>
+                        <a class="dropdown-item" *ngIf='!authService.authenticated' routerLink="/LogMail">Mail</a>
+                        -->
+                        <!-- <div class="dropdown-divider"> -->
+                        <a class="dropdown-item" *ngIf='authService.authenticated' (click)="logoutGoogle()">Salir</a>
+                        <!-- </div> -->
+                    </div>
+
+                </div>
+
             </li>
         </ul>
+
     </div>
 </nav>
-

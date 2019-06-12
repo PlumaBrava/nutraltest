@@ -26,7 +26,7 @@
     font-size: 27px;
     line-height: 29px;
     font-family: 'Lato', Arial;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.3px;
     color: #090a0a;
     margin-bottom:28px;
@@ -106,3 +106,15 @@
     display: block;
     float: left;
 }
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b5bdc1;
+  opacity: 1; /* Firefox */
+}
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #b5bdc1;
+}
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+  color: #b5bdc1;
+}
+
+.login .form-group .btn{margin-right:0px;}

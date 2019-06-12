@@ -1,47 +1,45 @@
+<div class="component pedidos">
 
-<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>
-<div *ngIf="mensajeError" >{{mensajeError}}</div>
-<p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
-<p   *ngIf="pedidos"> cantidad de Pedidos: {{pedidos.length  }}  </p>
+    <app-header></app-header>
 
+    <app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>
 
+    <div *ngIf="mensajeError" >{{mensajeError}}</div>
+    <p *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+    <p *ngIf="pedidos"> cantidad de Pedidos: {{pedidos.length  }}  </p>
 
-<div class="accordion" id="accordionExample">
-  <div class="card encabezado"  *ngFor="let pedido of listaPedidos">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-         PEDIDO:  {{pedido.NRO_PEDIDO}} FECHA:{{ pedido.cabecera.timeStamp.seconds * 1000 | date:'dd-MM-yyyy' }}
-          ESTADO: {{pedido.estado}}
-          <button class="btn btn-primary mb-2" (click)="EditarPedido(pedido)"> Editar  </button>
-          <button class="btn btn-primary mb-2" (click)="ProcesarPedido(pedido)"> Procesar  </button>
-        </h2>
-      </h2>
-    </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card encabezado"  *ngFor="let pedido of listaPedidos">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+                        PEDIDO:  {{pedido.NRO_PEDIDO}} FECHA:{{ pedido.cabecera.timeStamp.seconds * 1000 | date:'dd-MM-yyyy' }}
+                        ESTADO: {{pedido.estado}}
+                        <button class="btn btn-primary mb-2" (click)="EditarPedido(pedido)"> Editar  </button>
+                        <button class="btn btn-primary mb-2" (click)="ProcesarPedido(pedido)"> Procesar  </button>
+                    </h2>
+                </h2>
+            </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-         <table class="table table-sm table-striped table-wrapper-scroll-y table-hover">
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <table class="table table-sm table-striped table-wrapper-scroll-y table-hover">
                         <thead>
-                            <tr >
+                            <tr>
                                 <th>
                                     PRODUCTO
                                 </th>
                                 <th>
-                                   CANTIDAD PEDIDO
+                                    CANTIDAD PEDIDO
                                 </th>
-
                                 <th>
                                     UNIDADES
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr
-
-                                 *ngFor="let detalle of pedido.detalle"
-
-                                 >  <td (click)="setPedidoSelected(pedido)" >
+                            <tr *ngFor="let detalle of pedido.detalle">
+                                <td (click)="setPedidoSelected(pedido)" >
                                     {{detalle.articulo.DESCRIPCIO}}
                                 </td >
                                 <td (click)="setPedidoSelected(pedido)" >
@@ -50,13 +48,16 @@
                                 <td (click)="setPedidoSelected(pedido)" >
                                     {{detalle.unidad}}
                                 </td >
-
                             </tr>
-
                         </tbody>
-                      </table>
+                    </table>
 
-      </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
-  </div>
+
+    <app-footer></app-footer>
+
+</div>
