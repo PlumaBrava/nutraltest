@@ -1,49 +1,51 @@
+<app-header></app-header>
 
 <div class="spinner-grow text-primary"></div>
+
 <div *ngIf="perfilUsuario">
-<!-- <p >{{perfilUsuario.email  }} sss</p> -->
 
-<!--  <h3 class="text-center" >perfilUsuario: {{perfilUsuario.email}}</h3> -->
+    <!-- <p >{{perfilUsuario.email  }} sss</p> -->
 
+    <!-- <h3 class="text-center" >perfilUsuario: {{perfilUsuario.email}}</h3> -->
 
-                     <table class="table table-sm table-striped table-wrapper-scroll-y table-hover">
-                        <thead>
-                            <tr >
-                                <th>
-                                    CÓDIGO
-                                </th>
-                                <th>
-                                   RAZÓN SOCIAL
-                                </th>
-                                <th>
-                                    LOCALIDAD
-                                </th>
-                                <th>
-                                    CUIT
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+    <table class="table table-sm table-striped table-wrapper-scroll-y table-hover">
 
-                            <tr
+        <thead>
+            <tr >
+                <th>
+                    CÓDIGO
+                </th>
+                <th>
+                    RAZÓN SOCIAL
+                </th>
+                <th>
+                    LOCALIDAD
+                </th>
+                <th>
+                    CUIT
+                </th>
+            </tr>
+        </thead>
 
-                                 *ngFor="let empresa of perfilUsuario.data.empresas  " (click)="setEmpresaSelected(empresa)"
+        <tbody>
+            <tr *ngFor="let empresa of perfilUsuario.data.empresas" (click)="setEmpresaSelected(empresa)">
+                <td>
+                    {{empresa.COD_CLIENT}}
+                </td >
+                <td>
+                    {{empresa.RAZON_SOCI}}
+                </td>
+                <td>
+                    {{empresa.LOCALIDAD}}
+                </td>
+                <td>
+                    {{empresa.CUIT}}
+                </td>
+            </tr>
+        </tbody>
 
-                                 >
-                                <td>
-                                    {{empresa.COD_CLIENT}}
-                                </td >
-                                <td>
-                                    {{empresa.RAZON_SOCI}}
-                                </td>
-                                <td>
-                                    {{empresa.LOCALIDAD}}
-                                </td>
-                                <td>
-                                    {{empresa.CUIT}}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+    </table>
 
 </div>
+
+<app-footer></app-footer>

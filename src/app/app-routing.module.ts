@@ -22,6 +22,10 @@ import { AlertasReposicionListadoComponent } from './alertasReposicion/alertas-r
 
 import { AvisosListComponent } from '../app/avisos/avisos-list/avisos-list.component';
 import { AvisosNuevoComponent } from '../app/avisos/avisos-nuevo/avisos-nuevo.component';
+
+//Plantillas
+import { LoginComponent } from '../app/plantillas/login/login.component';
+
 // Rutas
 
 const routes: Routes = [
@@ -41,7 +45,8 @@ const routes: Routes = [
   ,{ path: 'remitos', component: RemitosListadoComponent }
   ,{ path: 'alertaReposicionCrear', component: AlertasReposicionCrearComponent }
   ,{ path: 'alertaReposicionListado', component: AlertasReposicionListadoComponent }
-
+  //Plantillas
+  ,{ path: 'login', component: LoginComponent }
 
   ,{ path: 'ususario_no_autorizado', component: UsuarioNoautorizadoComponent }
   ,{ path: '', redirectTo: '/clientesList', pathMatch: 'full' } //esto se usa para que funcione cuando no exista la ruta solicitada

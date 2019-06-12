@@ -71,6 +71,8 @@ import { MapaComponent } from './mapa/mapa.component';
 import { AlertasReposicionCrearComponent } from './alertasReposicion/alertas-reposicion-crear/alertas-reposicion-crear.component';
 import { AlertasReposicionListadoComponent } from './alertasReposicion/alertas-reposicion-listado/alertas-reposicion-listado.component';
 
+//Plantillas
+import { LoginComponent } from './plantillas/login/login.component';
 
 
 
@@ -104,7 +106,9 @@ import { AlertasReposicionListadoComponent } from './alertasReposicion/alertas-r
     EmpresaModalComponent,
     MapaComponent,
     AlertasReposicionCrearComponent,
-    AlertasReposicionListadoComponent
+    AlertasReposicionListadoComponent,
+    //Plantillas
+    LoginComponent
 
   ],
   imports: [

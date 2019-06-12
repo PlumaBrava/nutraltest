@@ -1,0 +1,11 @@
+/*BOTONES*/
+.btn.btn-primary{
+    background: #2da649 !important;
+    border: none;
+    font-family: 'Lato', Arial;
+    letter-spacing: 0.3px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFF;
+    padding:16px 49px;
+}

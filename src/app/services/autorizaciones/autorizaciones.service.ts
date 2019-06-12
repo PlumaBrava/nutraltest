@@ -140,6 +140,7 @@ export class AutorizacionesService {
                    switch (componente) {
                        case "LogGoogleComponent":
                        case "LogMailComponent":
+                       case "LoginComponent":
                        case "RegistrarseComponent":
                            return true;
                            break;

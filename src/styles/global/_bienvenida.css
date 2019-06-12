@@ -1,0 +1,44 @@
+/*BIENVENIDA*/
+
+.bienvenida.bg-1{
+    background: url('../../assets/images/login/bg-1.jpg') center center no-repeat;
+    background-size:cover;
+}
+.bienvenida.bg-2{
+    background: url('../../assets/images/login/bg-2.jpg') center center no-repeat;
+    background-size:cover;
+}
+.bienvenida .texto{
+    max-width:350px;
+    margin:80px;
+}
+.bienvenida .texto h3{
+    font-size: 65px;
+    line-height: 63px;
+    font-family: 'Lato', Arial;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: #1f2c46;
+    margin-bottom:28px;
+
+}
+.bienvenida .texto p{
+    font-size: 18px;
+    line-height: 22px;
+    font-family: 'Lato', Arial;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin-bottom:28px;
+    color: #1f2c46;
+}
+@media (max-width: 991px){
+    .bienvenida .texto{
+        max-width: none;
+        padding: 80px 80px 60px;
+        background: rgba(255,255,255,0.7);
+        width: 100%;
+        margin: 15px 0;
+        border-radius: 5px;
+        position: relative;
+    }
+}
