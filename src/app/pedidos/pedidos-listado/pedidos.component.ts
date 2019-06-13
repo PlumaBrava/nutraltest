@@ -20,6 +20,7 @@ subscriptionEmpresaSelected: Subscription;
 perfilUsuario:any=null;
 empresaSelected:any=null;
 pedidoSelected:any=null;
+remitoSelected:any=null;
 pedidos:any=null;
    mensajeSpinner = "mensaje spinner";
     showSpinner:boolean = false;
@@ -113,25 +114,47 @@ acomodaPedidos(pedidos){
        NRO_PEDIDO:+pedidos[i].NRO_PEDIDO,
        FECHA_PEDI:pedidos[i].FECHA_PEDI,
        ESTADO:pedidos[i].ESTADO,
+       FECHA_ENTR:pedidos[i].FECHA_ENTR,
+       // N_REMITO:pedidos[i].N_REMITO,
        Desc_Estado:pedidos[i].Desc_Estado,
        detalle:new Array(),
        IdPedido:pedidos[i].IdPedido
      };
 
      pedidoAcomodado.push(p);
-
+       let idAProcesar=0;
       for( let j=0;j<pedidos.length-i;j++){ //la longitud que falta recorrer es el total menos i (es lo recorrido)
        console.log('acomodaPedidos pedidos j',j);
-      if(pedidoAcomodado[indexPedidoAcomodado]['NRO_PEDIDO']==pedidos[(i+j)].NRO_PEDIDO){
-         pedidoAcomodado[indexPedidoAcomodado]['detalle'].push(pedidos[(i+j)]);
-          console.log('acomodaPedidos encontro Iguales',pedidos[(i+j)]);
+       idAProcesar=i+j;
+      if(pedidoAcomodado[indexPedidoAcomodado]['NRO_PEDIDO']==pedidos[(idAProcesar)].NRO_PEDIDO){ //
+          pedidoAcomodado[indexPedidoAcomodado]['detalle'].push(pedidos[(idAProcesar)]);
+          console.log('acomodaPedidos encontro Iguales',pedidos[(idAProcesar)]);
+          if(pedidos[(idAProcesar)].N_REMITO!=''){
+            pedidoAcomodado[indexPedidoAcomodado]['N_REMITO']=pedidos[(idAProcesar)].N_REMITO
+          }
+        continue; //Sigo con el siguiente
       } else {
+        console.log('acomodaPedidos diferentes',pedidos[(idAProcesar)]);
         console.log('acomodaPedidos  sale i+j',(i+j));
+        console.log('acomodaPedidos  sale idAProcesar',(idAProcesar));
         indexPedidoAcomodado++;
-        i=i+j-1;
+
         break; // esto lo puedo hacer porque el listado de pedidos viene ordenado por Nro pedido
-      }
+      };
+       // console.log('acomodaPedidos  termina el for -> llegó al final i+j',(i+j));
+      // i=i+j; // Cuando termina el fo
      }
+      console.log('acomodaPedidos  termina el for -> llegó al final i+j',(i));
+      console.log('acomodaPedidos  termina el for -> llegó al final idAProcesar',(idAProcesar));
+      console.log('acomodaPedidos  pedidos.length',(pedidos.length));
+      console.log('acomodaPedidos  pedidos.length-1',(pedidos.length-1));
+
+      if (idAProcesar==(pedidos.length-1)){ // llegó al fin del array
+         console.log('acomodaPedidos  final final',(i));
+        break;
+      }
+
+       i=idAProcesar-1;  // el for externo le suma uno al ingresar nuevamente.
    }
   console.log('acomodaPedidos pedidoAcomodado',pedidoAcomodado);
   return pedidoAcomodado;
@@ -143,7 +166,7 @@ setPedidoSelected(pedidoSelected){
     this.pedidoSelected=pedidoSelected;
     console.log(this.pedidoSelected);
     this.mensageService.setPedidoSelectedObs(pedidoSelected);
-    this.router.navigate(['/pedidosDetalles']);
+    this.router.navigate(['/remitosDetalles']);
 
 }
 

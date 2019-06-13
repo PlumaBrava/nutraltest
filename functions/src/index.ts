@@ -252,6 +252,55 @@ export const sql_getRemitoDetallado = functions.https.onRequest((request, respon
  // response.send("Hello from Firebase!");
 });
 
+
+export const sql_getRemitoXNumero = functions.https.onRequest((request, response) => {
+
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
+    response.setHeader('Access-Control-Allow-Credentials', 'true'); // If needed
+
+
+    const remito=request.query.remito;
+
+        console.log("remito",remito);
+
+
+    sql.connect(config).then((pool1:any) => {
+        console.log("sql_getRemitoXNumero");
+        console.log(pool1);
+
+
+
+
+       pool1.request()
+       .input('remito', sql.VarChar(13), remito)
+            .execute('APP_GetRemitoXNumero')
+       .then((result:any) => {
+            console.dir("result",result)
+            response.json(result.recordset);  // Always emitted as the last one
+
+
+
+
+            sql.close();
+        })
+       .catch((err:any) => {
+         console.dir("err", err)
+           response.json(err);  // Always emitted as the last one
+           sql.close();
+        });
+    });
+
+    sql.on('error', (err2:any) => {
+       console.dir("err2", err2)
+     response.json({'errsql':err2});  // Always emitted as the last one
+
+    })
+
+});
+
+
 export const sql_getPedidos = functions.https.onRequest((request, response) => {
 
     response.setHeader('Access-Control-Allow-Origin', '*');

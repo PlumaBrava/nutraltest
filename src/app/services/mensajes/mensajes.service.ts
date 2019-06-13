@@ -88,9 +88,11 @@ export class MensajesService {
 
     getPedidoSelectedObs(): Observable<any>  {
       console.log("getEmpresaSelectedObs");
-      // return this.empresaSelected.asObservable();
+
       return of (this.pedidoSelected);
     }
+
+
 
 
     setPedidoWebSelectedObs(pedidoWebSelected:any ): Observable<any> {

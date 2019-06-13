@@ -1,4 +1,6 @@
-import { Component, OnInit,ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef ,NgZone } from '@angular/core';
+import { NgbActiveModal, NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ModalMensajeComponent }  from '../../services/modal-mensaje/modal-mensaje.component';
 import {FiredatabaseService} from '../../services/firebase/firedatabase.service';
 import { MensajesService }  from '../../services/mensajes/mensajes.service';
 import { Router } from "@angular/router";
@@ -18,7 +20,9 @@ listaPedidos:any=null;
   constructor( private db: FiredatabaseService,
       private mensageService:MensajesService,
       private router:Router,
-      private cd: ChangeDetectorRef) { }
+      private cd: ChangeDetectorRef,
+       private ngZone: NgZone,
+        private _modal: NgbModal,) { }
 
     ngOnInit() {
       console.log("pedido lista detalle");
@@ -71,6 +75,9 @@ console.log("pedido lista  this.listaPedidos", this.listaPedidos);
            this.listaPedidos=data;
             this.cd.detectChanges();
            console.log("pedido lista getPedidosWeb",data);
+           if (this.listaPedidos.length==0){
+               this.mostrarMensajeModal("Mis Pedidos Web", "No se han encontrado pedidos","");
+           }
 
        });
 
@@ -79,11 +86,38 @@ console.log("pedido lista  this.listaPedidos", this.listaPedidos);
 EditarPedido(pedidoParaEditar){
  console.log("pedido lista pedidoParaEditar",pedidoParaEditar);
   this.mensageService.setPedidoWebSelectedObs(pedidoParaEditar);
-    this.router.navigate(['/pedidoCrearDetalles']);
+  this.ngZone.run(() => this.router.navigate(['/pedidoCrearDetalles']));
 }
 
 ProcesarPedido(pedidoParaProcesar){
  console.log("pedido lista ProcesarPedido",pedidoParaProcesar);
+}
+
+mostrarMensajeModal(titulo, mensaje, dato){
+ console.log(titulo);
+ console.log(mensaje);
+ console.log(dato);
+ const modalRef =    this._modal.open(ModalMensajeComponent);
+    modalRef.componentInstance.titulo = titulo;
+    modalRef.componentInstance.mensaje = mensaje;
+    modalRef.componentInstance.dato = dato;
+    modalRef.result.then(result=>{
+            console.log("result: "+result);
+            console.log("result.cause: "+result.cause);
+            console.log("result.date: "+result.date.year);
+            console.log("result.date: "+result.date.month);
+            console.log("result.date: "+result.date.day);
+          },reason=>{
+            console.log("rison: "+reason);
+             if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+          } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+          } else {
+            return  `with: ${reason}`;
+          }
+          } );
+
 }
 
 }

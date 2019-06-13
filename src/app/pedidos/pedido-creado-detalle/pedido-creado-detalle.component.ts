@@ -1,4 +1,4 @@
-import { Component, OnInit , Input} from '@angular/core';
+import { Component, OnInit ,OnDestroy, Input,NgZone} from '@angular/core';
 import {FiredatabaseService} from '../../services/firebase/firedatabase.service';
 import { MensajesService }  from '../../services/mensajes/mensajes.service';
 import { Router } from "@angular/router";
@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
   templateUrl: './pedido-creado-detalle.component.html',
   styleUrls: ['./pedido-creado-detalle.component.css']
 })
-export class PedidoCreadoDetalleComponent implements OnInit {
+export class PedidoCreadoDetalleComponent implements OnInit, OnDestroy {
 pedidoParaEditar:any=null;
 
 perfilUsuario:any=null;
@@ -30,15 +30,19 @@ listaDeProductos:any // son los productos que puede pedir este cliente
 
   constructor(      private db: FiredatabaseService,
       private mensageService:MensajesService,
-      private router:Router) { }
+      private router:Router,
+      // private ngZone: NgZone
+      ) { }
 
   ngOnInit() {
       console.log("pedido crear detalle");
       console.log("pedido crear detalle this.itemPedido", this.itemPedido);
     this.perfilUsuario=null;
-    // this.empresaSelected=null;
+    this.pedidoParaEditar=null;
+
+
     this.getPerfil();
-    // this.getEmpresaSelected();
+
 
 
 
@@ -47,14 +51,24 @@ listaDeProductos:any // son los productos que puede pedir este cliente
 getPerfil():void{
     console.log("pedido crear get Perfil");
     this.mensageService.getPerfil().subscribe(perfil=>{
-      console.log("pedido crear perfil",perfil);
+    console.log("pedido crear perfil",perfil);
     this.perfilUsuario=perfil;
     this.getProductos();
 
    }) ;
 }
 
+getProductos(){
 
+     this.db.getProductos(this.perfilUsuario.data.EmpresaSelected.COD_CLIENT).subscribe(data=>{
+           this.listaDeProductos=data.listaProductos;
+           // this.articuloSeleccionado=this.listaDeProductos[0];
+           console.log("pedido crear detalle data",data);
+           this.getPedidoParaEditar();
+
+       });
+
+}
 
 
 getPedidoParaEditar():void{
@@ -75,17 +89,7 @@ getPedidoParaEditar():void{
 
 
 
-getProductos(){
 
-     this.db.getProductos(this.perfilUsuario.data.EmpresaSelected.COD_CLIENT).subscribe(data=>{
-           this.listaDeProductos=data.listaProductos;
-           // this.articuloSeleccionado=this.listaDeProductos[0];
-           console.log("pedido crear detalle data",data);
-           this.getPedidoParaEditar();
-
-       });
-
-}
 
 // Borra el item de la disponibilidad de productos y lo agrega a la lista de items a comprar
     agregarItem(){
@@ -172,6 +176,14 @@ if (this.pedidoParaEditar){
   console.log("Grabar Pedidos", this.items);
 this.db.crearPedidoWeb(this.perfilUsuario,this.perfilUsuario.data.EmpresaSelected,this.items);
 }
+
+  this.router.navigate(['/pedidosCrearListados']);
+
+
 }
 
+ngOnDestroy(){
+  console.log("on destroy");
+this.mensageService.setPedidoWebSelectedObs(null);
+}
 }

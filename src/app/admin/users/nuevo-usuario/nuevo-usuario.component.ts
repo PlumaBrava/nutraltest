@@ -48,6 +48,8 @@ crearLabelForm = this.fb.group({
 
   tiposPerfil=[{id:'administrador',val:'Administrador'},
               {id:'cliente',val:'Cliente'},
+              {id:'administradorLog',val:'Administrador Logistica'},
+              {id:'administradorForraje',val:'Administrador Forraje'},
               {id:'distribuidor',val:'Distribuidor'},
               {id:'transportista',val:'Transportista'}
                ];
@@ -71,8 +73,32 @@ existeEmailenlaBase:boolean=false;
 
 
   ngOnInit() {
+    this.getPerfil();
 
   }
+
+getPerfil():void{
+    console.log("usuarioNuevo  get Perfil");
+    this.mensageService.getPerfil().subscribe(usuario=>{
+      console.log("usuarioNuevo  usuario",usuario);
+      switch (usuario.data.perfil) {
+        case "administrador":
+          this. tiposPerfil=[{id:'administrador',val:'Administrador'},
+              {id:'gestorPedidos',val:'Gestor de Pedidos'},
+              {id:'cliente',val:'Cliente'},
+              {id:'distribuidor',val:'Distribuidor'},
+              {id:'transportista',val:'Transportista'}
+               ];
+          break;
+
+        default:
+          // code...
+          break;
+      }
+
+
+   }) ;
+}
 
 
 // updateUserData

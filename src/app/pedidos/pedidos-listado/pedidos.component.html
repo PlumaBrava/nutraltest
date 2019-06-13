@@ -13,6 +13,7 @@
       <h2 class="mb-0">
         <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
          PEDIDO:  {{pedido.NRO_PEDIDO}} FECHA:  {{pedido.FECHA_PEDI}} ESTADO: {{pedido.Desc_Estado}}
+        REMITO:  {{pedido.N_REMITO}}    FECHA ENTREGA:  {{pedido.FECHA_ENTR}}
         </h2>
       </h2>
     </div>
@@ -59,6 +60,7 @@
                                     {{detalle.DESCRIPCIO}}
                                 </td >
                                 <td (click)="setPedidoSelected(pedido)" >
+
                                     {{detalle.CANT_PEDID}}  {{detalle.ID_MEDIDA_STOCK}}
                                 </td >
                              <!-- td (click)="setPedidoSelected(pedido)" >

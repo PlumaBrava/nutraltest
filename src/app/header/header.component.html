@@ -45,6 +45,16 @@
           </li>
 
 
+
+          <li class="nav-item" *ngIf='authService.esCliente '>
+             <a class="nav-link" routerLink="/establecimientosListado"> Establecimientos</a>
+          </li>
+
+
+          <li class="nav-item" *ngIf='authService.esCliente '>
+             <a class="nav-link" routerLink="/rodeosListado"> Rodeos</a>
+          </li>
+
           <li class="nav-item" *ngIf='authService.esDistribuidor '>
              <a class="nav-link" routerLink="/distribuidor">Distribuidor</a>
           </li>

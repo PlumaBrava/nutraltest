@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl,ValidatorFn, AbstractControl, ValidationErrors} from '@angular/forms';
 // import {EmpresaModalComponent} from '../../empresa-modal/empresa-modal.component';
 import {FiredatabaseService} from '../../services/firebase/firedatabase.service';
@@ -37,7 +37,7 @@ export function validateMayorQue(number: number): ValidatorFn {
   templateUrl: './alertas-reposicion-crear.component.html',
   styleUrls: ['./alertas-reposicion-crear.component.css']
 })
-export class AlertasReposicionCrearComponent implements OnInit {
+export class AlertasReposicionCrearComponent implements OnInit, OnDestroy {
 
 // alertasReposicionForm
 alertasReposicionForm = this.fb.group({
@@ -82,8 +82,9 @@ getPerfil():void{
     this.mensageService.getPerfil().subscribe(perfil=>{
       console.log("Alerta crear perfil",perfil);
     this.perfilUsuario=perfil;
-    this.getProductos();
-
+    if(perfil){
+        this.getProductos();
+    }
    }) ;
 }
 
@@ -229,6 +230,12 @@ if (this.alertaParaEditar){
 this.db.crearAlerta(this.perfilUsuario,this.perfilUsuario.data.EmpresaSelected,newAlerta);
 }
 }
+
+ngOnDestroy(){
+  console.log("on destroy");
+this.mensageService.setAlertaSelectedObs(null);
+}
+
 
 }
 

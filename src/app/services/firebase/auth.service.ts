@@ -125,7 +125,7 @@ export class AuthService {
         console.log(user);
         // this.authState = user
         this.updateUserData(user);
-         this.router.navigate(['/'])
+         // this.router.navigate(['/'])
       })
       .catch(error =>{ console.log(error);
         return(error) ;
@@ -146,8 +146,8 @@ export class AuthService {
          console.log(user);
          // this.authState = user.user
          this.updateUserData(user.user)
-          // this.router.navigate(['/usuariosList']);
-          this.router.navigate(['/']);
+
+          // this.router.navigate(['/']);
            observer.next(user);
           observer.complete();// Para cerrar la susripcion.
        })
@@ -193,83 +193,6 @@ export class AuthService {
 
 
   //// Helpers ////
-
-  private updateUserData(auth): void {
-     console.log('updateUserData auth',auth);
-    if (auth!=null){
-    // this.authState = auth
-  // Writes user name and email to realtime db
-  // useful if your app displays information about users or for admin features
-    console.log('updateUserData');
-    console.log('updateUserData',this.authState);
-
-    let path = `users/${this.currentUserId}`; // Endpoint on firebase
-    console.log(path);
-    let data = {
-                  email: auth.email,
-                  name: auth.displayName
-                }
-    var cleanEmail = auth.email.replace(/\./g, ',');
-   //  this.db.object(path).update(data).catch(error => console.log(error));
-   //  var updateData={
-   //    [`perfiles/${cleanEmail}`]: "perfil",
-   //    [`fechasIngreso/${cleanEmail}`]: firebase.database.ServerValue.TIMESTAMP
-
-   //    };
-   //  console.log(updateData);
-   // this.db.object('data').update(updateData);
-
-
-
-
-   // this.fs.collection('Users-Logistica',ref => ref.where('email', '==' ,auth.email)).valueChanges().subscribe(datosDeUsuario=>{
-
-    // console.log('updateUserData  collection',datosDeUsuario);}
-
-
-    // );
-
-
-// SE SUBSCRIBE a la consulta de firebase del usuario utilizando como clave el email.
-// si existe recibe el perfil del usuario.
-this.getPefil(auth).subscribe(perfil=>{
-  console.log("perfil",perfil);
-  this.PerfildeUsuario=perfil;
-  // this.mensageService.setPerfilUsuarioObs(perfil[0]);
-  this.mensageService.setPerfilUsuarioObs(perfil);
-  this.authState = auth
-});
-
-
-
-
-//    firebase.firestore().collection('Users-Logistica'). orderBy('email').startAt(auth.email).endAt(auth.email+'\uf8ff').
-
-//     onSnapshot(datosDeUsuario=>{
-//        this.authState = auth
-//     console.log('updateUserData',datosDeUsuario);
-//       if(datosDeUsuario.empty){
-//          console.log('updateUserData el ususario no existe');
-//         // observer.next( false);  // el ususario no existe
-//       } else {
-//         // datosDeUsuario.size
-//         console.log('updateUserData el datosDeUsuario.size' ,datosDeUsuario.size);
-
-//         this.PerfildeUsuario=  datosDeUsuario.docs[0].data();
-//             console.log('updateUserData el datosDeUsuario.docs[0]' ,datosDeUsuario.docs[0].data());
-//            console.log('this.esAdministrador' ,this.esAdministrador);
-// this.router.navigate(['/'])
-
-//         // this.esUsuarioAutorizado();
-
-//          // observer.next( true);  // el ususario  existe
-//       }
-//     }, Error=>{
-//       console.log('updateUserData Error',Error);
-//      // observer.next( false);;
-//     });
-   }}
-
 
 
 
@@ -321,18 +244,93 @@ getPefil(auth): Observable<any> {
     .snapshotChanges()
     // .valueChanges()
     .subscribe(datosDeUsuario=>{
-
+    console.log(datosDeUsuario);
       console.log('getPefil  collection data',datosDeUsuario[0].payload.doc.data());
       console.log('getPefil  collection key',datosDeUsuario[0].payload.doc.id);
-     var perf= {'key':datosDeUsuario[0].payload.doc.id,'data':datosDeUsuario[0].payload.doc.data()}
-      console.log('getPefil perf  keys',perf);
+     var usuarioLogistica= {'key':datosDeUsuario[0].payload.doc.id,'data':datosDeUsuario[0].payload.doc.data()}
+      console.log('getPefil perf  keys',usuarioLogistica);
 
-        observer.next(perf);
+        observer.next(usuarioLogistica);
         observer.complete();// Para cerrar la susripcion.
 
-     });
+     }, err => {
+  console.log(`Encountered error: ${err}`);
+});
   });
 }
+
+seleccionPaginaInicio(usuarioLogistica){
+  console.log("seleccionPaginaInicio",usuarioLogistica.data.perfil);
+  if(usuarioLogistica.data.perfil!=null){
+     console.log("seleccionPaginaInicio",'ingresa al if');
+
+  switch (usuarioLogistica.data.perfil) {
+          case "administrador":
+           console.log("seleccionPaginaInicio administrador",'usuariosList');
+          this.router.navigate(['/usuariosList']);
+          break;
+        case "gestorPedidos":
+        this.router.navigate(['/settings']);
+          break;
+        case "cliente":
+        console.log("seleccionPaginaInicio cliente",'pedidos');
+        this.router.navigate(['/pedidos']);
+          break;
+        case "distribuidor":
+        this.router.navigate(['/pedidos']);
+          break;
+        case "transportista":
+          break;
+
+        default:
+        console.log("seleccionPaginaInicio default",'LogMail');
+        this.router.navigate(['/LogMail']);
+          break;
+      }
+  }
+
+}
+
+ private updateUserData(auth): void {
+     console.log('updateUserData auth',auth);
+    if (auth!=null){
+    // this.authState = auth
+  // Writes user name and email to realtime db
+  // useful if your app displays information about users or for admin features
+    console.log('updateUserData');
+    console.log('updateUserData',this.authState);
+
+    let path = `users/${this.currentUserId}`; // Endpoint on firebase
+    console.log(path);
+    let data = {
+                  email: auth.email,
+                  name: auth.displayName
+                }
+    var cleanEmail = auth.email.replace(/\./g, ',');
+   //  this.db.object(path).update(data).catch(error => console.log(error));
+   //  var updateData={
+   //    [`perfiles/${cleanEmail}`]: "perfil",
+   //    [`fechasIngreso/${cleanEmail}`]: firebase.database.ServerValue.TIMESTAMP
+
+   //    };
+   //  console.log(updateData);
+   // this.db.object('data').update(updateData);
+
+
+
+// SE SUBSCRIBE a la consulta de firebase del usuario utilizando como clave el email.
+// si existe recibe el perfil del usuario.
+    this.getPefil(auth).subscribe(usuarioLogistica=>{
+      console.log("perfil",usuarioLogistica);
+      this.PerfildeUsuario=usuarioLogistica;
+      this.mensageService.setPerfilUsuarioObs(usuarioLogistica);
+      this.authState = auth;
+      this.seleccionPaginaInicio(usuarioLogistica);
+});
+
+
+   }}
+
 
 
 

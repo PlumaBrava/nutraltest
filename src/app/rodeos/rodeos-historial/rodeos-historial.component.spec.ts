@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RemitosListadoComponent } from './remitos-listado.component';
+import { RodeosHistorialComponent } from './rodeos-historial.component';
 
-describe('RemitosListadoComponent', () => {
-  let component: RemitosListadoComponent;
-  let fixture: ComponentFixture<RemitosListadoComponent>;
+describe('RodeosHistorialComponent', () => {
+  let component: RodeosHistorialComponent;
+  let fixture: ComponentFixture<RodeosHistorialComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemitosListadoComponent ]
+      declarations: [ RodeosHistorialComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RemitosListadoComponent);
+    fixture = TestBed.createComponent(RodeosHistorialComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

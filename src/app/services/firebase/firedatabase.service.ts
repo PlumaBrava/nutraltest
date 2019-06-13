@@ -123,7 +123,8 @@ get timestamp() {
 getUsers(): Observable<any> {
   console.log('getUser');
   return new Observable((observer) => {
-    this.refUsersLogistica.onSnapshot((querySnapshot) => {
+    this.refUsersLogistica.orderBy('email').limit(2).startAt('per').onSnapshot((querySnapshot) => {
+       console.log('getUser querySnapshot',querySnapshot);
       let listaUsuarios = [];
       querySnapshot.forEach((doc) => {
         let data = doc.data();

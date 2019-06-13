@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { AngularFireDatabaseModule, AngularFireDatabase  } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { MensajesService }  from '../../../services/mensajes/mensajes.service';
@@ -48,16 +48,17 @@ export class UsuarioListComponent implements OnInit {
   // listaUsuarios: User[];
  listaUsuarios: Array<User>;
  filtroMail: string=null;
+ pageSize:number=2;
+ page:number=4;
+ collectionSize:number=25;
   constructor(db: AngularFireDatabase,
       private mensageService:MensajesService,
       private _modal: NgbModal,
       private autorizaciones:AutorizacionesService,
+          private cd: ChangeDetectorRef,
       // private _modalMensaje: ModalMensajeComponent,
       private fs:FiredatabaseService) {
-      // this.listaUsuarios = db.list('users').valueChanges();
 
-
-// this.listaUsuarios=this.fs.getUsers();
 
   }
 
@@ -70,7 +71,7 @@ export class UsuarioListComponent implements OnInit {
         this.fs.getUsers().subscribe(data=>{
                 this.listaUsuarios =data;
                 console.log('this.listaUsuarios get', data);
-                this.listaUsuarios;
+                this.cd.detectChanges();
     })}else{
            console.log("settings NO  autorizado");
         }
@@ -92,25 +93,25 @@ ejecutarFiltroMail(){
 
 
 
-   const modalRef =    this._modal.open(ModalMensajeComponent);
-    modalRef.componentInstance.name = this.filtroMail;
-    modalRef.result.then(result=>{
-            console.log("result: "+result);
-            console.log("result.cause: "+result.cause);
-            console.log("result.date: "+result.date.year);
-            console.log("result.date: "+result.date.month);
-            console.log("result.date: "+result.date.day);
-          },reason=>{
-            console.log("rison: "+reason);
-             if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-          } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-          } else {
-            return  `with: ${reason}`;
-          }
-          } );
-           console.log(this.filtroMail);
+   // const modalRef =    this._modal.open(ModalMensajeComponent);
+   //  modalRef.componentInstance.name = this.filtroMail;
+   //  modalRef.result.then(result=>{
+   //          console.log("result: "+result);
+   //          console.log("result.cause: "+result.cause);
+   //          console.log("result.date: "+result.date.year);
+   //          console.log("result.date: "+result.date.month);
+   //          console.log("result.date: "+result.date.day);
+   //        },reason=>{
+   //          console.log("rison: "+reason);
+   //           if (reason === ModalDismissReasons.ESC) {
+   //          return 'by pressing ESC';
+   //        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+   //          return 'by clicking on a backdrop';
+   //        } else {
+   //          return  `with: ${reason}`;
+   //        }
+   //        } );
+   //         console.log(this.filtroMail);
 
 
 

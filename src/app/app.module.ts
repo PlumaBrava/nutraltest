@@ -70,6 +70,14 @@ import { EmpresaModalComponent } from './admin/users/empresa-modal/empresa-modal
 import { MapaComponent } from './mapa/mapa.component';
 import { AlertasReposicionCrearComponent } from './alertasReposicion/alertas-reposicion-crear/alertas-reposicion-crear.component';
 import { AlertasReposicionListadoComponent } from './alertasReposicion/alertas-reposicion-listado/alertas-reposicion-listado.component';
+import { RemitosDetalleComponent } from './remitos/remitos-detalle/remitos-detalle.component';
+
+import { EstablecimientosCrearComponent } from './establecimientos/establecimientos-crear/establecimientos-crear.component';
+import { EstablecimientosListadoComponent } from './establecimientos/establecimientos-listado/establecimientos-listado.component';
+import { RodeoCrearComponent } from './rodeos/rodeo-crear/rodeo-crear.component';
+import { RodeosListadoComponent } from './rodeos/rodeos-listado/rodeos-listado.component';
+import { RodeosDetalleComponent } from './rodeos/rodeos-detalle/rodeos-detalle.component';
+import { RodeosHistorialComponent } from './rodeos/rodeos-historial/rodeos-historial.component';
 
 
 
@@ -104,7 +112,15 @@ import { AlertasReposicionListadoComponent } from './alertasReposicion/alertas-r
     EmpresaModalComponent,
     MapaComponent,
     AlertasReposicionCrearComponent,
-    AlertasReposicionListadoComponent
+    AlertasReposicionListadoComponent,
+    RemitosDetalleComponent,
+
+    EstablecimientosCrearComponent,
+    EstablecimientosListadoComponent,
+    RodeoCrearComponent,
+    RodeosListadoComponent,
+    RodeosDetalleComponent,
+    RodeosHistorialComponent
 
   ],
   imports: [

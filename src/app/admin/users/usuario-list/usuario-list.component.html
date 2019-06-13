@@ -17,7 +17,11 @@
     <div class="row">
                 <div class="col-md-6">
                     <div class="card-group card-group-6 ">
-
+<p>Default pagination:</p>
+<ngb-pagination [collectionSize]="collectionSize"  [pageSize]="pageSize" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+<p>Current page: {{page}}</p>
+<p>Current pageSize: {{pageSize}}</p>
+<p>Current collectionSize: {{collectionSize}}</p>
                         <label for="email">Email</label>
                              <div class="form-group  row mail-row">
                              <input type="email" class="form-control col-md-10" id="emailFiltro"  [(ngModel)]="filtroMail" placeholder="Filtro por email" />

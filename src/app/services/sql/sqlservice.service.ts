@@ -111,7 +111,21 @@ console.log("getRemitoDetallado url",url);
 
  };
 
+getRemitoXNumero(remito:string): Observable<any>{
+    console.log("getRemitoXNumero");
+    console.log("getRemitoXNumero remito",remito);
 
+
+// https://us-central1-nutraltest.cloudfunctions.net/sql_getPedidoDetallado?Codigo_Cliente=01JA01&cantidadDias=100
+    const url:string=this.URL_SERVER+'sql_getRemitoXNumero?remito='+
+    remito
+
+console.log("getRemitoDetallado url",url);
+
+ return this._http.get(url);
+
+
+ };
 
 getVehiculos(): Observable<any>{
   console.log("getVehiculos");
