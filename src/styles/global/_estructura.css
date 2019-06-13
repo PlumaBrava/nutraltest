@@ -42,9 +42,21 @@
 }
 
 
+.inner-estructura > .col-md-6,
+.inner-estructura > .col-sm-12{
+    padding: 20px 37px;
+}
+
+
 @media (max-width: 767px){
     .inner-estructura > .col-md-6{
         min-height: 0;
         border-right:0px;
+    }
+}
+
+@media (min-width: 1366px){
+    .estructura{
+        background-size:100% auto;
     }
 }

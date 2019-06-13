@@ -23,3 +23,7 @@
 .table-striped tbody tr:nth-of-type(odd){
     background:#fbf9e8;
 }
+
+td.acciones{
+    min-width: 130px;
+}

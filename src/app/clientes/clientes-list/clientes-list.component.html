@@ -2,51 +2,68 @@
 
     <app-header></app-header>
 
-    <div class="spinner-grow text-primary"></div>
+    <div class="estructura">
 
-    <div *ngIf="perfilUsuario">
+        <div class="top-estructura">
 
-        <!-- <p >{{perfilUsuario.email  }} sss</p> -->
+            <h2>Clientes</h2>
 
-        <!-- <h3 class="text-center" >perfilUsuario: {{perfilUsuario.email}}</h3> -->
+            <span class="etiqueta black">pepe@gmail.com</span>
 
-        <table class="table table-sm table-striped table-wrapper-scroll-y table-hover">
+        </div>
 
-            <thead>
-                <tr>
-                    <th>
-                        CÓDIGO
-                    </th>
-                    <th>
-                        RAZÓN SOCIAL
-                    </th>
-                    <th>
-                        LOCALIDAD
-                    </th>
-                    <th>
-                        CUIT
-                    </th>
-                </tr>
-            </thead>
+        <div class="row inner-estructura">
 
-            <tbody>
-                <tr *ngFor="let empresa of perfilUsuario.data.empresas" (click)="setEmpresaSelected(empresa)">
-                    <td>
-                        {{empresa.COD_CLIENT}}
-                    </td >
-                    <td>
-                        {{empresa.RAZON_SOCI}}
-                    </td>
-                    <td>
-                        {{empresa.LOCALIDAD}}
-                    </td>
-                    <td>
-                        {{empresa.CUIT}}
-                    </td>
-                </tr>
-            </tbody>
+            <div class="col-sm-12">
 
-        </table>
+                <div class="spinner-grow text-primary"></div>
+
+                <div *ngIf="perfilUsuario">
+
+                    <!-- <p >{{perfilUsuario.email  }} sss</p> -->
+
+                    <!-- <h3 class="text-center" >perfilUsuario: {{perfilUsuario.email}}</h3> -->
+
+                    <table class="table table-sm table-striped table-wrapper-scroll-y table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    CÓDIGO
+                                </th>
+                                <th>
+                                    RAZÓN SOCIAL
+                                </th>
+                                <th>
+                                    LOCALIDAD
+                                </th>
+                                <th>
+                                    CUIT
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let empresa of perfilUsuario.data.empresas" (click)="setEmpresaSelected(empresa)">
+                                <td>
+                                    {{empresa.COD_CLIENT}}
+                                </td >
+                                <td>
+                                    {{empresa.RAZON_SOCI}}
+                                </td>
+                                <td>
+                                    {{empresa.LOCALIDAD}}
+                                </td>
+                                <td>
+                                    {{empresa.CUIT}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
