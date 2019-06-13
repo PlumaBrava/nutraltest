@@ -48,6 +48,24 @@
 }
 
 
+.top-inner-estructura{
+    padding:20px 0px 0px;
+}
+.top-inner-estructura h3{
+    float: left;
+    line-height: 28px;
+    font-weight: 700;
+    margin-top:4px;
+    margin-bottom:0;
+}
+.top-inner-estructura h3 b{
+    font-weight: 900;
+}
+.top-inner-estructura .etiqueta{
+    float: right;
+}
+
+
 @media (max-width: 767px){
     .inner-estructura > .col-md-6{
         min-height: 0;

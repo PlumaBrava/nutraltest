@@ -1,6 +1,7 @@
 /*LOADING*/
 
 .loading{
+    display: inline-block;
     width:66px;
     height: 66px;
     background:url('../../assets/images/general/im-loading.png') center center no-repeat;
