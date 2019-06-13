@@ -28,7 +28,7 @@ h3{
 h4{
     font-size: 14px;
     line-height: 16px;
-    font-weight: 500;
+    font-weight: 400;
 }
 h5{
 
@@ -41,7 +41,7 @@ p{
     letter-spacing: 0.2px;
     font-size: 14.5px;
     line-height: 20px;
-    font-weight: 500;
+    font-weight: 400;
     color:#090a0a;
 }
 p a{
@@ -49,7 +49,7 @@ p a{
     letter-spacing: 0.2px;
     font-size: 14.5px;
     line-height: 20px;
-    font-weight: 500;
+    font-weight: 400;
     color:#24a744;
 }
 p a:hover{
