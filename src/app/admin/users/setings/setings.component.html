@@ -1,57 +1,56 @@
-    <div class="modal-header" id="custom-modal-2">
-    <h4 class="modal-title" id="modal-title-2">asdasd</h4>
-    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    <div class="modal-body">
-    <p><strong *ngIf="mensaje"> asdasd <span class="text-primary" *ngIf="name">"asdasdasda"</span></strong></p>
-    <p>
-    <span class="text-danger" *ngIf="dato">"asdasda"</span>
-    </p>
-    </div>
+<div class="component log-mail">
 
-    <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
-    <!-- <button type="button" class="btn btn-danger" (click)="modal.close({cause:'Ok click jj', date:model})">Ok</button> -->
-    <button type="button" class="btn btn-danger" (click)="modal.close({cause:'Ok click jj', date: model })">Ok</button>
-    </div>
+    <app-header></app-header>
 
+    <div class="card" *ngIf="componenteHabilitado">
+        <div class="card col-md-4">
 
-<!--
-<div class="card" *ngIf="componenteHabilitado">
-  <div class="card col-md-4"> <img class="card-img-top" src="../assets/images/nutralmix.png" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Configuración</h5>
-      <p class="card-text">Seleccione los parámetros.</p>
-       <form [formGroup]="formSettings">
-        <div class="form-group">
-          <label for="ventanaVisualizacionPedidos">Ventana de visualización de pedidos (días):</label>
-          <input type="number" class="form-control" id="ventanaVisualizacionPedidos" placeholder="Ingrese la cantidad de días que quiere visualizar" value="30" formControlName="ventanaVisualizacionPedidos">
-          </div>
-   <div *ngIf=" (formSettings.controls.ventanaVisualizacionPedidos.invalid && (formSettings.controls.ventanaVisualizacionPedidos.dirty|| formSettings.controls.ventanaVisualizacionPedidos.touched  ) )" class="alert alert-danger">
-                            Ingrese un Numero valido
-                        </div>
+            <img class="card-img-top" src="../assets/images/nutralmix.png" alt="Card image cap">
 
-         <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="aceptaDescargaSinRepresentante" formControlName="aceptaDescargaSinRepresentante" >
-          <label class="form-check-label" for="aceptaDescargaSinRepresentante"  >Acepta descargar el alimento sin la presencia de un representante del establecimiento? </label>
+            <div class="card-body">
+
+                <h5 class="card-title">Configuración</h5>
+
+                <p class="card-text">Seleccione los parámetros.</p>
+
+                <form [formGroup]="formSettings">
+                    <div class="form-group">
+                        <label for="ventanaVisualizacionPedidos">Ventana de visualización de pedidos (días):</label>
+                        <input type="number" class="form-control" id="ventanaVisualizacionPedidos" placeholder="Ingrese la cantidad de días que quiere visualizar" value="30" formControlName="ventanaVisualizacionPedidos">
+                    </div>
+                    <div *ngIf=" (formSettings.controls.ventanaVisualizacionPedidos.invalid && (formSettings.controls.ventanaVisualizacionPedidos.dirty|| formSettings.controls.ventanaVisualizacionPedidos.touched  ) )" class="alert alert-danger">
+                        Ingrese un Numero valido
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="aceptaDescargaSinRepresentante" formControlName="aceptaDescargaSinRepresentante" >
+                        <label class="form-check-label" for="aceptaDescargaSinRepresentante"  >Acepta descargar el alimento sin la presencia de un representante del establecimiento? </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="aceptaNotificaciones" checked formControlName="aceptaNotificaciones" (click)="aceptaNotificaciones()">
+                        <label class="form-check-label" for="aceptaNotificaciones">Notificaciones</label>
+                    </div>
+                    <button (click)="grabarSettings()" class="btn btn-primary">Grabar</button>
+                </form>
+
+            </div>
+
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="aceptaNotificaciones" checked formControlName="aceptaNotificaciones" (click)="aceptaNotificaciones()">
-          <label class="form-check-label" for="aceptaNotificaciones">Notificaciones</label>
-        </div>
-        <button (click)="grabarSettings()" class="btn btn-primary">Grabar</button>
-      </form>
-   <!--  <button (click)="requestPermission()">
-    requestPermission!
-  </button>
-  <button (click)="deleteToken()">
-    Delete my token plz
-  </button>
-  <button (click)="listen()">
-    Get notified!
-  </button>
-  </div>
+    </div>
+
+    <app-footer></app-footer>
+
+</div>
+
+<!--  <button (click)="requestPermission()">
+requestPermission!
+</button>
+<button (click)="deleteToken()">
+Delete my token plz
+</button>
+<button (click)="listen()">
+Get notified!
+</button>
+</div>
 </div>
 -->

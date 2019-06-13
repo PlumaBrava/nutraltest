@@ -53,9 +53,42 @@
 
 .navbar-nav .dropdown-menu{
     top: 55px;
+    box-shadow: 0px 6px 17px rgba(208,208,234,0.3);
+    padding:10px 0;
+    background: #FFF;
+    border:0px;
 }
 .dropdown-item{
     font-family: 'Lato', Arial;
     line-height: 30px;
-    text-transform:none;
+    padding:5px 15px;
+    text-transform: uppercase;
+    font-size:12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.navbar-nav .mi-perfil{
+    color:#1f2c46;
+    font-family: 'Lato', Arial;
+    letter-spacing: 0.3px;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.navbar-nav .mi-perfil img{
+    border-radius:40px;
+    width:37px;
+    height:37px;
+    margin-right:11px;
+    position: relative;
+    margin-top: -3px;
+}
+.navbar-nav .nav-item .nav-link.dropdown a:hover{
+    text-decoration: none;
+}
+.navbar-nav .nav-item:hover .nav-link.dropdown{
+    border:0px;
+    padding: 3px 0 3px !important;
+    color:#090a0a;
 }

@@ -29,7 +29,7 @@ signIn() {
      console.log('signIn clave',this.crearLabelForm.value.clave)
 
      //PRUEBA
-     this._modal.open(SetingsComponent);
+     //this._modal.open(SetingsComponent);
 
     this.authService.emailLogin(String(this.crearLabelForm.value.email),String(this.crearLabelForm.value.clave)).subscribe((user) => {
          console.log(user)
