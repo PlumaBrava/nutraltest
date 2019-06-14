@@ -19,7 +19,7 @@
                     <h3>Seleccione los parámetros.</h3>
 
                     <form [formGroup]="formSettings">
-                        <div class="form-group">
+                        <div class="form-group w-25">
                             <label for="ventanaVisualizacionPedidos">Ventana de visualización de pedidos (días):</label>
                             <input type="number" class="form-control" id="ventanaVisualizacionPedidos" placeholder="Ingrese la cantidad de días que quiere visualizar" value="30" formControlName="ventanaVisualizacionPedidos">
                         </div>
@@ -29,7 +29,7 @@
 
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="aceptaDescargaSinRepresentante" formControlName="aceptaDescargaSinRepresentante" >
-                            <label class="form-check-label" for="aceptaDescargaSinRepresentante"  >Acepta descargar el alimento sin la presencia de un representante del establecimiento? </label>
+                            <label class="form-check-label" for="aceptaDescargaSinRepresentante">Acepta descargar el alimento sin la presencia de un representante del establecimiento? </label>
                         </div>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="aceptaNotificaciones" checked formControlName="aceptaNotificaciones" (click)="aceptaNotificaciones()">

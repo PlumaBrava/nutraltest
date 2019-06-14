@@ -25,7 +25,7 @@
 }
 
 .inner-estructura{
-    min-height: 200px;
+    min-height: 100px;
     max-width: 1200px;
     width: 94%;
     background: #FFF;
@@ -34,7 +34,7 @@
     box-shadow: 0px 7px 27px rgba(208,208,234,0.3);
 }
 .inner-estructura > .col-md-6{
-    min-height: 200px;
+    min-height: 100px;
     border-right:1px solid #ebebef;
 }
 .inner-estructura > .col-md-6:last-child{
@@ -61,8 +61,20 @@
 .top-inner-estructura h3 b{
     font-weight: 900;
 }
+.top-inner-estructura h3 p{
+    margin:0;
+}
 .top-inner-estructura .etiqueta{
     float: right;
+}
+
+.table-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 25px 30px 15px;
+    border-radius:5px;
+    box-shadow: 0px 7px 20px rgba(208,208,234,0.2);
+    margin: 10px 0 20px;
 }
 
 

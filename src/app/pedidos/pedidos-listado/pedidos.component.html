@@ -20,7 +20,7 @@
                 <div class="text-center"><div class="loading" *ngIf="showSpinner"></div></div>
 
                 <div *ngIf="mensajeError" >{{mensajeError}}</div>
-                <p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+                <p *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
 
                 <div class="accordion" id="accordionExample">
 
@@ -31,13 +31,14 @@
                                 <b>Pedido {{pedido.NRO_PEDIDO}}</b> {{pedido.FECHA_PEDI}}
                             </h3>
                             <span class="etiqueta check" *ngIf="pedido.Desc_Estado=='Aprobado'">{{pedido.Desc_Estado}}</span>
+                            <span class="etiqueta" *ngIf="pedido.Desc_Estado!='Aprobado'">{{pedido.Desc_Estado}}</span>
                         </div>
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
+                            <div class="table-body">
                                 <table class="table table-sm table-striped table-wrapper-scroll-y">
                                     <thead>
-                                        <tr >
+                                        <tr>
                                             <th>
                                                 PRODUCTO
                                             </th>

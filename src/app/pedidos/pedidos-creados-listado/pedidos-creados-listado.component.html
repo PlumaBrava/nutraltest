@@ -2,58 +2,83 @@
 
     <app-header></app-header>
 
-    <app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>
+    <div class="estructura">
 
-    <div *ngIf="mensajeError" >{{mensajeError}}</div>
-    <p *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
-    <p *ngIf="pedidos"> cantidad de Pedidos: {{pedidos.length  }}  </p>
+        <div class="top-estructura">
 
-    <div class="accordion" id="accordionExample">
-        <div class="card encabezado"  *ngFor="let pedido of listaPedidos">
-            <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                    <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-                        PEDIDO:  {{pedido.NRO_PEDIDO}} FECHA:{{ pedido.cabecera.timeStamp.seconds * 1000 | date:'dd-MM-yyyy' }}
-                        ESTADO: {{pedido.estado}}
-                        <button class="btn btn-primary mb-2" (click)="EditarPedido(pedido)"> Editar  </button>
-                        <button class="btn btn-primary mb-2" (click)="ProcesarPedido(pedido)"> Procesar  </button>
-                    </h2>
-                </h2>
-            </div>
+            <h2>Mis Pedidos Web</h2>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                    <table class="table table-sm table-striped table-wrapper-scroll-y table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    PRODUCTO
-                                </th>
-                                <th>
-                                    CANTIDAD PEDIDO
-                                </th>
-                                <th>
-                                    UNIDADES
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let detalle of pedido.detalle">
-                                <td (click)="setPedidoSelected(pedido)" >
-                                    {{detalle.articulo.DESCRIPCIO}}
-                                </td >
-                                <td (click)="setPedidoSelected(pedido)" >
-                                    {{detalle.cantidad}}
-                                </td >
-                                <td (click)="setPedidoSelected(pedido)" >
-                                    {{detalle.unidad}}
-                                </td >
-                            </tr>
-                        </tbody>
-                    </table>
+            <span class="etiqueta black" *ngIf="pedidos">Cantidad: {{pedidos.length  }}</span>
+
+        </div>
+
+        <div class="row inner-estructura">
+
+            <div class="col-sm-12">
+
+                <!--<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>-->
+                <div class="text-center"><div class="loading" *ngIf="showSpinner"></div></div>
+
+                <div *ngIf="mensajeError" >{{mensajeError}}</div>
+                <p *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+
+                <div class="accordion" id="accordionExample">
+
+                    <div *ngFor="let pedido of listaPedidos">
+
+                        <div class="top-inner-estructura clearfix" id="headingOne">
+                            <h3 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+                                <b>Pedido {{pedido.NRO_PEDIDO}}</b> {{ pedido.cabecera.timeStamp.seconds * 1000 | date:'dd-MM-yyyy' }}
+                                <p>
+                                    <a href="javascript:;" (click)="EditarPedido(pedido)">Editar</a>
+                                    &nbsp;
+                                    <a href="javascript:;" (click)="ProcesarPedido(pedido)">Procesar</a>
+                                </p>
+                            </h3>
+
+                            <span class="etiqueta check" *ngIf="pedido.estado=='Aprobado'">{{pedido.estado}}</span>
+                            <span class="etiqueta" *ngIf="pedido.estado!='Aprobado'">{{pedido.estado}}</span>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="table-body">
+                                <table class="table table-sm table-striped table-wrapper-scroll-y">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                PRODUCTO
+                                            </th>
+                                            <th>
+                                                CANTIDAD PEDIDO
+                                            </th>
+                                            <th>
+                                                UNIDADES
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let detalle of pedido.detalle">
+                                            <td (click)="setPedidoSelected(pedido)">
+                                                {{detalle.articulo.DESCRIPCIO}}
+                                            </td>
+                                            <td (click)="setPedidoSelected(pedido)">
+                                                {{detalle.cantidad}}
+                                            </td>
+                                            <td (click)="setPedidoSelected(pedido)">
+                                                {{detalle.unidad}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
+
             </div>
+
         </div>
 
     </div>
