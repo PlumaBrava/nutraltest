@@ -15,12 +15,3 @@
 @import url("../../../styles/global/_table.css");
 
 @import url("../../../styles/global/_estructura.css");
-
-.camion_listado{
-    height:40px;
-    width: 40px;
-}
-
-.encabezado:hover{
-    background-color: red;
-}

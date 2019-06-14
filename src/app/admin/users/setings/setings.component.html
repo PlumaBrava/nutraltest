@@ -2,40 +2,49 @@
 
     <app-header></app-header>
 
-    <div class="card" *ngIf="componenteHabilitado">
-        <div class="card col-md-4">
+    <div class="estructura">
 
-            <img class="card-img-top" src="../assets/images/nutralmix.png" alt="Card image cap">
+        <div class="top-estructura">
 
-            <div class="card-body">
+            <h2>Configuración</h2>
 
-                <h5 class="card-title">Configuración</h5>
+        </div>
 
-                <p class="card-text">Seleccione los parámetros.</p>
+        <div class="row inner-estructura">
 
-                <form [formGroup]="formSettings">
-                    <div class="form-group">
-                        <label for="ventanaVisualizacionPedidos">Ventana de visualización de pedidos (días):</label>
-                        <input type="number" class="form-control" id="ventanaVisualizacionPedidos" placeholder="Ingrese la cantidad de días que quiere visualizar" value="30" formControlName="ventanaVisualizacionPedidos">
-                    </div>
-                    <div *ngIf=" (formSettings.controls.ventanaVisualizacionPedidos.invalid && (formSettings.controls.ventanaVisualizacionPedidos.dirty|| formSettings.controls.ventanaVisualizacionPedidos.touched  ) )" class="alert alert-danger">
-                        Ingrese un Numero valido
-                    </div>
+            <div class="col-sm-12">
 
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="aceptaDescargaSinRepresentante" formControlName="aceptaDescargaSinRepresentante" >
-                        <label class="form-check-label" for="aceptaDescargaSinRepresentante"  >Acepta descargar el alimento sin la presencia de un representante del establecimiento? </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="aceptaNotificaciones" checked formControlName="aceptaNotificaciones" (click)="aceptaNotificaciones()">
-                        <label class="form-check-label" for="aceptaNotificaciones">Notificaciones</label>
-                    </div>
-                    <button (click)="grabarSettings()" class="btn btn-primary">Grabar</button>
-                </form>
+                <div *ngIf="componenteHabilitado">
+
+                    <h3>Seleccione los parámetros.</h3>
+
+                    <form [formGroup]="formSettings">
+                        <div class="form-group">
+                            <label for="ventanaVisualizacionPedidos">Ventana de visualización de pedidos (días):</label>
+                            <input type="number" class="form-control" id="ventanaVisualizacionPedidos" placeholder="Ingrese la cantidad de días que quiere visualizar" value="30" formControlName="ventanaVisualizacionPedidos">
+                        </div>
+                        <div *ngIf=" (formSettings.controls.ventanaVisualizacionPedidos.invalid && (formSettings.controls.ventanaVisualizacionPedidos.dirty|| formSettings.controls.ventanaVisualizacionPedidos.touched  ) )" class="alert alert-danger">
+                            Ingrese un Numero valido
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="aceptaDescargaSinRepresentante" formControlName="aceptaDescargaSinRepresentante" >
+                            <label class="form-check-label" for="aceptaDescargaSinRepresentante"  >Acepta descargar el alimento sin la presencia de un representante del establecimiento? </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="aceptaNotificaciones" checked formControlName="aceptaNotificaciones" (click)="aceptaNotificaciones()">
+                            <label class="form-check-label" for="aceptaNotificaciones">Notificaciones</label>
+                        </div>
+                        <br>
+                        <button (click)="grabarSettings()" class="btn btn-primary">Grabar</button>
+                    </form>
+
+                </div>
 
             </div>
 
         </div>
+
     </div>
 
     <app-footer></app-footer>

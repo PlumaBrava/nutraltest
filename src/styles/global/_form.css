@@ -1,8 +1,6 @@
 /*FORM*/
 
-.form-group{
-
-}
+.form-check .form-control,
 .form-group .form-control{
     border-color:#d8e1e5;
     height: 55px;
@@ -15,6 +13,7 @@
     letter-spacing: 0.3px;
     background: #FFF;
 }
+.form-check label,
 .form-group label{
     font-size: 14px;
     line-height: 20px;

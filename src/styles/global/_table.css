@@ -1,5 +1,8 @@
 /*TABLE*/
 
+.table{
+    margin-bottom:20px;
+}
 .table td,
 .table th,
 .table thead th{
