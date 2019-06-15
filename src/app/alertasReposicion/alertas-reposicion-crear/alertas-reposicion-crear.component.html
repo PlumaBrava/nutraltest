@@ -2,112 +2,112 @@
 
     <app-header></app-header>
 
-    <p>
-        alertas-reposicion-crear works!
-    </p>
+    <div class="estructura">
 
-    <h3 class="text-center"  >Alerta de Reposición:  Nuevo</h3>
-    <!-- <h3 class="text-center" *ngIf="pedidoParaEditar">Pedido: {{pedidoParaEditar.NRO_PEDIDO}}</h3> -->
-    <div class="col-md-12 col-12 card bg-light " >
+        <div class="top-estructura">
 
-        <form [formGroup]="alertasReposicionForm">
+            <h2>Alerta de Reposición: Nuevo</h2>
+            <!-- <h3 class="text-center" *ngIf="pedidoParaEditar">Pedido: {{pedidoParaEditar.NRO_PEDIDO}}</h3> -->
+
+        </div>
+
+        <div class="row inner-estructura">
+
+            <div class="col-sm-12">
+
+                <p class="alerta alerta-2">
+                    Form Status: {{ alertasReposicionForm.status }}
+                    Form Status: {{ alertasReposicionForm.value }}
+                </p>
+                <br>
+
+                <form class="row" [formGroup]="alertasReposicionForm">
+
+                    <!-- ● Nombre de la Alerta -->
+                    <div class="form-group col-md-4">
+                        <label for="nombreAlerta">Nombre del alerta</label>
+                        <input type="text" class="form-control" id="nombreAlerta" formControlName="nombreAlerta" required forbiddenNameValidator />
+                        <div *ngIf=" (alertasReposicionForm.controls.nombreAlerta.invalid && (alertasReposicionForm.controls.nombreAlerta.dirty|| alertasReposicionForm.controls.nombreAlerta.touched  ) )" class="alerta alerta-3">
+                            El nombre de Alerta es no es válido.
+                        </div>
+                    </div>
 
 
-            <p>
-                Form Status: {{ alertasReposicionForm.status }}
-                Form Status: {{ alertasReposicionForm.value }}
-            </p>
+                    <!-- ● Artículo -->
+                    <div class="form-group col-md-4 ">
+                        <label for="estado">Artículo</label>
+                        <select   class="form-control selectpicker col-md-6"  id="articulo"   formControlName="articulo" (change)="setArticuloSeleccionado($event, producto)" [compareWith]="compareFn" >
+                            <option  *ngFor="let producto of listaDeProductos" [ngValue]="producto" >{{producto.DESCRIPCIO}}</option>
+                        </select>
+                        <div *ngIf=" (alertasReposicionForm.controls.articulo.invalid && (alertasReposicionForm.controls.articulo.dirty|| alertasReposicionForm.controls.articulo.touched  ) )" class="alerta alerta-3">
+                            El articulo es no es válido.
+                        </div>
+                    </div>
 
 
+                    <!-- ● Stock Inicial -->
+                    <div class="form-group col-md-4">
+                        <label for="stockInicial">Stock Inicial</label>
+                        <input type="number" class="form-control" id="stockInicial" formControlName="stockInicial" required />
+                        <div *ngIf=" (alertasReposicionForm.controls.stockInicial.invalid && (alertasReposicionForm.controls.stockInicial.dirty|| alertasReposicionForm.controls.stockInicial.touched  ) )" class="alerta alerta-3">
+                            El stockInicial es no es válido.
+                        </div>
+                    </div>
 
-            <!-- ● Nombre de la Alerta -->
-            <div class="form-group">
-                <label for="nombreAlerta">Nombre del alerta</label>
-                <input type="text" class="form-control col-md-6" id="nombreAlerta" formControlName="nombreAlerta" required forbiddenNameValidator />
+
+                    <!-- ● Cantidad de animales -->
+                    <div class="form-group col-md-4">
+                        <label for="cantidadDeAnimales">Cantidad De Animales</label>
+                        <input type="number" class="form-control" id="cantidadDeAnimales" formControlName="cantidadDeAnimales" required />
+                        <div *ngIf=" (alertasReposicionForm.controls.cantidadDeAnimales.invalid && (alertasReposicionForm.controls.cantidadDeAnimales.dirty|| alertasReposicionForm.controls.cantidadDeAnimales.touched  ) )" class="alerta alerta-3">
+                            El stockInicial es no es válido.
+                        </div>
+                    </div>
+
+
+                    <!-- ● Consumo diario -->
+                    <div class="form-group col-md-4">
+                        <label for="consumoDiario">Consumo Diario</label>
+                        <input type="number" class="form-control" id="consumoDiario" formControlName="consumoDiario" required />
+                        <div *ngIf=" (alertasReposicionForm.controls.consumoDiario.invalid && (alertasReposicionForm.controls.consumoDiario.dirty|| alertasReposicionForm.controls.consumoDiario.touched  ) )" class="alerta alerta-3">
+                            El consumo diario es no es válido.
+                        </div>
+                    </div>
+
+
+                    <!-- ● capacidad De Almacenamiento -->
+                    <div class="form-group col-md-4">
+                        <label for="capacidadDeAlmacenamiento">Capacidad de Almacenamiento</label>
+                        <input type="number" class="form-control" id="capacidadDeAlmacenamiento" formControlName="capacidadDeAlmacenamiento" required />
+                        <div *ngIf=" (alertasReposicionForm.controls.capacidadDeAlmacenamiento.invalid && (alertasReposicionForm.controls.capacidadDeAlmacenamiento.dirty|| alertasReposicionForm.controls.capacidadDeAlmacenamiento.touched  ) )" class="alerta alerta-3">
+                            El capacidad De Almacenamiento es no es válido.
+                        </div>
+                    </div>
+
+                    <div *ngIf="alertasReposicionForm.errors" class="alerta alerta-3">
+                        {{alertasReposicionForm.errors.formError}}
+                    </div>
+
+                    <!-- ● Días de Margen (antelación para hacer pedidos) -->
+                    <div class="form-group col-md-4">
+                        <label for="diasDeMargen">Días de Margen</label>
+                        <input type="number" class="form-control" id="diasDeMargen" formControlName="diasDeMargen" required />
+                        <div *ngIf=" (alertasReposicionForm.controls.diasDeMargen.invalid && (alertasReposicionForm.controls.diasDeMargen.dirty|| alertasReposicionForm.controls.diasDeMargen.touched  ) )" class="alerta alerta-3">
+                            El dias De Margen es no es válido.
+                        </div>
+                    </div>
+
+                    <!-- <button  class="btn btn-primary" type="submit" [disabled]="!alertasReposicionForm.valid">Submit </button> -->
+                    <div class="form-group col-md-12 text-center">
+                        <button class="btn btn-primary"  [disabled]="!alertasReposicionForm.valid"(click)="grabarAlerta()"> Grabar Alerta</button>
+                        <button class="btn btn-secondary" (click)="borrarFormulario()"> Limpiar </button>                        
+                    </div>
+
+                </form>
+
+
             </div>
-
-            <div *ngIf=" (alertasReposicionForm.controls.nombreAlerta.invalid && (alertasReposicionForm.controls.nombreAlerta.dirty|| alertasReposicionForm.controls.nombreAlerta.touched  ) )" class="alert alert-danger">
-                El nombre de Alerta es no es válido.
-            </div>
-
-            <!-- ● Artículo -->
-            <div class="form-group ">
-                <label for="estado">Artículo</label>
-
-                <select   class="form-control selectpicker col-md-6"  id="articulo"   formControlName="articulo" (change)="setArticuloSeleccionado($event, producto)" [compareWith]="compareFn" >
-                    <option  *ngFor="let producto of listaDeProductos" [ngValue]="producto" >{{producto.DESCRIPCIO}}</option>
-                </select >
-            </div>
-            <div *ngIf=" (alertasReposicionForm.controls.articulo.invalid && (alertasReposicionForm.controls.articulo.dirty|| alertasReposicionForm.controls.articulo.touched  ) )" class="alert alert-danger">
-                El articulo es no es válido.
-            </div>
-
-
-
-            <!-- ● Stock Inicial -->
-            <div class="form-group">
-                <label for="stockInicial">Stock Inicial</label>
-                <input type="number" class="form-control col-md-6" id="stockInicial" formControlName="stockInicial" required />
-            </div>
-
-            <div *ngIf=" (alertasReposicionForm.controls.stockInicial.invalid && (alertasReposicionForm.controls.stockInicial.dirty|| alertasReposicionForm.controls.stockInicial.touched  ) )" class="alert alert-danger">
-                El stockInicial es no es válido.
-            </div>
-
-
-
-            <!-- ● Cantidad de animales -->
-            <div class="form-group">
-                <label for="cantidadDeAnimales">Cantidad De Animales</label>
-                <input type="number" class="form-control col-md-6" id="cantidadDeAnimales" formControlName="cantidadDeAnimales" required />
-            </div>
-
-            <div *ngIf=" (alertasReposicionForm.controls.cantidadDeAnimales.invalid && (alertasReposicionForm.controls.cantidadDeAnimales.dirty|| alertasReposicionForm.controls.cantidadDeAnimales.touched  ) )" class="alert alert-danger">
-                El stockInicial es no es válido.
-            </div>
-
-            <!-- ● Consumo diario -->
-            <div class="form-group">
-                <label for="consumoDiario">Consumo Diario</label>
-                <input type="number" class="form-control col-md-6" id="consumoDiario" formControlName="consumoDiario" required />
-            </div>
-
-            <div *ngIf=" (alertasReposicionForm.controls.consumoDiario.invalid && (alertasReposicionForm.controls.consumoDiario.dirty|| alertasReposicionForm.controls.consumoDiario.touched  ) )" class="alert alert-danger">
-                El consumo diario es no es válido.
-            </div>
-
-            <!-- ● capacidad De Almacenamiento -->
-            <div class="form-group">
-                <label for="capacidadDeAlmacenamiento">Capacidad de Almacenamiento</label>
-                <input type="number" class="form-control col-md-6" id="capacidadDeAlmacenamiento" formControlName="capacidadDeAlmacenamiento" required />
-            </div>
-
-            <div *ngIf=" (alertasReposicionForm.controls.capacidadDeAlmacenamiento.invalid && (alertasReposicionForm.controls.capacidadDeAlmacenamiento.dirty|| alertasReposicionForm.controls.capacidadDeAlmacenamiento.touched  ) )" class="alert alert-danger">
-                El capacidad De Almacenamiento es no es válido.
-            </div>
-
-            <div *ngIf="alertasReposicionForm.errors" class="alert alert-danger">
-
-                {{alertasReposicionForm.errors.formError}}
-            </div>
-
-            <!-- ● Días de Margen (antelación para hacer pedidos) -->
-            <div class="form-group">
-                <label for="diasDeMargen">Días de Margen</label>
-                <input type="number" class="form-control col-md-6" id="diasDeMargen" formControlName="diasDeMargen" required />
-            </div>
-
-            <div *ngIf=" (alertasReposicionForm.controls.diasDeMargen.invalid && (alertasReposicionForm.controls.diasDeMargen.dirty|| alertasReposicionForm.controls.diasDeMargen.touched  ) )" class="alert alert-danger">
-                El dias De Margen es no es válido.
-            </div>
-
-            <!-- <button  class="btn btn-primary" type="submit" [disabled]="!alertasReposicionForm.valid">Submit </button> -->
-
-            <button class="btn btn-alert" (click)="borrarFormulario()"> Limpiar </button>
-            <button class="btn btn-alert"  [disabled]="!alertasReposicionForm.valid"(click)="grabarAlerta()"> grabarAlerta</button>
-
-        </form>
-
+        </div>
     </div>
 
     <app-footer></app-footer>

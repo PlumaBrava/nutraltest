@@ -14,64 +14,85 @@
 
             <div class="col-sm-12">
 
-                <h3 class="text-center" *ngIf="!pedidoParaEditar">Pedido: Nuevo</h3>
-                <h3 class="text-center" *ngIf="pedidoParaEditar">Pedido: {{pedidoParaEditar.NRO_PEDIDO}}</h3>
+                <div class="top-inner-estructura clearfix" id="headingOne">
+                    <h3 *ngIf="!pedidoParaEditar"><b>Pedido: Nuevo</b></h3>
+                    <h3 *ngIf="pedidoParaEditar"><b>Pedido: {{pedidoParaEditar.NRO_PEDIDO}}</b></h3>
+                </div>
 
-                <button class="btn btn-primary mb-2" (click)="grabarPedido()">Grabar</button>
+                <div class="table-body">
 
-                <table class="table table-sm table-striped table-wrapper-scroll-y ">
-                    <thead>
-                        <tr>
-                            <th>
-                                ARTICULO
-                            </th>
-                            <th>
-                                CANTIDAD
-                            </th>
-                            <th>
-                                UNIDADES
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="itemPedido">
-                            <td>
-                                <select class="form-control selectpicker col-md-6"  id="estado"  [(ngModel)]='itemPedido.articulo' (change)="setArticuloSeleccionado(itemPedido)"  >
-                                    <option  *ngFor="let producto of listaDeProductos" [value]="producto| json" [selected]="articuloSeleccionado" >{{producto.DESCRIPCIO}}</option>
-                                </select >
-                            </td >
-                            <td>
-                                <input type="number" class="form-control" id="cantidad" required    [(ngModel)]="cantidad">
-                            </td>
-                            <td>
-                                {{unidadDeMedida}}
-                            </td>
-                            <td>
-                                <a href="javascript:;" (click)="agregarItem()">Agregar</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <div *ngIf="mensajeError">{{mensajeError}}</div>
-                        </tr>
-                        <tr *ngFor="let item of items; index as i">
-                            <td>
-                                {{item.articulo.DESCRIPCIO}}
-                            </td >
-                            <td>
-                                {{item.cantidad}}
-                            </td>
-                            <td>
-                                {{item.unidad}}
-                            </td>
-                            <td (click)="modificarItem(i)" >
-                                modificar
-                            </td>
-                            <td (click)="borrarItem(i)" >
-                                borrar
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <div class="form-row" *ngIf="itemPedido"> <!--  -->
+
+                        <div class="form-group col-md-3">
+                            <label>Articulo</label>
+                            <select class="form-control selectpicker" id="estado"  [(ngModel)]='itemPedido.articulo' (change)="setArticuloSeleccionado(itemPedido)"  >
+                                <option *ngFor="let producto of listaDeProductos" [value]="producto| json" [selected]="articuloSeleccionado" >{{producto.DESCRIPCIO}}</option>
+                            </select >
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label>Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad" required [(ngModel)]="cantidad">
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label>Unidades</label>
+                            <input type="text" class="form-control" value="{{unidadDeMedida}}">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>&nbsp;</label>
+                            <button class="btn btn-primary" (click)="agregarItem()">+ Agregar</button>
+                        </div>
+
+                    </div>
+
+                    <div class="alerta alerta-3" *ngIf="mensajeError">{{mensajeError}}</div>
+
+                    <hr>
+
+                    <table class="table table-sm table-striped table-wrapper-scroll-y ">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ARTICULO
+                                </th>
+                                <th>
+                                    CANTIDAD
+                                </th>
+                                <th>
+                                    UNIDADES
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items; index as i">
+                                <td>
+                                    {{item.articulo.DESCRIPCIO}}
+                                </td>
+                                <td>
+                                    {{item.cantidad}}
+                                </td>
+                                <td>
+                                    {{item.unidad}}
+                                </td>
+                                <td>
+                                    <a href="javascript:;" (click)="modificarItem(i)"><i class="icono ic-edit"></i></a>
+                                    <a href="javascript:;" (click)="borrarItem(i)"><i class="icono ic-delete"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-center pt-2 pb-2">
+                        <button class="btn btn-primary mb-2" (click)="grabarPedido()">Grabar</button>
+                    </div>
+
+                </div>
+
 
             </div>
 

@@ -21,7 +21,8 @@
     font-weight: 400;
     letter-spacing: 0.3px;
     color: #090a0a;
-    margin-bottom:5px;
+    margin-bottom:7px;
+    display:block;
 }
 
 .form-row>.col, .form-row>[class*=col-] {

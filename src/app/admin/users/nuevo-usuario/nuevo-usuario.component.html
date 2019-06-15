@@ -1,112 +1,98 @@
-<div class="col-md-12 col-12 card bg-light " >
+    <form class="row" [formGroup]="crearLabelForm">
+
+        <p class="alerta alerta-2 col-md-12">
+            Form Status: {{ crearLabelForm.status }}
+            Form Status: {{ crearLabelForm.value }}
+        </p>
+        <br>
+
+        <!-- E mail -->
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" required />
+            <div *ngIf=" (crearLabelForm.controls.email.invalid && (crearLabelForm.controls.email.dirty|| crearLabelForm.controls.email.touched  ) )" class="alerta alerta-3">
+                El email es no es válido.
+            </div>
+            <div *ngIf="existeEmailenlaBase" class="alerta alerta-3">
+                Ya existe un usuario con ese Email!!!
+            </div>
+        </div>
+
+        <!-- Estado -->
+        <div class="form-group col-md-6">
+            <label for="estado">Estado</label>
+            <select class="form-control selectpicker" id="estado" formControlName="estado" required>
+                <option  *ngFor="let estado of tiposEstado" [value]="estado.id" >{{estado.val}}</option>
+            </select>
+            <div *ngIf=" (crearLabelForm.controls.estado.invalid && (crearLabelForm.controls.estado.dirty|| crearLabelForm.controls.estado.touched  ) )" class="alerta alerta-3">
+                El estado es no es válido.
+            </div>
+        </div>
+
+        <!-- Perfil -->
+        <div class="form-group col-md-6">
+            <label for="estado">Perfil</label>
+            <select class="form-control selectpicker" id="perfil" formControlName="perfil">
+                <option  *ngFor="let perfil of tiposPerfil" [value]="perfil.id" >{{perfil.val}}</option>
+            </select>
+            <div *ngIf=" (crearLabelForm.controls.perfil.invalid && (crearLabelForm.controls.perfil.dirty|| crearLabelForm.controls.perfil.touched  ) )" class="alerta alerta-3">
+                El estado es no es válido.
+            </div>
+        </div>
+
+        <!--Empresa -->
+        <div class="form-group col-md-6" *ngIf="crearLabelForm.value.perfil!!='transportista'">
+            <label for="empresa">Código de Empresa </label>
+            <input  type="text" class="form-control" id="empresa" formControlName="empresa" />
+            <button class="btn btn-primary" (click)="agregarEmpresa()"> Agrear  </button>
+            <button class="btn btn-primary" (click)="buscarEmpresa()"> Buscar  </button>
+        </div>
+
+        <button class="btn btn-primary" (click)="updateUserData()"> Enviar </button>
+        <button class="btn btn-secondary" (click)="borrarFormulario()"> Limpiar </button>
+
+    </form>
 
 
-                    <form  [formGroup]="crearLabelForm">
-   <p>
-  Form Status: {{ crearLabelForm.status }}
-  Form Status: {{ crearLabelForm.value }}
-</p>
-            <!-- E mail -->
-                        <div class="form-group  ">
+    <table class="table table-sm table-striped table-wrapper-scroll-y" *ngIf="listaEmpresas">
+        <thead>
+            <tr>
+                <th>
+                    Codigo Cliente
+                </th>
+                <th>
+                    Razón Social
+                </th>
+                <th>
+                    Cuit
+                </th>
+                <th>
+                    Localidad
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
 
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control col-md-6" id="email" formControlName="email" required />
-                        </div>
-
-                        <div *ngIf=" (crearLabelForm.controls.email.invalid && (crearLabelForm.controls.email.dirty|| crearLabelForm.controls.email.touched  ) )" class="alert alert-danger">
-                            El email es no es válido.
-                        </div>
-                         <div *ngIf="existeEmailenlaBase" class="alert alert-danger">
-                            Ya existe un usuario con ese Email!!!
-                        </div>
-
-
-
-            <!-- Estado -->
-                        <div class="form-group">
-                            <label for="estado">Estado</label>
-
-                            <select   class="form-control selectpicker col-md-6"  id="estado"   formControlName="estado" required>
-                               <option  *ngFor="let estado of tiposEstado" [value]="estado.id" >{{estado.val}}</option>
-                            </select >
-                        </div>
-                       <div *ngIf=" (crearLabelForm.controls.estado.invalid && (crearLabelForm.controls.estado.dirty|| crearLabelForm.controls.estado.touched  ) )" class="alert alert-danger">
-                            El estado es no es válido.
-                        </div>
-            <!-- Perfil -->
-                        <div class="form-group ">
-                            <label for="estado">Perfil</label>
-
-                            <select   class="form-control selectpicker col-md-6"  id="perfil"   formControlName="perfil">
-                               <option  *ngFor="let perfil of tiposPerfil" [value]="perfil.id" >{{perfil.val}}</option>
-                            </select >
-                        </div>
-                          <div *ngIf=" (crearLabelForm.controls.perfil.invalid && (crearLabelForm.controls.perfil.dirty|| crearLabelForm.controls.perfil.touched  ) )" class="alert alert-danger">
-                                                    El estado es no es válido.
-                                                </div>
-            <!--Empresa -->
-                        <div class="form-group " *ngIf="crearLabelForm.value.perfil!!='transportista'" >
-
-                                <label for="empresa">Código de Empresa </label>
-
-
-								<div class="row">
-                                	<input  type="text" class="form-control col-md-6 mx-sm-3 mb-2" id="empresa"  formControlName="empresa" />
-                                	<button class="btn btn-primary mb-2" (click)="agregarEmpresa()"> Agrear  </button>
-<button class="btn btn-primary mb-2" (click)="buscarEmpresa()"> Buscar  </button>
-
-
-                        	</div>
-                        </div>
-
-
-                        <button class="btn btn-primary" (click)="updateUserData()"> Enviar </button>
-                        <button class="btn btn-alert" (click)="borrarFormulario()"> Limpiar </button>
-                    </form>
-                </div>
-
-                 <!-- <div class="row"> -->
-
-                    <table class="table table-sm table-striped" *ngIf="listaEmpresas">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Codigo Cliente
-                                </th>
-                                <th>
-                                    Razón Social
-                                </th>
-                                <th>
-                                    Cuit
-                                </th>
-                                <th>
-                                    Localidad
-                                </th>
-                                <th>
-                                    Acciones
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-                            <tr class="table-danger" *ngFor="let emp of listaEmpresas; let i = index" [attr.data-index]="i">
-                                <td>
-                                     {{emp.COD_CLIENT}}
-                                </td>
-                                <td>
-                                    {{emp.RAZON_SOCI}}
-                                </td>
-                                <td>
-                                    {{emp.CUIT}}
-                                </td>
-                                <td>
-                                     {{emp.LOCALIDAD}}
-                                </td>
-                                 <td (click)="borrarEmpresa(i)">
-                                     Borrar   {{i}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                <!-- </div> -->
+            <tr class="table-danger" *ngFor="let emp of listaEmpresas; let i = index" [attr.data-index]="i">
+                <td>
+                    {{emp.COD_CLIENT}}
+                </td>
+                <td>
+                    {{emp.RAZON_SOCI}}
+                </td>
+                <td>
+                    {{emp.CUIT}}
+                </td>
+                <td>
+                    {{emp.LOCALIDAD}}
+                </td>
+                <td (click)="borrarEmpresa(i)">
+                    Borrar   {{i}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- </div> -->
