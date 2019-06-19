@@ -30,3 +30,24 @@
 td.acciones{
     min-width: 130px;
 }
+
+
+/*MOBILE*/
+@media (max-width: 767px){
+
+    .table td,
+    .table th,
+    .table thead th{
+        font-size:12px;
+        font-weight: 700;
+        line-height: 16px;
+    }
+    .table td{
+        font-weight: 300;
+    }
+
+    .table-sm td, .table-sm th{
+        padding:8px 10px;
+    }
+
+}

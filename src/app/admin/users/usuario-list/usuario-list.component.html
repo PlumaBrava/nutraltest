@@ -14,15 +14,22 @@
 
             <div class="col-md-6">
 
+                <app-nuevo-usuario  [userSelected]="userSelected"></app-nuevo-usuario>
+
+            </div>
+
+            <div class="col-md-6">
+
                 <!-- <h3 class="text-center" *ngIf="listaUsuarios">cantidad: {{listaUsuarios.length}}</h3> -->
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="emailFiltro"  [(ngModel)]="filtroMail" placeholder="Filtro por email" />
-                    <button class="btn btn-primary" (click)="ejecutarFiltroMail()"> Filtrar </button>
+                    <div class="form-control">
+                        <input type="email" id="emailFiltro"  [(ngModel)]="filtroMail" placeholder="Filtrar por email" />
+                        <button class="btn btn-primary" (click)="ejecutarFiltroMail()"> Filtrar </button>
+                    </div>
                 </div>
 
-                <table class="table table-sm table-striped table-wrapper-scroll-y">
+                <table class="table table-sm table-responsive table-striped w-100 table-wrapper-scroll-y">
                     <thead>
                         <tr>
                             <th>
@@ -56,12 +63,6 @@
                         </tr>
                     </tbody>
                 </table>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <app-nuevo-usuario  [userSelected]="userSelected"></app-nuevo-usuario>
 
             </div>
 

@@ -83,6 +83,13 @@
         min-height: 0;
         border-right:0px;
     }
+    .inner-estructura > .col-md-6,
+    .inner-estructura > .col-sm-12{
+        padding: 15px 22px;
+    }
+    .table-body {
+        padding: 15px 20px 10px;
+    }
 }
 
 @media (min-width: 1366px){

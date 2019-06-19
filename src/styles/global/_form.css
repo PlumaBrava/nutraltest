@@ -40,3 +40,25 @@
 .form-control::-ms-input-placeholder { /* Microsoft Edge */
   color: #b5bdc1;
 }
+
+div.form-control{
+    padding-right:6px;
+}
+div.form-control input{
+    height:100%;
+    border:0px;
+    width:calc(100% - 94px);
+    float:left;
+}
+div.form-control .btn.btn-primary{
+    width: 80px;
+    padding: 16px 20px;
+    float: right;
+    font-size:12px;
+    line-height: 40px;
+    height: 40px;
+    padding:0;
+    text-align: center;
+    margin:0;
+
+}
