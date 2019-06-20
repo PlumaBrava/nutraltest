@@ -30,6 +30,11 @@ import { RodeosListadoComponent } from '../app/rodeos/rodeos-listado/rodeos-list
 import { RodeosDetalleComponent } from '../app/rodeos/rodeos-detalle/rodeos-detalle.component';
 import { RodeosHistorialComponent } from '../app/rodeos/rodeos-historial/rodeos-historial.component';
 
+//Plantillas
+import { LoginComponent } from '../app/plantillas/login/login.component';
+import { EstilosComponent } from '../app/plantillas/estilos/estilos.component';
+
+
 // Rutas
 
 const routes: Routes = [
@@ -50,7 +55,9 @@ const routes: Routes = [
   ,{ path: 'remitosDetalles', component: RemitosDetalleComponent }
   ,{ path: 'alertaReposicionCrear', component: AlertasReposicionCrearComponent }
   ,{ path: 'alertaReposicionListado', component: AlertasReposicionListadoComponent }
-
+  //Plantillas
+  ,{ path: 'login', component: LoginComponent }
+  ,{ path: 'estilos', component: EstilosComponent }
 
   ,{ path: 'establecimientosListado', component: EstablecimientosListadoComponent }
   ,{ path: 'rodeosListado', component: RodeosListadoComponent }

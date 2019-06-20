@@ -79,6 +79,9 @@ import { RodeosListadoComponent } from './rodeos/rodeos-listado/rodeos-listado.c
 import { RodeosDetalleComponent } from './rodeos/rodeos-detalle/rodeos-detalle.component';
 import { RodeosHistorialComponent } from './rodeos/rodeos-historial/rodeos-historial.component';
 
+//Plantillas
+import { LoginComponent } from './plantillas/login/login.component';
+import { EstilosComponent } from './plantillas/estilos/estilos.component';
 
 
 
@@ -120,7 +123,11 @@ import { RodeosHistorialComponent } from './rodeos/rodeos-historial/rodeos-histo
     RodeoCrearComponent,
     RodeosListadoComponent,
     RodeosDetalleComponent,
-    RodeosHistorialComponent
+    RodeosHistorialComponent,
+
+    //Plantillas
+    LoginComponent,
+    EstilosComponent
 
   ],
   imports: [

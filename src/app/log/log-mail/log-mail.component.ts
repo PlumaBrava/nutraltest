@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/firebase/auth.service';
+import { SetingsComponent }  from '../../admin/users/setings/setings.component';
 import { ModalMensajeComponent }  from '../../services/modal-mensaje/modal-mensaje.component';
 import { NgbActiveModal, NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
@@ -27,9 +28,14 @@ signIn() {
      console.log('signIn email',this.crearLabelForm.value.email)
      console.log('signIn clave',this.crearLabelForm.value.clave)
 
+     //PRUEBA
+     //this._modal.open(SetingsComponent);
+
     this.authService.emailLogin(String(this.crearLabelForm.value.email),String(this.crearLabelForm.value.clave)).subscribe((user) => {
          console.log(user)
-       },(error) =>{ console.log(error);
+       },(error) =>{
+
+           console.log(error);
 
          switch (error.code) {
              case "auth/wrong-password":

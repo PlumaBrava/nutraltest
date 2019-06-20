@@ -1,88 +1,108 @@
-<p>
-  alertas-reposicion-listado works!
-</p>
-<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>
-<div *ngIf="mensajeError" >{{mensajeError}}</div>
-<p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
-<p   *ngIf="pedidos"> cantidad de Pedidos: {{pedidos.length  }}  </p>
+<div class="component alertas">
 
+    <app-header></app-header>
 
+    <div class="estructura">
 
-<div class="accordion" id="accordionExample">
-  <div class="card"  *ngFor="let alerta of listaAlertas ; let i = index">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-         Alerta:  {{alerta.nombreAlerta}}
-          FECHA:{{ alerta.timeStamp.toDate() | date:'dd-MM-yyyy' }}
-          ESTADO: {{alerta.estado}}
-          <button class="btn btn-primary mb-2" (click)="editarAlerta(alerta,i)"> Editar  </button>
+        <div class="top-estructura">
 
-        </h2>
-      </h2>
+            <h2>Alertas reposición listado</h2>
+
+        </div>
+
+        <div class="row inner-estructura">
+
+            <div class="col-sm-12">
+
+                <!--<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>-->
+                <div class="text-center"><div class="loading" *ngIf="showSpinner"></div></div>
+
+                <div *ngIf="mensajeError" >{{mensajeError}}</div>
+                <p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+                <p   *ngIf="pedidos"> cantidad de Pedidos: {{pedidos.length  }}  </p>
+
+                <div class="accordion" id="accordionExample">
+                    <div *ngFor="let alerta of listaAlertas ; let i = index">
+
+                        <div class="top-inner-estructura clearfix" id="headingOne">
+                            <h3 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+                                <b>Alerta:  {{alerta.nombreAlerta}}</b> {{ alerta.timeStamp.toDate() | date:'dd-MM-yyyy' }}
+                                <p>
+                                    <a href="javascript:;" (click)="editarAlerta(alerta,i)">Editar</a>
+                                </p>
+                            </h3>
+                            <span class="etiqueta" *ngIf="alerta.estado">{{alerta.estado}}</span>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="table-body">
+                                <table class="table table-sm table-responsive table-striped table-wrapper-scroll-y ">
+                                    <thead>
+                                        <tr >
+                                            <th>
+                                                Producto
+                                            </th>
+                                            <th>
+                                                Cap. de Almacenamiento
+                                            </th>
+                                            <th>
+                                                Stock Inicial
+                                            </th>
+
+                                            <th>
+                                                Cant. de Animales
+                                            </th>
+                                            <th>
+                                                Consumo Diario
+                                            </th>
+                                            <th>
+                                                Dias de Margen
+                                            </th>
+                                            <th>
+                                                Unidades
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td (click)="setPedidoSelected(pedido,i)" >
+                                                {{alerta.articulo.DESCRIPCIO}}
+                                            </td >
+                                            <td (click)="setPedidoSelected(pedido,i)" >
+                                                {{alerta.capacidadDeAlmacenamiento}}
+                                            </td >
+                                            <td (click)="setPedidoSelected(pedido,i)" >
+                                                {{alerta.stockInicial}}
+                                            </td >
+                                            <td (click)="setPedidoSelected(pedido,i)" >
+                                                {{alerta.cantidadDeAnimales}}
+                                            </td >
+
+                                            <td (click)="setPedidoSelected(pedido,i)" >
+                                                {{alerta.consumoDiario}}
+                                            </td >
+                                            <td (click)="setPedidoSelected(pedido,i)" >
+                                                {{alerta.diasDeMargen}}
+                                            </td >
+                                            <td (click)="setPedidoSelected(pedido,i)" >
+                                                {{alerta.articulo.ID_MEDIDA_STOCK}}
+                                            </td >
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-         <table class="table table-sm table-striped table-wrapper-scroll-y ">
-                        <thead>
-                            <tr >
-                                <th>
-                                    PRODUCTO
-                                </th>
-                                <th>
-                                   capacidadDeAlmacenamiento
-                                </th>
-                                <th>
-                                   stockInicial
-                                </th>
+    <app-footer></app-footer>
 
-                                <th>
-                                   cantidadDeAnimales
-                                </th>
-                                <th>
-                                   consumoDiario
-                                </th>
-                                <th>
-                                   diasDeMargen
-                                </th>
-                                <th>
-                                    UNIDADES
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-
-                                   <td (click)="setPedidoSelected(pedido,i)" >
-                                    {{alerta.articulo.DESCRIPCIO}}
-                                </td >
-                                <td (click)="setPedidoSelected(pedido,i)" >
-                                    {{alerta.capacidadDeAlmacenamiento}}
-                                </td >
-                                <td (click)="setPedidoSelected(pedido,i)" >
-                                    {{alerta.stockInicial}}
-                                </td >
-                                <td (click)="setPedidoSelected(pedido,i)" >
-                                    {{alerta.cantidadDeAnimales}}
-                                </td >
-
-                                <td (click)="setPedidoSelected(pedido,i)" >
-                                    {{alerta.consumoDiario}}
-                                </td >
-                                <td (click)="setPedidoSelected(pedido,i)" >
-                                    {{alerta.diasDeMargen}}
-                                </td >
-                                <td (click)="setPedidoSelected(pedido,i)" >
-                                    {{alerta.articulo.ID_MEDIDA_STOCK}}
-                                </td >
-
-                            </tr>
-
-                        </tbody>
-                      </table>
-
-      </div>
-    </div>
-  </div>
-  </div>
+</div>

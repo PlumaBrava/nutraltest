@@ -1,9 +1,5 @@
-
 /* Show it is fixed to the top */
 .cajaPrincipal {
-  min-height: 75rem;
-  padding-top: 4.5rem;
-  /*background-color: red;*/
-  max-height: auto;
-
+    height:100%;
+    overflow: auto;
 }

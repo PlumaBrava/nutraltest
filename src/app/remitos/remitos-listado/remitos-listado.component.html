@@ -1,80 +1,99 @@
-<p>
-  remitos-listado works!
-</p>
+<div class="component remitos">
 
-<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>
-<div *ngIf="mensajeError" >{{mensajeError}}</div>
-<p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
-<p   *ngIf="pedidos"> cantidad de remitos: {{remitos.length  }}  </p>
+    <app-header></app-header>
+
+    <div class="estructura">
+
+        <div class="top-estructura">
+
+            <h2>Remitos</h2>
+
+            <span class="etiqueta black" *ngIf="pedidos">Cantidad: {{pedidos.length  }}</span>
+
+        </div>
+
+        <div class="row inner-estructura">
+
+            <div class="col-sm-12">
+
+                <!--<app-spinner *ngIf="showSpinner" [message]="mensajeSpinner"></app-spinner>-->
+                <div class="text-center"><div class="loading" *ngIf="showSpinner"></div></div>
+
+                <div *ngIf="mensajeError" >{{mensajeError}}</div>
+                <p   *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+                <p   *ngIf="pedidos"> cantidad de remitos: {{remitos.length  }}  </p>
 
 
+                <div class="accordion" id="accordionExample">
 
-<div class="accordion" id="accordionExample">
-  <div class="card"  *ngFor="let remito of remitos">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <h2  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-         REMITO:  {{remito.N_REMITO}} FECHA:  {{remito.FECHA_REMITO}} Estado: {{remito.ESTADO}}
-         <img src="../assets/images/Truck-icon.png" alt="" class="camion_listado" *ngIf="remito.ID_INFOTRAK"  (click)="getUbicacionTransporte(remito.ID_INFOTRAK)">
+                    <div *ngFor="let remito of remitos">
 
 
-        </h2>
-      </h2>
+                        <div class="top-inner-estructura clearfix" id="headingOne">
+                            <h3 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+                                <b>Remito {{remito.N_REMITO}}</b> {{remito.FECHA_REMITO}}
+                                <p>
+                                    <a href="javascript:;" *ngIf="remito.ID_INFOTRAK" (click)="getUbicacionTransporte(remito.ID_INFOTRAK)">Mostrar ubicación</a>
+                                </p>
+                            </h3>
+
+                            <span class="etiqueta" *ngIf="remito.ESTADO">{{remito.ESTADO}}</span>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="table-body">
+
+                                <table class="table table-sm table-responsive table-striped table-wrapper-scroll-y ">
+                                    <thead>
+                                        <tr >
+                                            <th>
+                                            PRODUCTO
+                                            </th>
+                                            <!-- <th>
+                                            CANTIDAD PEDIDO
+                                            </th> -->
+                                            <th>
+                                            CANTIDAD REMITO
+                                            </th>
+                                            <!-- <th>
+                                            UNIDADES
+                                            </th> -->
+                                            <!-- <th>
+                                            PEDIDO
+                                            </th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let detalle of remito.detalle">
+                                            <td (click)="setPedidoSelected(pedido)" >
+                                                {{detalle.DESCRIPCIO}}
+                                            </td >
+                                            <!--  <td  >
+                                            {{detalle.CANT_PEDID}}
+                                            </td > -->
+                                            <td  >
+                                            {{detalle.CANTIDAD_REMITO}} {{detalle.ID_MEDIDA_STOCK}}
+                                            </td >
+                                            <!--    <td  >
+                                            {{detalle.ID_MEDIDA_STOCK}}
+                                            </td >
+                                            <td  >
+                                            {{detalle.NRO_PEDIDO}}
+                                            </td > -->
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-         <table class="table table-sm table-striped table-wrapper-scroll-y ">
-                        <thead>
-                            <tr >
-                                <th>
-                                    PRODUCTO
-                                </th>
-                              <!--   <th>
-                                   CANTIDAD PEDIDO
-                                </th> -->
-                                <th>
-                                   CANTIDAD REMITO
-                                </th>
-                                <!-- <th>
-                                    UNIDADES
-                                </th> -->
-<!--                                 <th>
-                                    PEDIDO
-                                </th> -->
+    <app-footer></app-footer>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                     <tr
-
-                                 *ngFor="let detalle of remito.detalle"
-
-                                 >  <td (click)="setPedidoSelected(pedido)" >
-                                    {{detalle.DESCRIPCIO}}
-                                </td >
-                               <!--  <td  >
-                                    {{detalle.CANT_PEDID}}
-                                </td > -->
-                                <td  >
-                                    {{detalle.CANTIDAD_REMITO}} {{detalle.ID_MEDIDA_STOCK}}
-                                </td >
-                             <!--    <td  >
-                                    {{detalle.ID_MEDIDA_STOCK}}
-                                </td >
-                                 <td  >
-                                    {{detalle.NRO_PEDIDO}}
-                                </td > -->
-
-
-
-                                 </tr>
-
-                        </tbody>
-                      </table>
-
-      </div>
-    </div>
-  </div>
-  </div>
-
+</div>
