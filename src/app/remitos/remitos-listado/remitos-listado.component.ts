@@ -5,6 +5,8 @@ import { MensajesService }  from '../../services/mensajes/mensajes.service';
 import { Router } from "@angular/router";
 import {SqlserviceService} from '../../services/sql/sqlservice.service';
 import {SpinnerComponent} from '../../util/spinner/spinner.component';
+import {MapaComponent} from '../../mapa/mapa.component';
+import { NgbActiveModal, NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-remitos-listado',
@@ -25,8 +27,8 @@ export class RemitosListadoComponent implements OnInit {
   constructor(  private authService:AuthService,
                 private mensageService:MensajesService,
                 private router:Router,
-                public sql:SqlserviceService
-            ) { }
+                public sql:SqlserviceService,
+                private _modal: NgbModal) { }
 
   ngOnInit() {
       console.log("remitos");
@@ -161,7 +163,48 @@ setPedidoSelected(pedidoSelected){
 }
 
 
+mostrarMapa(idInfotrak){
+console.log('buscarEmpresa');
 
+const modalRef =    this._modal.open(MapaComponent);
+    modalRef.componentInstance.idInfotrak = idInfotrak;
+    modalRef.result.then(result=>{
+            console.log("result: "+result);
+            console.log("result.empresa: "+result.empresa);
+            console.log("result.empresa: "+result.empresa.COD_CLIENT);
+            console.log("result.cause: "+result.cause);
+            if(result.empresa){
+
+               let e={"COD_CLIENT": result.empresa.COD_CLIENT,
+                   "RAZON_SOCI": result.empresa.RAZON_SOCI,
+                   "NOM_COM": result.empresa.NOM_COM,
+                   "CUIT": result.empresa.CUIT,
+                   "LOCALIDAD": result.empresa.LOCALIDAD};
+
+               // if(this.listaEmpresas){
+               //    this.listaEmpresas.push(e);
+               //  }else{
+               //     this.listaEmpresas=[e];
+               //  }
+            }
+            // console.log("result.cause: "+result.cause);
+            // console.log("result.date: "+result.date.year);
+            // console.log("result.date: "+result.date.month);
+            // console.log("result.date: "+result.date.day);
+            // Cross click
+          },reason=>{
+            console.log("rison: "+reason);
+             if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+          } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+          } else {
+            return  `with: ${reason}`;
+          }
+          } );
+           console.log('ss');
+
+}
 
 
 ngOnDestroy() {

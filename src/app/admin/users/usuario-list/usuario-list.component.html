@@ -13,11 +13,7 @@
         <div class="row inner-estructura">
 
             <div class="col-md-6">
-<p>Default pagination:</p>
-<ngb-pagination [collectionSize]="collectionSize"  [pageSize]="pageSize" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
-<p>Current page: {{page}}</p>
-<p>Current pageSize: {{pageSize}}</p>
-<p>Current collectionSize: {{collectionSize}}</p>
+
                 <app-nuevo-usuario  [userSelected]="userSelected"></app-nuevo-usuario>
 
             </div>
@@ -26,19 +22,30 @@
 
                 <!-- <h3 class="text-center" *ngIf="listaUsuarios">cantidad: {{listaUsuarios.length}}</h3> -->
 
+
                 <div class="form-group">
                     <div class="form-control">
                         <input type="email" id="emailFiltro"  [(ngModel)]="filtroMail" placeholder="Filtrar por email" />
                         <button class="btn btn-primary" (click)="ejecutarFiltroMail()"> Filtrar </button>
                     </div>
-                </div>
+
+                    <p>Página:</p>
+                        <ngb-pagination [collectionSize]="collectionSize"  [pageSize]="pageSize"  [(page)]="page" 
+                        aria-label="Custom pagination" (pageChange)="loadPage($event)">
+                            <ng-template ngbPaginationPrevious>anterior</ng-template>
+                            <ng-template ngbPaginationNext >Siguiente</ng-template>
+                            <!-- <ng-template ngbPaginationNumber let-p>{{ getPageSymbol(p) }}</ng-template> -->
+                        </ngb-pagination>
+                        <!-- <p>Current page: {{page}}</p>
+                        <p>Current pageSize: {{pageSize}}</p>
+                        <p>Current collectionSize: {{collectionSize}}</p> -->
+
+
 
                 <table class="table table-sm table-responsive table-striped w-100 table-wrapper-scroll-y">
                     <thead>
                         <tr>
-                            <th>
-                                #
-                            </th>
+                          
                             <th>
                                 E-mail
                             </th>
@@ -52,9 +59,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let usuario of listaUsuarios " (click)="setUserSelected(usuario)" [ngClass]="{'table-danger': usuario.estado == 'suspendido' ,'table-success': usuario.estado == 'activo','table-warning': usuario.estado == 'pendiente'}">
-                            <td>
-                                4
-                            </td >
+                           
                             <td>
                                 {{usuario.email}}
                             </td>

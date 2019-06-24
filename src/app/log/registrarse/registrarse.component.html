@@ -1,41 +1,47 @@
-<app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
 
-<div class="container">
-    <div class="row card card-3">
-        <!--   <div class="col-lg-6"><img src="../assets/images/nutralmix.jpg" class="img-fluid rounded fotoNutralmix" alt="Placeholder image"></div> -->
-        <div class="card-heading"></div>
-        <div    class="card-body">
-
-            <h2 class="title">Registración</h2>
-
-            <form [formGroup]="crearLabelForm">
-
-                <div class="form-group">
-                    <label for="mail">Email </label>
-                    <input type="email" class="form-control " id="mail" placeholder="Ingrese email" formControlName="email" >
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmaMail">Confirmar Email </label>
-                    <input type="email" class="form-control" id="confirmaMail" placeholder="Confirme el email" formControlName="confirmaEmail">
-                </div>
-
-                <div class="form-group">
-                    <label for="clave">Clave</label>
-                    <input type="password" class="form-control" id="clave" placeholder="Clave" formControlName="clave">
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmarClave">Confirmar Clave</label>
-                    <input type="password" class="form-control" id="confirmarClave" placeholder="Confirme la clave" formControlName="confirmaClave">
-                </div>
-
-                <!-- <button  class="btn btn-primary" (click)="signUp()">Enviar</button> -->
-
-            </form>
-            <button class="btn btn-primary" (click)="signUp()">Enviar</button>
+        <!-- BIENVENIDA -->
+        <div class="col-lg-8 order-lg-2 bienvenida bg-1"><!-- .bg-1 / .bg-2-->
+            <div class="texto">
+                <h3>Bienvenido de vuelta!</h3>
+                <p>Para mantenerte conectado con nosotros, por favor logueate con tus credenciales.</p>
+            </div>
         </div>
+        <!-- FIN de BIENVENIDA -->
+
+        <!-- ESTRUCTURA LOGIN/REG -->
+        <div class="col-lg-4 order-lg-1 login">
+            <div class="inner-login">
+
+                <a href="http://www.nutralmix.com.ar" class="logo">Nutral Mix &reg;</a>
+
+               
+                <!-- REGISTRACION -->
+                <h3>Registración</h3>
+                <form [formGroup]="crearLabelForm">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" placeholder="Ingrese su e-mail"  formControlName="email" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="clave" placeholder="Contraseña"  formControlName="clave" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="confirmaClave" placeholder="Repetir Contraseña"  formControlName="confirmaClave" autocomplete="off">
+                </div>
+                </form>
+                <div class="form-group clearfix">
+                    <button class="btn btn-primary" (click)="signUp()">Enviar</button>
+                </div>
+                <span class="separator">o</span>
+                <a href="javascript:;" class="google" (click)=  loginGoogle()>Registrarse con Google  </a>
+                <p>Ya tenés un cuenta? <a href="javascript:;" (click)="loginMail()">Login</a></p>
+
+                <!-- FIN de REGISTRACION -->
+
+            </div>
+        </div>
+        <!-- FIN de ESTRUCTURA LOGIN/REG -->
+
     </div>
 </div>
-
-<app-footer></app-footer>

@@ -1,17 +1,17 @@
- <div class="modal-header" id="custom-modal-1">
+<!--  <div class="modal-header" id="custom-modal-1">
     <h4 class="modal-title" id="modal-title">Mapa</h4>
     <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
+  </div> -->
 
-<div *ngIf="mensajeError" >{{mensajeError}}</div>
+<!-- <div *ngIf="mensajeError" >{{mensajeError}}</div> -->
 <!-- <img class="rot30"  src="../../assets/images/camion.png" alt=""> -->
 <!-- <img  class="rot30"  src="../../assets/images/Truck-icon.ico" alt=""> -->
 
 <!-- <img src="../../assets/images/nutralmix.jpg" alt=""> -->
 
-<agm-map
+<!-- <agm-map
  [latitude]="lat"
  [longitude]="lng"
  [zoom]="zoom"
@@ -29,7 +29,7 @@ class="rot30"
       >
       <strong>{{nombreTransporte}}</strong>
     </agm-info-window>
-</agm-marker>
+</agm-marker> -->
 
 <!--  <agm-circle [latitude]="lat" [longitude]="lng"
       [radius]="50"
@@ -37,7 +37,7 @@ class="rot30"
       [circleDraggable]="true"
       [editable]="true">
   </agm-circle> -->
-</agm-map>
+<!-- </agm-map> -->
 
 
 <!-- <agm-map
@@ -74,3 +74,41 @@ class="rot30"
   </agm-circle>
  -->
 <!-- </agm-map> -->
+
+
+ <!-- <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document"> -->
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h2 class="modal-title">Mapa</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div *ngIf="mensajeError" >{{mensajeError}}</div>
+                        <div class="text-center"><div class="loading" *ngIf="showSpinner"></div></div>
+
+                        <div class="modal-body p-0">
+                            <!--MAPA-->
+                            <div class="mapouter">
+                                <div class="gmap_canvas">
+                                  <!--   <iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe> -->
+
+                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false"
+                                    [zoomControl]="false">
+                                      <agm-marker [latitude]="lat" [longitude]="lng" [label]="label" [iconUrl] ="icono" class="rot90"> 
+                                       <agm-info-window [disableAutoPan]="false" [isOpen]="true">
+                                            <strong>{{nombreTransporte}}</strong>
+                                        </agm-info-window>
+                                      </agm-marker>
+                                </agm-map>
+
+                                </div>
+                                <style>.mapouter{position:relative;text-align:right;}.gmap_canvas {overflow:hidden;background:none!important;}</style>
+                            </div>
+                        </div>
+
+                    </div>
+<!--             </div>
+            </div> -->

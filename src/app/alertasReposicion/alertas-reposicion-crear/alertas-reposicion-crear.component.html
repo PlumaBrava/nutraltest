@@ -36,7 +36,7 @@
                     <!-- ● Artículo -->
                     <div class="form-group col-md-4 ">
                         <label for="estado">Artículo</label>
-                        <select   class="form-control selectpicker col-md-6"  id="articulo"   formControlName="articulo" (change)="setArticuloSeleccionado($event, producto)" [compareWith]="compareFn" >
+                        <select   class="form-control selectpicker "  id="articulo"   formControlName="articulo" (change)="setArticuloSeleccionado($event, producto)" [compareWith]="compareFn" >
                             <option  *ngFor="let producto of listaDeProductos" [ngValue]="producto" >{{producto.DESCRIPCIO}}</option>
                         </select>
                         <div *ngIf=" (alertasReposicionForm.controls.articulo.invalid && (alertasReposicionForm.controls.articulo.dirty|| alertasReposicionForm.controls.articulo.touched  ) )" class="alerta alerta-3">

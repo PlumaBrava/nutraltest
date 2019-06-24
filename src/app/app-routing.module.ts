@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'clientesList', component: ClientesListComponent }
   ,{ path: 'clienteCrear/:id', component: ClientesCrearComponent }
   ,{ path: 'logGoogle', component: LogGoogleComponent }
-  ,{ path: 'LogMail', component: LogMailComponent }
+  ,{ path: 'logMail', component: LogMailComponent }
   ,{ path: 'registrarse', component: RegistrarseComponent }
   ,{ path: 'settings', component: SetingsComponent }
   ,{ path: 'usuariosList', component: UsuarioListComponent }
@@ -64,7 +64,7 @@ const routes: Routes = [
 
   ,{ path: 'ususario_no_autorizado', component: UsuarioNoautorizadoComponent }
 
-  ,{ path: '', redirectTo: '/clientesList', pathMatch: 'full' } //esto se usa para que funcione cuando no exista la ruta solicitada
+  ,{ path: '', redirectTo: '/logMail', pathMatch: 'full' } //esto se usa para que funcione cuando no exista la ruta solicitada
 
   // , { path: '**', component: UsuarioNoautorizadoComponent }
 

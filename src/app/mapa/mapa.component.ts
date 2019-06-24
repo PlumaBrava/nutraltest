@@ -13,21 +13,28 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class MapaComponent implements OnInit {
    @Input() idInfotrak;
   vehiculos:any=null;
-  zoom: number = 15;
+  zoom: number = 5;   /* 15 */
   lat: number = -34.581423;
   lng: number = -58.406245;
   label:string="";
   nombreTransporte:string="";
 
-    icono= {
-        url: '../../assets/images/Truck-icon.ico',
+    icono:any= {
+        // url: '../../assets/images/Truck-icon.ico',
+        url: '../../assets/images/general/ic_mappin.png',
         scaledSize: {
-            width: 40,
-            height: 60,
-        }};
+            width: 28,
+            height: 36,
+        }
+        // ,
+        //  'background-color': 'blue',
+
+        // transform: 'rotate(45deg)'
+
+      };
 
    mensajeSpinner = "mensaje spinner";
-   showSpinner:boolean = false;
+   showSpinner:boolean = true;
    mensajeError:String = '';
 
 
@@ -72,6 +79,7 @@ getVehiculos(){
         console.log("getVehiculos",data);
         this.vehiculos=data;
         this.getUbicacionTransporte(this.idInfotrak);
+ 
         this.showSpinner=false;
           },
           error =>{console.log("getVehiculos",error);

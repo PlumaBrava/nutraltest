@@ -17,7 +17,7 @@
             <li class="nav-item" *ngIf='authService.esAdministrador'>
                 <a class="nav-link" routerLink="/avisosList">Avisos</a>
             </li>
-            <li class="nav-item active" *ngIf='authService.esCliente'>
+            <li class="nav-item " *ngIf='authService.esCliente'>
                 <a class="nav-link" routerLink="/clientesList">Clientes</a>
             </li>
 
@@ -44,7 +44,7 @@
           </li>
 
 
-
+<!-- 
           <li class="nav-item" *ngIf='authService.esCliente '>
              <a class="nav-link" routerLink="/establecimientosListado"> Establecimientos</a>
           </li>
@@ -53,7 +53,7 @@
           <li class="nav-item" *ngIf='authService.esCliente '>
              <a class="nav-link" routerLink="/rodeosListado"> Rodeos</a>
           </li>
-
+ -->
           <li class="nav-item" *ngIf='authService.esDistribuidor '>
              <a class="nav-link" routerLink="/distribuidor">Distribuidor</a>
           </li>
@@ -88,7 +88,9 @@
             </li>-->
             <li class="nav-item d-none d-md-block" *ngIf='authService.authenticated'>
                 <div class="nav-link dropdown">
-                    <a class="dropdown-toggle mi-perfil" href="javascript:;" id="navbarDropdownMenuLink" data-toggle="dropdown"><!--<img src="../../assets/images/login/im-avatar.jpg">-->{{empresa}}</a>
+                    <a class="dropdown-toggle mi-perfil" href="javascript:;" id="navbarDropdownMenuLink" data-toggle="dropdown"><img  *ngIf='authService.currentUserPhotoURL' src={{authService.currentUserPhotoURL}}>{{authService.currentUserDisplayName}}</a>
+
+
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" *ngIf='empresa' routerLink="/settings">Configuración</a>
                         <!--

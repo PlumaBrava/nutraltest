@@ -206,8 +206,13 @@ updateUserEmpresaSelected(id: string, codEmpresa): void {
 getUsersFilterMail(filtroMail): Observable<any> {
   console.log('getUsersFilterMail');
   return new Observable((observer) => {
-    this.refUsersLogistica.
-    orderBy('email').startAt(filtroMail).endAt(filtroMail+'\uf8ff').onSnapshot((querySnapshot) => {
+    this.refUsersLogistica
+    // orderBy('email').startAt(filtroMail).endAt(filtroMail+'\uf8ff').onSnapshot((querySnapshot) => {
+    .orderBy('email')
+    .startAt(filtroMail)
+    .limit(25)
+    // .endAt(filtroMail+'\uf8ff')
+    .onSnapshot((querySnapshot) => {
       let listaUsuarios = [];
       querySnapshot.forEach((doc) => {
         let data = doc.data();

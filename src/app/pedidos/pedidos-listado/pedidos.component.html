@@ -6,9 +6,10 @@
 
         <div class="top-estructura">
 
-            <h2>Pedidos</h2>
+            <h2>Pedidos  <span *ngIf="pedidos">({{pedidos.length  }}) </span>  </h2>
 
-            <span class="etiqueta black" *ngIf="pedidos">Cantidad: {{pedidos.length  }}</span>
+            <!-- <span class="etiqueta black" *ngIf="pedidos">Cantidad: {{pedidos.length  }}</span> -->
+            <span class="etiqueta black" *ngIf="empresaSelected">{{empresaSelected.RAZON_SOCI  }}</span>
 
         </div>
 
@@ -20,7 +21,7 @@
                 <div class="text-center"><div class="loading" *ngIf="showSpinner"></div></div>
 
                 <div *ngIf="mensajeError" >{{mensajeError}}</div>
-                <p *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p>
+<!--                 <p *ngIf="empresaSelected"> CÓDIGO: {{empresaSelected.COD_CLIENT  }}  Empresa: {{empresaSelected.RAZON_SOCI  }} </p> -->
 
                 <div class="accordion" id="accordionExample">
 
@@ -28,10 +29,17 @@
 
                         <div class="top-inner-estructura clearfix" id="headingOne">
                             <h3 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-                                <b>Pedido {{pedido.NRO_PEDIDO}}</b> {{pedido.FECHA_PEDI}}
+                                <b>Pedido {{pedido.NRO_PEDIDO}}</b> {{pedido.FECHA_PEDI}} 
+                                <i class="icono ic-copy"  ngbTooltip="Generar un nuevo pedido Web con estos datos"></i>
                             </h3>
                             <span class="etiqueta check" *ngIf="pedido.Desc_Estado=='Aprobado'">{{pedido.Desc_Estado}}</span>
                             <span class="etiqueta" *ngIf="pedido.Desc_Estado!='Aprobado'">{{pedido.Desc_Estado}}</span>
+                            <div class="text-center"><span ngbTooltip="Ver en el mapa" (click)="mostrarMapa(pedido.ID_INFOTRAK)" class="icono ic-truck-1" *ngIf="pedido.ID_INFOTRAK"></span></div>
+
+                            
+                            
+
+                                                
                         </div>
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -58,9 +66,9 @@
                                             FECHA REMITO
                                             </th>
                                             -->
-                                            <th>
+                                           <!--  <th>
                                                 TRANSPORTISTA
-                                            </th>
+                                            </th> -->
                                             <!--  <th>
                                             UBICACION
                                             </th> -->
@@ -89,14 +97,14 @@
                                             <td (click)="setPedidoSelected(pedido)" >
                                             {{detalle.NOMBRE_TRA}}
                                             </td > -->
-                                            <td (click)="mostrarMapa(detalle.ID_INFOTRAK)">
+                                            <!-- <td (click)="mostrarMapa(detalle.ID_INFOTRAK)">
 
-                                                <i class="icono ic-truck-1" *ngIf="detalle.ID_INFOTRAK"></i>
+                                                <i class="icono ic-truck-1" *ngIf="detalle.ID_INFOTRAK"></i> -->
                                                 <!--<i class="icono ic-truck-2"></i>-->
                                                 <!--<i class="icono ic-truck-3"></i>-->
 
                                                 <!--<img src="../assets/images/iconos/ic-truck-1.png" alt="" class="camion_listado" *ngIf="detalle.ID_INFOTRAK">-->
-                                            </td>
+                                            <!-- </td> -->
                                         </tr>
 
                                     </tbody>

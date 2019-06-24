@@ -27,8 +27,9 @@ getPerfil():void{
     this.mensageService.getPerfil().subscribe(perfil=>{
     this.perfilUsuario=perfil;
     if(perfil){
-    // if(perfil.data.EmpresaSelected){
-    this.empresa=perfil.data.EmpresaSelected.RAZON_SOCI;
+      if(perfil.data.EmpresaSelected){
+        this.empresa=perfil.data.EmpresaSelected.RAZON_SOCI;
+      }
 
     } else{
       this.empresa=null;

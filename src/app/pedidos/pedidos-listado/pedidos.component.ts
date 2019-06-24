@@ -30,7 +30,7 @@ pedidos:any=null;
       private mensageService:MensajesService,
       private router:Router,
       public sql:SqlserviceService,
-               private _modal: NgbModal,) { }
+      private _modal: NgbModal) { }
 
   ngOnInit() {
       console.log("pedidos");
@@ -45,7 +45,9 @@ getPerfil():void{
     this.mensageService.getPerfil().subscribe(perfil=>{
       console.log("pedido  perfil",perfil);
     this.perfilUsuario=perfil;
-     this.buscarPedidos(this.perfilUsuario.data.EmpresaSelected.COD_CLIENT )
+
+     this.buscarPedidos(this.perfilUsuario.data.EmpresaSelected.COD_CLIENT );
+     this.empresaSelected=this.perfilUsuario.data.EmpresaSelected;
    // this.getEmpresaSelected();
 
    }) ;
@@ -115,6 +117,7 @@ acomodaPedidos(pedidos){
        FECHA_PEDI:pedidos[i].FECHA_PEDI,
        ESTADO:pedidos[i].ESTADO,
        FECHA_ENTR:pedidos[i].FECHA_ENTR,
+       ID_INFOTRAK:pedidos[i].ID_INFOTRAK,
        // N_REMITO:pedidos[i].N_REMITO,
        Desc_Estado:pedidos[i].Desc_Estado,
        detalle:new Array(),

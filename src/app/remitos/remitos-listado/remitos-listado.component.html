@@ -32,12 +32,12 @@
                         <div class="top-inner-estructura clearfix" id="headingOne">
                             <h3 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
                                 <b>Remito {{remito.N_REMITO}}</b> {{remito.FECHA_REMITO}}
-                                <p>
-                                    <a href="javascript:;" *ngIf="remito.ID_INFOTRAK" (click)="getUbicacionTransporte(remito.ID_INFOTRAK)">Mostrar ubicación</a>
-                                </p>
+                              <!--   <p>
+                                    <a href="javascript:;" *ngIf="remito.ID_INFOTRAK" (click)="mostrarMapa(remito.ID_INFOTRAK)">Mostrar ubicación</a>
+                                </p> -->
                             </h3>
-
                             <span class="etiqueta" *ngIf="remito.ESTADO">{{remito.ESTADO}}</span>
+                             <div class="text-center"><span ngbTooltip="Ver en el Mapa"  (click)="mostrarMapa(remito.ID_INFOTRAK)" class="icono ic-truck-1" *ngIf="remito.ID_INFOTRAK"></span></div>
                         </div>
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">

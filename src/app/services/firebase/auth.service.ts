@@ -69,6 +69,12 @@ export class AuthService {
     else { return this.authState['displayName'] || 'User without a Name' }
   }
 
+// Returns current user display name or Guest
+  get currentUserPhotoURL(): string {
+    return this.authState['photoURL'] ? this.authState['photoURL'] : false
+ 
+  }
+
   //// Social Auth ////
 
   githubLogin() {
@@ -119,24 +125,31 @@ export class AuthService {
 
   //// Email/Password Auth ////
 
-  emailSignUp(email:string, password:string) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+  emailSignUp(email:string, password:string) : Observable<any> {
+     return new Observable((observer) => {
+
+   this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         console.log(user);
         // this.authState = user
         this.updateUserData(user);
-         // this.router.navigate(['/'])
+
+          // this.router.navigate(['/']);
+           observer.next(user);
+          observer.complete();// Para cerrar la susripcion.
       })
-      .catch(error =>{ console.log(error);
-        return(error) ;
+      .catch(error =>{  
+        observer.error(error);
+        observer.complete();// Para cerrar la susripcion.
+// {code: "auth/email-already-in-use", message: "Thrown if there already exists an account with the given email address."}
+// {code: "auth/invalid-email", message: "Thrown if the email address is not valid."}
+// {code: "auth/operation-not-allowed", message: "Thrown if email/password accounts are not enabled. Enable email/password accounts in the Firebase Console, under the Auth tab."}
+// {code: "auth/weak-password", message: "Password should be at least 6 characters Thrown if the password is not strong enough."}
+        } )
       });
 
-      // code: "auth/email-already-in-use"
-// message: "The email address is already in use by another account."
-// code: "auth/invalid-email"
-// message: "The email address is badly formatted."
-
-  }
+  };
+  
 
   emailLogin(email:string, password:string): Observable<any> {
      return new Observable((observer) => {
@@ -171,13 +184,25 @@ export class AuthService {
   }
 
   // Sends email allowing user to reset password
-  resetPassword(email: string) {
-    var auth = firebase.auth();
+  resetPassword(email: string): Observable<any>{
 
-    return auth.sendPasswordResetEmail(email)
-      .then(() => console.log("email sent"))
-      .catch((error) => console.log(error))
-  }
+    return new Observable((observer) => {
+    
+     var auth = firebase.auth();
+
+
+     auth.sendPasswordResetEmail(email)
+      .then(() => {console.log();
+         observer.next("email sent");
+         observer.complete();// Para cerrar la susripcion.)
+        })
+      .catch((error) => { 
+          console.log(error);
+          observer.error(error);
+          observer.complete();// Para cerrar la susripcion.
+        });
+    });
+  };
 
 
   //// Sign Out ////
@@ -245,26 +270,30 @@ getPefil(auth): Observable<any> {
     // .valueChanges()
     .subscribe(datosDeUsuario=>{
     console.log(datosDeUsuario);
+    if(datosDeUsuario.length>0){
       console.log('getPefil  collection data',datosDeUsuario[0].payload.doc.data());
       console.log('getPefil  collection key',datosDeUsuario[0].payload.doc.id);
-     var usuarioLogistica= {'key':datosDeUsuario[0].payload.doc.id,'data':datosDeUsuario[0].payload.doc.data()}
+      var usuarioLogistica= {'key':datosDeUsuario[0].payload.doc.id,'data':datosDeUsuario[0].payload.doc.data()}
       console.log('getPefil perf  keys',usuarioLogistica);
-
-        observer.next(usuarioLogistica);
-        observer.complete();// Para cerrar la susripcion.
-
+      observer.next(usuarioLogistica);
+      observer.complete();// Para cerrar la susripcion.
+    } else {
+       console.log("ususario loguedo, pero sin autorizar por Nutralmix");
+       console.log(datosDeUsuario);
+       this.router.navigate(['/estilos']);
+     }   
      }, err => {
   console.log(`Encountered error: ${err}`);
 });
   });
 }
 
-seleccionPaginaInicio(usuarioLogistica){
-  console.log("seleccionPaginaInicio",usuarioLogistica.data.perfil);
-  if(usuarioLogistica.data.perfil!=null){
-     console.log("seleccionPaginaInicio",'ingresa al if');
+  seleccionPaginaInicio(usuarioLogistica){
+    console.log("seleccionPaginaInicio",usuarioLogistica.data.perfil);
+    if(usuarioLogistica.data.perfil!=null){
+      console.log("seleccionPaginaInicio",'ingresa al if');
 
-  switch (usuarioLogistica.data.perfil) {
+      switch (usuarioLogistica.data.perfil) {
           case "administrador":
            console.log("seleccionPaginaInicio administrador",'usuariosList');
           this.router.navigate(['/usuariosList']);
@@ -287,51 +316,46 @@ seleccionPaginaInicio(usuarioLogistica){
         this.router.navigate(['/LogMail']);
           break;
       }
-  }
+    }
 
-}
+  }
 
  private updateUserData(auth): void {
      console.log('updateUserData auth',auth);
     if (auth!=null){
-    // this.authState = auth
-  // Writes user name and email to realtime db
-  // useful if your app displays information about users or for admin features
-    console.log('updateUserData');
-    console.log('updateUserData',this.authState);
-
-    let path = `users/${this.currentUserId}`; // Endpoint on firebase
-    console.log(path);
-    let data = {
+       // this.authState = auth
+      // Writes user name and email to realtime db
+      // useful if your app displays information about users or for admin features
+      console.log('updateUserData');
+      console.log('updateUserData',this.authState);
+      let path = `users/${this.currentUserId}`; // Endpoint on firebase
+      console.log(path);
+      let data = {
                   email: auth.email,
                   name: auth.displayName
                 }
-    var cleanEmail = auth.email.replace(/\./g, ',');
-   //  this.db.object(path).update(data).catch(error => console.log(error));
-   //  var updateData={
-   //    [`perfiles/${cleanEmail}`]: "perfil",
-   //    [`fechasIngreso/${cleanEmail}`]: firebase.database.ServerValue.TIMESTAMP
+      var cleanEmail = auth.email.replace(/\./g, ',');
+       //  this.db.object(path).update(data).catch(error => console.log(error));
+       //  var updateData={
+       //    [`perfiles/${cleanEmail}`]: "perfil",
+       //    [`fechasIngreso/${cleanEmail}`]: firebase.database.ServerValue.TIMESTAMP
 
-   //    };
-   //  console.log(updateData);
-   // this.db.object('data').update(updateData);
-
-
-
-// SE SUBSCRIBE a la consulta de firebase del usuario utilizando como clave el email.
-// si existe recibe el perfil del usuario.
-    this.getPefil(auth).subscribe(usuarioLogistica=>{
-      console.log("perfil",usuarioLogistica);
-      this.PerfildeUsuario=usuarioLogistica;
-      this.mensageService.setPerfilUsuarioObs(usuarioLogistica);
-      this.authState = auth;
-      this.seleccionPaginaInicio(usuarioLogistica);
-});
-
-
-   }}
-
-
-
-
+       //    };
+       //  console.log(updateData);
+       // this.db.object('data').update(updateData);
+  
+      // SE SUBSCRIBE a la consulta de firebase del usuario utilizando como clave el email.
+      // si existe recibe el perfil del usuario.
+      this.getPefil(auth).subscribe(usuarioLogistica=>{
+        console.log("perfil",usuarioLogistica);
+        this.PerfildeUsuario=usuarioLogistica;
+        this.mensageService.setPerfilUsuarioObs(usuarioLogistica);
+        this.authState = auth;
+        this.seleccionPaginaInicio(usuarioLogistica);
+      });
+    }else {
+      console.log("auth",auth);
+      this.router.navigate(['/logMail']);
+    }
+  }
 }

@@ -4,6 +4,7 @@ import { SetingsComponent }  from '../../admin/users/setings/setings.component';
 import { ModalMensajeComponent }  from '../../services/modal-mensaje/modal-mensaje.component';
 import { NgbActiveModal, NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-log-mail',
@@ -14,7 +15,9 @@ export class LogMailComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               public authService:AuthService,
-              private _modal: NgbModal,) { }
+              private _modal: NgbModal,
+              private router:Router
+              ) { }
 crearLabelForm = this.fb.group({
   email: ['', Validators.required],
 
@@ -74,10 +77,11 @@ signIn() {
           email: '',
           clave: '' };
       this.crearLabelForm.patchValue( temp);
-      this.crearLabelForm.value.mail.setValue("nue");
+      // this.crearLabelForm.value.email.setValue("nue");
     });
 
-  }
+  };
+
 
 mostrarMensajeModal(titulo, mensaje, dato){
  console.log(titulo);
@@ -102,6 +106,73 @@ mostrarMensajeModal(titulo, mensaje, dato){
             return  `with: ${reason}`;
           }
           } );
+};
+
+
+  loginGoogle() {
+    this.authService.googleLogin();
+
+  };
+
+  resetPassword() {
+
+    if(String(this.crearLabelForm.value.email)){
+    this.authService.resetPassword(String(this.crearLabelForm.value.email)).subscribe(
+        (envioOk) => {
+         console.log(envioOk);
+       }
+      ,(error) =>{
+
+           console.log(error);
+
+         switch (error.code) {
+             case "auth/wrong-password":
+               error.message="La clave es invalida o el usuario no tiene una clave"
+               break;
+
+             case "auth/user-not-found":
+               error.message="No se tiene registro de este usuario."
+               break;
+             case "auth/network-request-failed":
+               error.message="Error de red."
+               break;
+             case "auth/too-many-requests":
+               error.message="Muchos intentos con datos incorrectos. Intente nuevamente mas tarde"
+               break;
+
+             default:
+                error.message="error de logg sin clasificar"
+               break;
+           }
+                 this.mostrarMensajeModal("Error al validar el usuario","verifique!",error.message);
+         let temp={
+          email: '',
+          clave: '' };
+      this.crearLabelForm.patchValue( temp);
+// code: "auth/wrong-password"
+// message: "The password is invalid or the user does not have a password."
+
+// code: "auth/user-not-found"
+// message: "There is no user record corresponding to this identifier. The user may have been deleted."
+
+// code: "auth/network-request-failed"
+// message: "A network error (such as timeout, interrupted connection or unreachable host) has occurred."
+
+// code: "auth/too-many-requests"
+// message: "Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later";
+    
+    });
+} else {
+
+      console.log("Mail nulo");
+       this.mostrarMensajeModal("Error! ","verifique!","El email no puede ser nulo");
+
+    }
+  };
+
+registrarme(){
+  this.router.navigate(['/registrarse']);
 
 }
+
 }

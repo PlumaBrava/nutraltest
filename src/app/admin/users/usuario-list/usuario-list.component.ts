@@ -48,9 +48,10 @@ export class UsuarioListComponent implements OnInit {
   // listaUsuarios: User[];
  listaUsuarios: Array<User>;
  filtroMail: string=null;
- pageSize:number=2;
- page:number=4;
- collectionSize:number=25;
+ pageSize:number=25;
+ page:number=1;
+ collectionSize:number=26;
+ previoMail:string='';
   constructor(db: AngularFireDatabase,
       private mensageService:MensajesService,
       private _modal: NgbModal,
@@ -68,8 +69,11 @@ export class UsuarioListComponent implements OnInit {
      if(this.autorizaciones.validarAutorizacion("UsuarioListComponent")){
      console.log("settings  autorizado");
 
-        this.fs.getUsers().subscribe(data=>{
+        // this.fs.getUsers().subscribe(data=>{
+        this.fs.getUsersFilterMail('').subscribe(data=>{
+    
                 this.listaUsuarios =data;
+                // this.collectionSize=data.length;
                 console.log('this.listaUsuarios get', data);
                 this.cd.detectChanges();
     })}else{
@@ -79,10 +83,13 @@ export class UsuarioListComponent implements OnInit {
 
   }
 
+
+
   setUserSelected(userSelected:User){
       console.log(this.userSelected);
     this.userSelected=userSelected;
     this.mensageService.setUserObs(userSelected);
+
     console.log(this.userSelected);
     console.log('this.listaUsuarios', this.listaUsuarios);
   }
@@ -90,31 +97,7 @@ export class UsuarioListComponent implements OnInit {
 
 
 ejecutarFiltroMail(){
-
-
-
-   // const modalRef =    this._modal.open(ModalMensajeComponent);
-   //  modalRef.componentInstance.name = this.filtroMail;
-   //  modalRef.result.then(result=>{
-   //          console.log("result: "+result);
-   //          console.log("result.cause: "+result.cause);
-   //          console.log("result.date: "+result.date.year);
-   //          console.log("result.date: "+result.date.month);
-   //          console.log("result.date: "+result.date.day);
-   //        },reason=>{
-   //          console.log("rison: "+reason);
-   //           if (reason === ModalDismissReasons.ESC) {
-   //          return 'by pressing ESC';
-   //        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-   //          return 'by clicking on a backdrop';
-   //        } else {
-   //          return  `with: ${reason}`;
-   //        }
-   //        } );
-   //         console.log(this.filtroMail);
-
-
-
+  console.log('ejecutarFiltroMail this.filtroMail', this.filtroMail);
         this.fs.getUsersFilterMail(this.filtroMail).subscribe(data=>{
                 this.listaUsuarios =data;
                 console.log('this.ejecutarFiltroMail data', data);
@@ -124,6 +107,44 @@ ejecutarFiltroMail(){
             });
   }
 
+ejecutarGetNext(){
+        console.log('ejecutarGetNext');
+        let last=this.listaUsuarios[this.listaUsuarios.length-1].email;
+        this.previoMail=this.listaUsuarios[0].email; // se usa para buscar el previo
+        this.fs.getUsersFilterMail(last).subscribe(data=>{
+                this.listaUsuarios =data;
+                console.log('this.ejecutarFiltroMail data', data);
+                this.listaUsuarios;
+            },error=>{
+                console.log('this.ejecutarFiltroMail error', error);
+            });
+  };
+
+  ejecutarGetPrevio(){
+        console.log('ejecutarGetPrevio');
+       
+        this.fs.getUsersFilterMail(this.previoMail).subscribe(data=>{
+                this.listaUsuarios =data;
+                console.log('this.ejecutarFiltroMail data', data);
+                this.listaUsuarios;
+            },error=>{
+                console.log('this.ejecutarFiltroMail error', error);
+            });
+  };
+
+  loadPage(page: number) {
+     console.log('loadPage', page);
+     if(page==2){
+       this.ejecutarGetNext();
+     } else if( page == 1){
+       this.ejecutarFiltroMail();
+     }
+   
+    // if (page !== this.previousPage) {
+    //   this.previousPage = page;
+    //   this.loadData();
+  
+  }
 
 }
 
