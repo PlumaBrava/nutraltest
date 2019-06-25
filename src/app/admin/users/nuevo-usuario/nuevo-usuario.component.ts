@@ -21,9 +21,10 @@ export class NuevoUsuarioComponent implements OnInit {
 // copia los datos del usuario seleecionado en el formulario y copia
 // la lista de empresas del usuario
 // y key del usuario
+
    @Input() set userSelected  (userSelected: User ) {
 
-    console.log('NuevoUsuarioComponent = ',userSelected);
+    console.log('NuevoUsuarioComponent 1 = ',userSelected);
     console.log('NuevoUsuarioComponent this = ',this.userSelected);
     this.crearLabelForm.patchValue( userSelected);
     this.crearLabelForm.value.empresa='';
@@ -74,6 +75,7 @@ existeEmailenlaBase:boolean=false;
 
   ngOnInit() {
     this.getPerfil();
+ 
 
   }
 
@@ -101,6 +103,7 @@ getPerfil():void{
 }
 
 
+
 // updateUserData
 // crea o modifica un usuario existente
 // en caso de key=null crea uno nuevo, de lo contrario modifica el existente.
@@ -124,6 +127,11 @@ getPerfil():void{
                 }
             });
  }
+
+ 
+       
+    
+
 
 
   agregarEmpresa(empresa){
@@ -180,6 +188,7 @@ console.log('buscarEmpresa');
 
 const modalRef =    this._modal.open(EmpresaModalComponent);
     modalRef.componentInstance.name = 'jj';
+    modalRef.componentInstance.empresa = this.crearLabelForm.value.empresa;
     modalRef.result.then(result=>{
             console.log("result: "+result);
             console.log("result.empresa: "+result.empresa);

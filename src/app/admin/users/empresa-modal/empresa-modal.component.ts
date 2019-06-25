@@ -12,17 +12,25 @@ export class EmpresaModalComponent implements OnInit {
      model;
   constructor(public modal: NgbActiveModal,public sql:SqlserviceService) { }
     empresa:string='';
-    listaEmpresas:any[]= [ ];
+    mensaje:string='';
+    listaEmpresas:any[]= [];
+    showLoading:boolean= false;
   ngOnInit() {
   console.log(this.name);
+  console.log('empresa',this.empresa);
+  this.buscarEmpresa(this.empresa);
   }
 
   buscarEmpresa(empresa){
             console.log(empresa);
+    this.showLoading=true;
     this.sql.getEmpresasPorRazonSocial(empresa).subscribe(
           data => {
+              this.showLoading=false;
               console.log(data);
-              if(data){
+              if(data.length==0){
+                this.mensaje="no se encontraron datos";
+              }else{
               this.listaEmpresas=data
               }
           //   if(this.listaEmpresas){
@@ -37,6 +45,8 @@ export class EmpresaModalComponent implements OnInit {
 
           },
           error =>{
+             this.showLoading=false;
+             this.mensaje="Error al buscar datos: " +error.message;
                  console.log(error);
          }
          );

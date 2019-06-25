@@ -120,6 +120,11 @@ mostrarMensajeModal(titulo, mensaje, dato){
     this.authService.resetPassword(String(this.crearLabelForm.value.email)).subscribe(
         (envioOk) => {
          console.log(envioOk);
+         this.mostrarMensajeModal("Se ha enviado un Email","Se envió un correo electronico a la casilla "+ String(this.crearLabelForm.value.email)+" con un link para que ingrese una nueva clave",'');
+         let temp={
+          email: '',
+          clave: '' };
+      this.crearLabelForm.patchValue( temp);
        }
       ,(error) =>{
 

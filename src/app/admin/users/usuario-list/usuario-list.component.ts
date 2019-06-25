@@ -89,7 +89,7 @@ export class UsuarioListComponent implements OnInit {
       console.log(this.userSelected);
     this.userSelected=userSelected;
     this.mensageService.setUserObs(userSelected);
-
+this.cd.detectChanges();
     console.log(this.userSelected);
     console.log('this.listaUsuarios', this.listaUsuarios);
   }
