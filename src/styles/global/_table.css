@@ -31,6 +31,10 @@ td.acciones{
     min-width: 130px;
 }
 
+table.highlight-opt tr:hover{
+    background:#ececec !important;
+}
+
 
 /*MOBILE*/
 @media (max-width: 767px){

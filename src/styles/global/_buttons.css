@@ -81,3 +81,8 @@ a.btn.btn-link:hover,
 .btn.btn-link:hover{
     text-decoration: underline;
 }
+
+
+button:focus{
+    outline:none;
+}

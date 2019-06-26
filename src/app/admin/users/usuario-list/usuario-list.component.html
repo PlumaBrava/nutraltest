@@ -14,7 +14,7 @@
 
             <div class="col-md-6">
 
-                <app-nuevo-usuario  [userSelected]="userSelected"></app-nuevo-usuario>
+                <app-nuevo-usuario [userSelected]="userSelected"></app-nuevo-usuario>
 
             </div>
 
@@ -22,60 +22,57 @@
 
                 <!-- <h3 class="text-center" *ngIf="listaUsuarios">cantidad: {{listaUsuarios.length}}</h3> -->
 
-
                 <div class="form-group">
                     <div class="form-control">
                         <input type="email" id="emailFiltro"  [(ngModel)]="filtroMail" placeholder="Filtrar por email" />
                         <button class="btn btn-primary" (click)="ejecutarFiltroMail()"> Filtrar </button>
                     </div>
 
-                    <p>Página:</p>
-                        <ngb-pagination [collectionSize]="collectionSize"  [pageSize]="pageSize"  [(page)]="page" 
-                        aria-label="Custom pagination" (pageChange)="loadPage($event)">
-                            <ng-template ngbPaginationPrevious>anterior</ng-template>
-                            <ng-template ngbPaginationNext >Siguiente</ng-template>
-                            <!-- <ng-template ngbPaginationNumber let-p>{{ getPageSymbol(p) }}</ng-template> -->
-                        </ngb-pagination>
-                        <!-- <p>Current page: {{page}}</p>
-                        <p>Current pageSize: {{pageSize}}</p>
-                        <p>Current collectionSize: {{collectionSize}}</p> -->
+                    <!-- <p>Current page: {{page}}</p>
+                    <p>Current pageSize: {{pageSize}}</p>
+                    <p>Current collectionSize: {{collectionSize}}</p> -->
+            <!-- <table class="table table-sm table-responsive table-striped w-100 table-wrapper-scroll-y">         -->
 
+                <div class="table-body">
 
+                    <table class="table table-sm table-responsive table-striped table-wrapper-scroll-y">
+                        <thead>
+                            <tr>
+                                <th>
+                                    E-mail
+                                </th>
+                                <th>
+                                    Perfil
+                                </th>
+                                <th>
+                                    Estado
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of listaUsuarios " (click)="setUserSelected(usuario)" [ngClass]="{'table-danger': usuario.estado == 'suspendido' ,'table-success': usuario.estado == 'activo','table-warning': usuario.estado == 'pendiente'}">
+                                <td>
+                                    {{usuario.email}}
+                                </td>
+                                <td>
+                                    {{usuario.perfil}}
+                                </td>
+                                <td>
+                                    {{usuario.estado}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <!-- <table class="table table-sm table-responsive table-striped w-100 table-wrapper-scroll-y">         -->
-            <div class="table-body">
-                <table class="table table-sm table-responsive table-striped table-wrapper-scroll-y">
-                    <thead>
-                        <tr>
-                          
-                            <th>
-                                E-mail
-                            </th>
-                            <th>
-                                Perfil
-                            </th>
-                            <th>
-                                Estado
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let usuario of listaUsuarios " (click)="setUserSelected(usuario)" [ngClass]="{'table-danger': usuario.estado == 'suspendido' ,'table-success': usuario.estado == 'activo','table-warning': usuario.estado == 'pendiente'}">
-                           
-                            <td>
-                                {{usuario.email}}
-                            </td>
-                            <td>
-                                {{usuario.perfil}}
-                            </td>
-                            <td>
-                                {{usuario.estado}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <ngb-pagination [collectionSize]="collectionSize"  [pageSize]="pageSize"  [(page)]="page"
+                    aria-label="Custom pagination" (pageChange)="loadPage($event)">
+                        <ng-template ngbPaginationPrevious>anterior</ng-template>
+                        <ng-template ngbPaginationNext >Siguiente</ng-template>
+                        <!-- <ng-template ngbPaginationNumber let-p>{{ getPageSymbol(p) }}</ng-template> -->
+                    </ngb-pagination>
 
-            </div>
+                </div>
+
             </div>
 
         </div>

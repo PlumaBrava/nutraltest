@@ -29,21 +29,17 @@
 
                         <div class="top-inner-estructura clearfix" id="headingOne">
                             <h3 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-                                <b>Pedido {{pedido.NRO_PEDIDO}}</b> {{pedido.FECHA_PEDI}} 
+                                <b>Pedido {{pedido.NRO_PEDIDO}}</b> {{pedido.FECHA_PEDI}}
                                 <i class="icono ic-copy"  ngbTooltip="Generar un nuevo pedido Web con estos datos"></i>
                             </h3>
                             <span class="etiqueta check" *ngIf="pedido.Desc_Estado=='Aprobado'">{{pedido.Desc_Estado}}</span>
                             <span class="etiqueta" *ngIf="pedido.Desc_Estado!='Aprobado'">{{pedido.Desc_Estado}}</span>
                             <div class="text-center"><span ngbTooltip="Ver en el mapa" (click)="mostrarMapa(pedido.ID_INFOTRAK)" class="icono ic-truck-1" *ngIf="pedido.ID_INFOTRAK"></span></div>
 
-                            
-                            
-
-                                                
                         </div>
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="table-body">
+                            <div class="table-body highlight-opt">
                                 <table class="table table-sm table-responsive table-striped table-wrapper-scroll-y">
                                     <thead>
                                         <tr>
@@ -106,7 +102,6 @@
                                                 <!--<img src="../assets/images/iconos/ic-truck-1.png" alt="" class="camion_listado" *ngIf="detalle.ID_INFOTRAK">-->
                                             <!-- </td> -->
                                         </tr>
-
                                     </tbody>
                                 </table>
 
