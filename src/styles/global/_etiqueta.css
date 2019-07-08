@@ -2,7 +2,7 @@
 
 span.etiqueta{
     display: inline-block;
-    padding:0px 14px;
+    padding:0px 12px;
     color:#090a0a;
     font-family: 'Lato', Arial;
     letter-spacing: 0.3px;
@@ -12,6 +12,18 @@ span.etiqueta{
     height:28px;
     line-height: 28px;
     border-radius:5px;
+}
+span.etiqueta b{
+    display: inline-block;
+    font-weight: normal;
+    padding:0 0 0 6px;
+}
+span.etiqueta i{
+    float: left;
+    height: 28px;
+    background-position: center center;
+    background-size: 28px;
+    width: 28px;
 }
 span.etiqueta.check{
     padding-left:33px;

@@ -1,7 +1,7 @@
 /*BIENVENIDA*/
 
 .bienvenida.bg-1{
-    background: url('../../assets/images/login/bg-1.jpg') center center no-repeat;
+    background: url('../../assets/images/login/bg-1.jpg') bottom center no-repeat;
     background-size:cover;
 }
 .bienvenida.bg-2{
@@ -41,4 +41,14 @@
         border-radius: 5px;
         position: relative;
     }
+}
+
+
+.bienvenida.bg-1 .texto h3{
+    color:#FFF;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+.bienvenida.bg-1 .texto p{
+    color:#FFF;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }

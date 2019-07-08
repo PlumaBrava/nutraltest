@@ -72,7 +72,7 @@ export class AuthService {
 // Returns current user display name or Guest
   get currentUserPhotoURL(): string {
     return this.authState['photoURL'] ? this.authState['photoURL'] : false
- 
+
   }
 
   //// Social Auth ////
@@ -138,7 +138,7 @@ export class AuthService {
            observer.next(user);
           observer.complete();// Para cerrar la susripcion.
       })
-      .catch(error =>{  
+      .catch(error =>{
         observer.error(error);
         observer.complete();// Para cerrar la susripcion.
 // {code: "auth/email-already-in-use", message: "Thrown if there already exists an account with the given email address."}
@@ -149,7 +149,7 @@ export class AuthService {
       });
 
   };
-  
+
 
   emailLogin(email:string, password:string): Observable<any> {
      return new Observable((observer) => {
@@ -187,7 +187,7 @@ export class AuthService {
   resetPassword(email: string): Observable<any>{
 
     return new Observable((observer) => {
-    
+
      var auth = firebase.auth();
 
 
@@ -196,7 +196,7 @@ export class AuthService {
          observer.next("email sent");
          observer.complete();// Para cerrar la susripcion.)
         })
-      .catch((error) => { 
+      .catch((error) => {
           console.log(error);
           observer.error(error);
           observer.complete();// Para cerrar la susripcion.
@@ -281,7 +281,7 @@ getPefil(auth): Observable<any> {
        console.log("ususario loguedo, pero sin autorizar por Nutralmix");
        console.log(datosDeUsuario);
        this.router.navigate(['/estilos']);
-     }   
+     }
      }, err => {
   console.log(`Encountered error: ${err}`);
 });
@@ -343,7 +343,7 @@ getPefil(auth): Observable<any> {
        //    };
        //  console.log(updateData);
        // this.db.object('data').update(updateData);
-  
+
       // SE SUBSCRIBE a la consulta de firebase del usuario utilizando como clave el email.
       // si existe recibe el perfil del usuario.
       this.getPefil(auth).subscribe(usuarioLogistica=>{

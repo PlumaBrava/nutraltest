@@ -31,8 +31,15 @@ td.acciones{
     min-width: 130px;
 }
 
-table.highlight-opt tr:hover{
+table.highlight-opt tbody tr:hover,
+table.highlight-opt tbody tr:nth-of-type(odd):hover{
     background:#ececec !important;
+}
+.table-hover tbody tr:hover{
+    background:#FFF;
+}
+.table-hover tbody tr:nth-of-type(odd):hover{
+    background:#fbf9e8;
 }
 
 
